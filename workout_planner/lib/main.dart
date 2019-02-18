@@ -4,7 +4,6 @@ void main() => runApp(App());
 
 class App extends StatelessWidget
 {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context)
   {
@@ -24,9 +23,91 @@ class HomePage extends StatelessWidget
         title: Text("Workout Planner")
       ),
 
-      drawer: Drawer(
-        child: Text("\n\n\nDrawer")
+      drawer: NavDrawer()
+    );
+  }
+}
+
+class NavDrawer extends StatelessWidget
+{
+  @override
+  Widget build(BuildContext context)
+  {
+    return Drawer(
+      child: ListView(
+        children: <Widget>[
+          DrawerHeader(
+            child: Text("Actions\n <ADD LOGIN TEXT AND PROFILE PICTURE HERE>"),
+            decoration: BoxDecoration(
+              color: Colors.blue
+            ),
+          ),
+
+          ListTile(
+            title: Text("My Goals"),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => new MyGoalsPage()));
+            },
+          ),
+
+            ListTile(
+              title: Text("My Fitness"),
+              onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(
+              builder: (context) => new MyFitnessPage()));
+            },
+          )
+        ],
       )
+    );
+  }
+}
+
+// page to add, track, and edit goals
+class MyGoalsPage extends StatelessWidget
+{
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+      drawer: NavDrawer(),
+      appBar: AppBar(
+        title: Text("My Goals")
+      ),
+
+      body: Text("Goals Page"),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed:() {},
+        child: Icon(Icons.add)
+      ),
+
+    );
+  }
+}
+
+// page to add and update personal weight
+class MyFitnessPage extends StatelessWidget
+{
+  @override
+  Widget build(BuildContext context)
+  {
+    return Scaffold(
+      drawer: NavDrawer(),
+      appBar: AppBar(
+        title: Text("My Fitness")
+      ),
+
+      body: Text("Fitness Page"),
+
+      floatingActionButton: FloatingActionButton(
+        onPressed:() {},
+        child: Icon(Icons.add)
+      ),
+
     );
   }
 }
