@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'myGoalsPage.dart';
+import 'myFitnessPage.dart';
 void main() => runApp(App());
 
 class App extends StatelessWidget
@@ -53,7 +54,7 @@ class NavDrawer extends StatelessWidget
           ),
 
             ListTile(
-              title: Text("My Fitness"),
+              title: Text("Personal Information"),
               onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(
@@ -62,52 +63,6 @@ class NavDrawer extends StatelessWidget
           )
         ],
       )
-    );
-  }
-}
-
-// page to add, track, and edit goals
-class MyGoalsPage extends StatelessWidget
-{
-  @override
-  Widget build(BuildContext context)
-  {
-    return Scaffold(
-      drawer: NavDrawer(),
-      appBar: AppBar(
-        title: Text("My Goals")
-      ),
-
-      body: Text("Goals Page"),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed:() {},
-        child: Icon(Icons.add)
-      ),
-
-    );
-  }
-}
-
-// page to add and update personal weight
-class MyFitnessPage extends StatelessWidget
-{
-  @override
-  Widget build(BuildContext context)
-  {
-    return Scaffold(
-      drawer: NavDrawer(),
-      appBar: AppBar(
-        title: Text("My Fitness")
-      ),
-
-      body: Text("Fitness Page"),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed:() {},
-        child: Icon(Icons.add)
-      ),
-
     );
   }
 }

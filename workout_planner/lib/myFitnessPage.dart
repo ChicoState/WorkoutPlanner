@@ -10,10 +10,10 @@ class MyFitnessPage extends StatelessWidget
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-          title: Text("My Fitness")
+          title: Text("Personal Information")
       ),
 
-      body: Text("Fitness Page"),
+      body: Text("Personal Information Page"),
 
       floatingActionButton: FloatingActionButton(
           onPressed:() {},
