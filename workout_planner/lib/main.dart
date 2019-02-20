@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'myGoalsPage.dart';
-import 'myFitnessPage.dart';
+import 'myPersonalInfoPage.dart';
 void main() => runApp(App());
 
 class App extends StatelessWidget
@@ -58,7 +58,7 @@ class NavDrawer extends StatelessWidget
               onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(
-              builder: (context) => new MyFitnessPage()));
+              builder: (context) => new MyPersonalInfoPage()));
             },
           )
         ],

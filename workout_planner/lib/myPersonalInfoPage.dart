@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 
 // page to add and update personal weight
-class MyFitnessPage extends StatelessWidget
+class MyPersonalInfoPage extends StatelessWidget
 {
   @override
   Widget build(BuildContext context)

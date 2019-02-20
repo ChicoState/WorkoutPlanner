@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/alexbaker/Dropbox/WorkoutPlanner/workout_planner/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/home/anikmanesh/Desktop/WP/WorkoutPlanner/workout_planner/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/Users/alexbaker/Dropbox/WorkoutPlanner/workout_planner/android/app/src/main/res/values/styles.xml",
+                    "source": "/home/anikmanesh/Desktop/WP/WorkoutPlanner/workout_planner/android/app/src/main/res/values/styles.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
