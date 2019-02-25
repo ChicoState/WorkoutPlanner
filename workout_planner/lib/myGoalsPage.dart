@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 
-// page to add, track, and edit goals
-class MyGoalsPage extends StatelessWidget
+class MyGoalsPage extends StatefulWidget
 {
-  final myController = new TextEditingController();
-  var goalText = '';
+  @override
+  _MyGoalsPage createState() => _MyGoalsPage();
+}
 
-  void setController(){
-    myController.text = '';
+// page to add, track, and edit goals
+class _MyGoalsPage extends State<MyGoalsPage>
+{
+  final goalController = new TextEditingController();
+  final descController = new TextEditingController();
+  var goalTitle = '';
+  var goalDesc = '';
+
+  _commitGoal() {
+    setState((){
+      goalTitle = goalController.text;
+      goalDesc = descController.text;
+    });
   }
+
+  _buildRow(int index){
+    return Text(goalTitle);
+  }
+
 
   @override
   Widget build(BuildContext context)
@@ -20,7 +36,7 @@ class MyGoalsPage extends StatelessWidget
           title: Text("My Goals")
       ),
 
-      body: Text("Goals Page"),
+      //body: Text("Goals Page"),
 
       floatingActionButton: FloatingActionButton(
           onPressed:() {
@@ -31,7 +47,7 @@ class MyGoalsPage extends StatelessWidget
                   new Column(
                     children: <Widget>[
                       new TextField(
-                        controller: myController,
+                        controller: goalController,
                         decoration: new InputDecoration(
                           hintText: "Goal",
                           filled: true,
@@ -40,7 +56,7 @@ class MyGoalsPage extends StatelessWidget
                         ),
                       ),
                       new TextField(
-                        controller: myController,
+                        controller: descController,
                         decoration: new InputDecoration(
                             hintText: "Description",
                             filled: true,
@@ -53,9 +69,10 @@ class MyGoalsPage extends StatelessWidget
                         children: <Widget> [
                           new RaisedButton(
                             onPressed: () {
-                              goalText = myController.text;
-                              print(myController.text);
-                              myController.clear();
+                              _commitGoal();
+                              print(goalController.text);
+                              print(descController.text);
+                              Navigator.pop(context);
                             },
                             child: new Text('Enter'),
                             color: Colors.blue[100],
@@ -75,7 +92,12 @@ class MyGoalsPage extends StatelessWidget
           },
           child: Icon(Icons.add),
       ),
-      
+      body: new Container (
+        child: ListView.builder(
+          itemBuilder: (context, index) => _buildRow(index),
+          itemCount: 3,
+        )
+      )
     );
   }
 }
