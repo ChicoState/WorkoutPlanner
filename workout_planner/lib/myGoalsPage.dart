@@ -10,6 +10,7 @@ class MyGoalsPage extends StatelessWidget
   void setController(){
     myController.text = '';
   }
+
   @override
   Widget build(BuildContext context)
   {
@@ -32,10 +33,19 @@ class MyGoalsPage extends StatelessWidget
                       new TextField(
                         controller: myController,
                         decoration: new InputDecoration(
-                          hintText: "Enter A Goal",
+                          hintText: "Goal",
                           filled: true,
                           fillColor: Colors.grey[100],
                           contentPadding: new EdgeInsets.all(5.0)
+                        ),
+                      ),
+                      new TextField(
+                        controller: myController,
+                        decoration: new InputDecoration(
+                            hintText: "Description",
+                            filled: true,
+                            fillColor: Colors.grey[100],
+                            contentPadding: new EdgeInsets.all(5.0)
                         ),
                       ),
                       new Row(
