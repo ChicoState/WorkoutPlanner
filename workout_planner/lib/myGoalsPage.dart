@@ -14,16 +14,16 @@ class _MyGoalsPage extends State<MyGoalsPage>
   final descController = new TextEditingController();
   var goalTitle = '';
   var goalDesc = '';
+  List<String> goals = [];
 
   _commitGoal() {
-    setState((){
-      goalTitle = goalController.text;
-      goalDesc = descController.text;
-    });
+    goalTitle = goalController.text;
+    goalDesc = descController.text;
+    goals.add(goalTitle);
   }
 
   _buildRow(int index){
-    return Text(goalTitle);
+    return new Text();
   }
 
 
@@ -95,7 +95,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
       body: new Container (
         child: ListView.builder(
           itemBuilder: (context, index) => _buildRow(index),
-          itemCount: 3,
+          itemCount: goals.length,
         )
       )
     );
