@@ -95,13 +95,19 @@ class _MyGoalsPage extends State<MyGoalsPage>
                               _commitGoal();
                               print(goalController.text);
                               print(descController.text);
-                              Navigator.pop(context);
+                              goalController.clear(); // makes sure there isn't leftover text from the last input
+                              descController.clear();
+                              Navigator.pop(context); // closes dialog when enter button is pressed
                             },
                             child: new Text('Enter'),
                             color: Colors.blue[100],
                           ),
                           new RaisedButton(
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () {
+                              goalController.clear(); // makes sure there isn't leftover text from the last input
+                              descController.clear();
+                              Navigator.pop(context);
+                            },
                             child: new Text('Close'),
                             color: Colors.blue[100],
                           )
