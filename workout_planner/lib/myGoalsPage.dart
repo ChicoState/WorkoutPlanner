@@ -28,29 +28,31 @@ class _MyGoalsPage extends State<MyGoalsPage>
     return new GestureDetector(
         onTap: (){
           _showGoalDialog();  //TODO make this UPDATE the goal and description, not change it
-          //_updateGoalDialog(); //TODO this should be the function to update dialog
+          _updateGoalDialog(); //TODO this should be the function to update dialog
         },
         child: Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Text(
+              Expanded(
+                child: Column(
+                  children: <Widget>[
+                    Text(
                       goals[index],
                       style: TextStyle(
-                          fontSize: 30.0,
-                          fontWeight: FontWeight.bold
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold
                       )
-                  ),
-                  Text(
+                    ),
+                    Text(
                       goalDescriptions[index],
                       style: TextStyle(
-                          fontSize: 20.0,
-                          fontStyle: FontStyle.italic
+                        fontSize: 20.0,
+                        fontStyle: FontStyle.italic,
                       )
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ],
           )
@@ -115,6 +117,10 @@ class _MyGoalsPage extends State<MyGoalsPage>
         ]
       ),
     );
+  }
+
+  _updateGoalDialog(){
+
   }
 
   @override
