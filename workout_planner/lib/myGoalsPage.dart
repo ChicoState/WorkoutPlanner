@@ -36,9 +36,11 @@ class _MyGoalsPage extends State<MyGoalsPage>
             children: <Widget>[
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Text(
                       goals[index],
+                      textAlign: TextAlign.left,
                       style: TextStyle(
                         fontSize: 30.0,
                         fontWeight: FontWeight.bold
