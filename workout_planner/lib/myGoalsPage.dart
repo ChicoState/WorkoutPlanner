@@ -15,17 +15,42 @@ class _MyGoalsPage extends State<MyGoalsPage>
   var goalTitle = '';
   var goalDesc = '';
   List<String> goals = [];
+  List<String> goalDescriptions = [];
 
   _commitGoal() {
     goalTitle = goalController.text;
     goalDesc = descController.text;
     goals.add(goalTitle);
+    goalDescriptions.add(goalDesc);
   }
 
   _buildRow(int index){
-    return new Text();
+    return new Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Column(
+            children: <Widget>[
+              Text(
+                goals[index],
+                style: TextStyle(
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold
+                )
+              ),
+              Text(
+                goalDescriptions[index],
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontStyle: FontStyle.italic
+                )
+              ),
+            ],
+          ),
+        ],
+       )
+    );
   }
-
 
   @override
   Widget build(BuildContext context)
@@ -35,8 +60,6 @@ class _MyGoalsPage extends State<MyGoalsPage>
       appBar: AppBar(
           title: Text("My Goals")
       ),
-
-      //body: Text("Goals Page"),
 
       floatingActionButton: FloatingActionButton(
           onPressed:() {
