@@ -183,7 +183,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 controller: goalController,
                 decoration: new InputDecoration(
                     hintText: "Goal",
-                    filled: true,
+                    filled: false,
                     fillColor: Colors.grey[100],
                     contentPadding: new EdgeInsets.all(5.0)
                 ),
@@ -192,7 +192,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 controller: descController,
                 decoration: new InputDecoration(
                     hintText: "Description",
-                    filled: true,
+                    filled: false,
                     fillColor: Colors.grey[100],
                     contentPadding: new EdgeInsets.all(5.0)
                 ),
@@ -238,8 +238,8 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 new TextField(
                   controller: goalController,
                   decoration: new InputDecoration(
-                      //hintText: "Goal",
-                      filled: true,
+                      hintText: goalTitle,
+                      filled: false,
                       fillColor: Colors.grey[100],
                       contentPadding: new EdgeInsets.all(5.0)
                   ),
@@ -247,8 +247,8 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 new TextField(
                   controller: descController,
                   decoration: new InputDecoration(
-                      //hintText: "Description",
-                      filled: true,
+                      hintText: goalDesc,
+                      filled: false,
                       fillColor: Colors.grey[100],
                       contentPadding: new EdgeInsets.all(5.0)
                   ),
