@@ -8,7 +8,8 @@ class MyGoalsPage extends StatefulWidget
 }
 
 // page to add, track, and edit goals
-class _MyGoalsPage extends State<MyGoalsPage> {
+class _MyGoalsPage extends State<MyGoalsPage>
+{
   final goalController = new TextEditingController();
   final descController = new TextEditingController();
   var goalTitle = '';
@@ -16,17 +17,21 @@ class _MyGoalsPage extends State<MyGoalsPage> {
   List<String> goals = [];
   List<String> goalDescriptions = [];
 
-  _commitGoal() {
+  _commitGoal()
+  {
     goalTitle = goalController.text;
     goalDesc = descController.text;
-    if(goalTitle != '') {
+    if(goalTitle != '')
+    {
       goals.add(goalTitle);
       goalDescriptions.add(goalDesc);
     }
   }
 
-  _enterButton() {
-    if(goalController.text == ''){
+  _enterButton()
+  {
+    if(goalController.text == '')
+    {
       showDialog(
         context: context,
         child:SimpleDialog(
@@ -55,7 +60,8 @@ class _MyGoalsPage extends State<MyGoalsPage> {
       );
       return null;
     }
-    else{
+    else
+    {
       _commitGoal();
       print(goalController.text);
       print(descController.text);
@@ -65,42 +71,44 @@ class _MyGoalsPage extends State<MyGoalsPage> {
     }
   }
 
-
-  _buildRow(int index){
+  _buildRow(int index)
+  {
     return new GestureDetector(
-        onTap: (){
-          _showGoalDialog();  //TODO make this UPDATE the goal and description, not change it
-          _updateGoalDialog();//TODO this should be the function to update dialog
-        },
-        child: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Text(
-                      goals[index],
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold
-                      )
-                    ),
-                    Text(
-                      goalDescriptions[index],
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontStyle: FontStyle.italic,
-                      )
-                    ),
-                  ],
-                ),
+      onTap: ()
+      {
+        _showGoalDialog();  //TODO make this UPDATE the goal and description, not change it
+        _updateGoalDialog();//TODO this should be the function to update dialog
+      },
+      child: Container(
+        padding: EdgeInsets.only(left: 10.0, top: 10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text(
+                    goals[index],
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                  Text(
+                    goalDescriptions[index],
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontStyle: FontStyle.italic,
+                    )
+                  ),
+                ],
               ),
-            ],
-          )
+            ),
+          ],
         )
+      )
     );
   }
 
@@ -161,7 +169,8 @@ class _MyGoalsPage extends State<MyGoalsPage> {
   }
 
 
-  _updateGoalDialog(){
+  _updateGoalDialog()
+  {
 
   }
 
