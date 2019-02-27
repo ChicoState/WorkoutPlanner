@@ -132,7 +132,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
       onTap: ()
       {
         goalIndex = index;
-        _updateGoalDialog(goalIndex);//TODO this should be the function to update dialog
+        _updateGoalDialog(goalIndex);
       },
       child: Container(
         padding: EdgeInsets.only(left: 10.0, top: 10.0),
@@ -161,6 +161,10 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 ],
               ),
             ),
+            IconButton(
+              icon: Icon(Icons.check),
+              onPressed: () => _deleteGoal(index)
+            )
           ],
         )
       )
@@ -277,6 +281,16 @@ class _MyGoalsPage extends State<MyGoalsPage>
           ]
       ),
     );
+  }
+
+  _deleteGoal(int index)
+  {
+    setState(() {
+      goals.removeAt(index);
+      goalDescriptions.removeAt(index);
+      print(goals);
+      print(goalDescriptions);
+    });
   }
 
   @override
