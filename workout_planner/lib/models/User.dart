@@ -10,7 +10,8 @@ class User {
   int _height; //in cm
 
   //Add options later
-  User(this._username, this._gender, this._weight, this._age, this._height);
+  User.set(this._username, this._gender, this._weight, this._age, this._height);
+  User();
 
   //getters
   int get id => _id;
@@ -96,5 +97,16 @@ class User {
     this._age = myMap['age'];
     this._height = myMap['height'];
   }//User.fromMapObjects
+
+//  Future<List<String>> getPara() async {
+//    List<String> para = List<String>();
+//    //para.add('id');
+//    para.add('username');
+//    para.add('gender');
+//    para.add('weight');
+//    para.add('age');
+//    para.add('height');
+//    return para;
+//  }
 
 }//User

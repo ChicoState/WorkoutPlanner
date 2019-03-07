@@ -83,7 +83,7 @@ class DBhelper {
     Database db = await this.database;
 
     //checks if table exists, if it does then it inserts a row onto the table.
-    bool doesTableExist = await lookupTable(tableName);
+    bool doesTableExist = await _lookupTable(tableName);
     if(doesTableExist) {
       var result = await db.insert(
           tableName, tableObj.toMap()); //returns an int.
@@ -104,7 +104,7 @@ class DBhelper {
     Database db = await this.database;
 
     colName = tableObj.id;
-    bool doesTableExist = await lookupTable(tableName);
+    bool doesTableExist = await _lookupTable(tableName);
     if(doesTableExist) {
       //update based on id
       //UPDATE tableName SET colID = id;
@@ -117,13 +117,18 @@ class DBhelper {
   }
 
   /*
-
+  name: deleteFromTable
+  para: tableObj, tableName, colName, id
+  return: Future<int>
+  desc: function takes in a model and name of the table and looks to see if it
+  exists. If it exists then it deletes the value using id in the column using
+  colName.
    */
   Future<int> deleteFromTable(var tableObj, String tableName, var colName, int id)
   async {
     Database db = await this.database;
 
-    bool doesTableExist = await lookupTable(tableName);
+    bool doesTableExist = await _lookupTable(tableName);
     if(doesTableExist) {
       //DELETE FROM tableName WHERE colName = id;
       var result = await db.delete(tableName, where: '$colName = ?',
@@ -133,13 +138,15 @@ class DBhelper {
     return 0;
   }
   /*
+  name: getCount
+  para: tableName
 
    */
   Future<int> getCount(String tableName) async {
     Database db = await this.database;
 
     //Counts all in 'tableName' and stores it in another table with 1 row.
-    bool doesTableExist = await lookupTable(tableName);
+    bool doesTableExist = await _lookupTable(tableName);
     if(doesTableExist){
       List<Map<String, dynamic>> countTable = await db.rawQuery(
           'SELECT COUNT (*)'
@@ -152,7 +159,7 @@ class DBhelper {
   }
   // CRUD OPERATIONS ==========================================================
 
-  Future<bool> lookupTable(String tableName) async {
+  Future<bool> _lookupTable(String tableName) async {
     Database db = await this.database;
 
     var result = await db.rawQuery('SELECT name FROM sqlite_master '
@@ -165,11 +172,13 @@ class DBhelper {
     else {
       return false;
     }
-  }
-
-//  Future<int> createNewTable(var tableObj, String tableName) async {
+  }//lookUpTable
+//  //make private
+//  Future<Map<String,dynamic>> createNewTable(var tableObj, String tableName) async {
 //    Database db = await this.database;
-//    await db.execute('CREATE TABLE $tableName(')
+//    Map<String, dynamic> temp = await tableObj.toMap();
+//    print(temp);
+//    return temp;
 //  }
   //Future close() async => _database.close();
 
@@ -177,7 +186,7 @@ class DBhelper {
   this function DELETES THE DATABASE!!!
   DO NOT RUN THIS UNLESS YOU NEED TO.
    */
-  void deleteDB() async {
+  void _deleteDB() async {
     var databasePath = await getDatabasesPath();
     String path = join(databasePath, 'myTrainer.db');
     await deleteDatabase(path);
