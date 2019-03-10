@@ -17,6 +17,9 @@ class _MyGoalsPage extends State<MyGoalsPage>
   var goalIndex = -1;
   List<String> goals = [];
   List<String> goalDescriptions = [];
+  List<String> goalCompleted = [];
+  List<String> goalDescCompleted = [];
+  var goalCompIndex = 0;
 
   _commitGoal()
   {
@@ -126,7 +129,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
     }
   }
 
-  _buildRow(int index)
+  _buildActiveRow(int index)
   {
     return new GestureDetector(
       onTap: ()
@@ -168,6 +171,46 @@ class _MyGoalsPage extends State<MyGoalsPage>
           ],
         )
       )
+    );
+  }
+  _buildCompRow(int index)
+  {
+    return new GestureDetector(
+        onTap: ()
+        {
+          goalIndex = index;
+          _updateGoalDialog(goalIndex);
+        },
+        child: Container(
+            padding: EdgeInsets.only(left: 10.0, top: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Text(
+                          goalCompleted[index],
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold
+                          )
+                      ),
+                      Text(
+                          goalDescCompleted[index],
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontStyle: FontStyle.italic,
+                          )
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
+        )
     );
   }
 
@@ -286,32 +329,52 @@ class _MyGoalsPage extends State<MyGoalsPage>
   _deleteGoal(int index)
   {
     setState(() {
-      goals.removeAt(index);
-      goalDescriptions.removeAt(index);
-      print(goals);
-      print(goalDescriptions);
+      goalTitle = goals.removeAt(index);
+      goalCompleted.add(goalTitle);
+      goalDesc = goalDescriptions.removeAt(index);
+      goalDescCompleted.add(goalDesc);
+      goalCompIndex++;
+//      print(goals);
+//      print(goalDescriptions);
+      print(goalCompleted);
+      print(goalDescCompleted);
     });
   }
 
   @override
-  Widget build(BuildContext context)
-  {
-    return Scaffold(
-      drawer: NavDrawer(),
-      appBar: AppBar(
-          title: Text("My Goals")
-      ),
-
-      floatingActionButton: FloatingActionButton(
-          onPressed:() => _addGoalDialog(),
-          child: Icon(Icons.add),
-      ),
-      body: new Container (
-        child: ListView.builder(
-          itemBuilder: (context, index) => _buildRow(index),
-          itemCount: goals.length,
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed:() => _addGoalDialog(),
+            child: Icon(Icons.add),
+          ),
+          appBar: AppBar(
+            bottom: TabBar(tabs: [
+              Tab(text: "Active"),
+              Tab(text: "Completed")
+            ]),
+            title: Text("My Goals"),
+          ),
+          body: TabBarView(children: [
+            new Container (
+              child: ListView.builder(
+                itemBuilder: (context, index) => _buildActiveRow(index),
+                itemCount: goals.length,
+              )
+            ),
+            new Container(
+              child: ListView.builder(
+                itemBuilder: (context, index) => _buildCompRow(index),
+                itemCount: goalCompleted.length,
+              )
+            )
+          ])
         )
       )
     );
   }
 }
+
