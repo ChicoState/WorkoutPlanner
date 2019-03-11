@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'package:workout_planner/models/User.dart';
+import 'package:workout_planner/utils/DBhelper.dart';
+import 'dart:math';
 
 /*
 Goals: Updated 2/27/2019
 - Figure out TextEditingController (Widget Tree & Dispose) // ongoing
-- Add database statements to TextFormFields // unstarted
+- Add database statements to TextFormFields // ongoing
 - Figure out how to init TextEditingController & how to create an instance
    w/o needing to pass a TextEditingController to goalForm // ongoing
 - Need to add RegEx to limit TextForm input and validation (red text) // ongoing
@@ -13,17 +16,30 @@ Goals: Updated 2/27/2019
  */
 // page to add and update personal weight
 class MyPersonalInfoPage extends StatefulWidget {
+
+  final User user = User();
+
   @override
-  MyPersonalInfoPageState createState() => MyPersonalInfoPageState();
+  MyPersonalInfoPageState createState() => MyPersonalInfoPageState(this.user);
 }
 
 class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
+
+  DBhelper db = DBhelper();
+  User user;
+
+  //testing
+
+  //
+
+  MyPersonalInfoPageState(this.user);
+
   // All the TextEditingControllers for each TextFormField
-  final userNameController = TextEditingController();
-  final ageController = TextEditingController();
-  final weightController = TextEditingController();
-  final heightController = TextEditingController();
-  final genderController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
 
   /*
   name: build
@@ -113,7 +129,12 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
           //Shows the Rest of the Free space on the page to work with.
           Expanded(
             child: Container(
-            color: Colors.green,
+              color: Colors.blue,
+              child: ListView(
+                children: <Widget>[
+                  Text("test"),
+                ],
+              ),
             ),
           ),
         ],
@@ -121,9 +142,37 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
       ),
       floatingActionButton:
-          FloatingActionButton(onPressed: () {}, child: Icon(Icons.add)),
+          FloatingActionButton(onPressed: () {
+            _saveInfo();
+          }, child: Icon(Icons.add)),
     );
   } //build
+
+  void _saveInfo() async {
+
+    int result;
+    user.username = userNameController.text;
+    user.gender = genderController.text;
+    user.weight = int.parse(weightController.text) ?? null;
+    user.age = int.parse(ageController.text) ?? null;
+    user.height = int.parse(heightController.text) ?? null;
+    // !null == user exists and we're updating, else its a new user
+    if (user.id != null) {
+      result = await db.updateToTable(user, 'initial_table', 'id', 2);
+      print("updating");
+    }
+    else {
+      result = await db.insertToTable(user, 'initial_table');
+      print("inserting");
+    }
+    if (result !=0 ) {
+      print("Saved Sucessfully to database");
+    }
+    else {
+      print("Error not saved to database");
+    }
+  }
+
 
 }
 
@@ -164,7 +213,9 @@ class goalForm extends StatefulWidget {
  */
 class goalFormState extends State<goalForm> {
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  DBhelper db = DBhelper();
+  User user;
+  //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
