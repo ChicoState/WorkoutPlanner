@@ -14,8 +14,12 @@ class _MyGoalsPage extends State<MyGoalsPage>
   final descController = new TextEditingController();
   var goalTitle = '';
   var goalDesc = '';
+  var goalIndex = -1;
   List<String> goals = [];
   List<String> goalDescriptions = [];
+  List<String> goalCompleted = [];
+  List<String> goalDescCompleted = [];
+  var goalCompIndex = 0;
 
   _commitGoal()
   {
@@ -25,6 +29,17 @@ class _MyGoalsPage extends State<MyGoalsPage>
     {
       goals.add(goalTitle);
       goalDescriptions.add(goalDesc);
+    }
+  }
+
+  _commitGoalUpdate(int index)
+  {
+    goalTitle = goalController.text;
+    goalDesc = descController.text;
+    if(goalTitle != '')
+    {
+      goals[index] = goalTitle;
+      goalDescriptions[index] = goalDesc;
     }
   }
 
@@ -71,13 +86,56 @@ class _MyGoalsPage extends State<MyGoalsPage>
     }
   }
 
-  _buildRow(int index)
+  _enterButtonUpdate(int index)
+  {
+    if(goalController.text == '')
+    {
+      showDialog(
+          context: context,
+          child:SimpleDialog(
+            title: Text(
+                "Error",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold
+                )
+            ),
+            titlePadding: EdgeInsets.all(10.0),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+            children: <Widget>[
+              new Column(
+                children: <Widget>[
+                  Text(
+                      "Please enter a title.",
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontStyle: FontStyle.italic
+                      )
+                  )
+                ],
+              )
+            ],
+          )
+      );
+      return null;
+    }
+    else
+    {
+      _commitGoalUpdate(index);
+      print(goalController.text);
+      print(descController.text);
+      goalController.clear(); // makes sure there isn't leftover text from the last input
+      descController.clear();
+      Navigator.pop(context); // closes dialog when enter button is pressed
+    }
+  }
+
+  _buildActiveRow(int index)
   {
     return new GestureDetector(
       onTap: ()
       {
-        _showGoalDialog();  //TODO make this UPDATE the goal and description, not change it
-        _updateGoalDialog();//TODO this should be the function to update dialog
+        goalIndex = index;
+        _updateGoalDialog(goalIndex);
       },
       child: Container(
         padding: EdgeInsets.only(left: 10.0, top: 10.0),
@@ -106,13 +164,57 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 ],
               ),
             ),
+            IconButton(
+              icon: Icon(Icons.check),
+              onPressed: () => _deleteGoal(index)
+            )
           ],
         )
       )
     );
   }
+  _buildCompRow(int index)
+  {
+    return new GestureDetector(
+        onTap: ()
+        {
+          goalIndex = index;
+          _updateGoalDialog(goalIndex);
+        },
+        child: Container(
+            padding: EdgeInsets.only(left: 10.0, top: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Text(
+                          goalCompleted[index],
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold
+                          )
+                      ),
+                      Text(
+                          goalDescCompleted[index],
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontStyle: FontStyle.italic,
+                          )
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )
+        )
+    );
+  }
 
-  _showGoalDialog()
+  _addGoalDialog()
   {
     showDialog(
       context: context,
@@ -128,7 +230,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 controller: goalController,
                 decoration: new InputDecoration(
                     hintText: "Goal",
-                    filled: true,
+                    filled: false,
                     fillColor: Colors.grey[100],
                     contentPadding: new EdgeInsets.all(5.0)
                 ),
@@ -137,7 +239,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 controller: descController,
                 decoration: new InputDecoration(
                     hintText: "Description",
-                    filled: true,
+                    filled: false,
                     fillColor: Colors.grey[100],
                     contentPadding: new EdgeInsets.all(5.0)
                 ),
@@ -156,7 +258,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
                       descController.clear();
                       Navigator.pop(context);
                     },
-                    child: new Text('Close'),
+                    child: new Text('Cancel'),
                     color: Colors.blue[100],
                   )
                 ]
@@ -168,31 +270,111 @@ class _MyGoalsPage extends State<MyGoalsPage>
     );
   }
 
-
-  _updateGoalDialog()
+  _updateGoalDialog(int index)
   {
+    showDialog(
+      context: context,
+      child: SimpleDialog(
+          title: Text("Update your goal"),
+          titlePadding: EdgeInsets.all(10.0),
+          contentPadding: EdgeInsets.all(10.0),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+          children: <Widget>[
+            new Column(
+              children: <Widget>[
+                new TextField(
+                  controller: goalController,
+                  decoration: new InputDecoration(
+                      hintText: goalTitle,
+                      filled: false,
+                      fillColor: Colors.grey[100],
+                      contentPadding: new EdgeInsets.all(5.0)
+                  ),
+                ),
+                new TextField(
+                  controller: descController,
+                  decoration: new InputDecoration(
+                      hintText: goalDesc,
+                      filled: false,
+                      fillColor: Colors.grey[100],
+                      contentPadding: new EdgeInsets.all(5.0)
+                  ),
+                ),
+                new Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget> [
+                      new RaisedButton(
+                        onPressed: () => _enterButtonUpdate(index),
+                        child: new Text('Enter'),
+                        color: Colors.blue[100],
+                      ),
+                      new RaisedButton(
+                        onPressed: () {
+                          goalController.clear(); // makes sure there isn't leftover text from the last input
+                          descController.clear();
+                          Navigator.pop(context);
+                        },
+                        child: new Text('Cancel'),
+                        color: Colors.blue[100],
+                      )
+                    ]
+                ),
+              ],
+            ),
+          ]
+      ),
+    );
+  }
 
+  _deleteGoal(int index)
+  {
+    setState(() {
+      goalTitle = goals.removeAt(index);
+      goalCompleted.add(goalTitle);
+      goalDesc = goalDescriptions.removeAt(index);
+      goalDescCompleted.add(goalDesc);
+      goalCompIndex++;
+//      print(goals);
+//      print(goalDescriptions);
+      print(goalCompleted);
+      print(goalDescCompleted);
+    });
   }
 
   @override
-  Widget build(BuildContext context)
-  {
-    return Scaffold(
-      drawer: NavDrawer(),
-      appBar: AppBar(
-          title: Text("My Goals")
-      ),
-
-      floatingActionButton: FloatingActionButton(
-          onPressed:() => _showGoalDialog(),
-          child: Icon(Icons.add),
-      ),
-      body: new Container (
-        child: ListView.builder(
-          itemBuilder: (context, index) => _buildRow(index),
-          itemCount: goals.length,
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          floatingActionButton: FloatingActionButton(
+            onPressed:() => _addGoalDialog(),
+            child: Icon(Icons.add),
+          ),
+          appBar: AppBar(
+            bottom: TabBar(tabs: [
+              Tab(text: "Active"),
+              Tab(text: "Completed")
+            ]),
+            title: Text("My Goals"),
+          ),
+          body: TabBarView(children: [
+            new Container (
+              child: ListView.builder(
+                itemBuilder: (context, index) => _buildActiveRow(index),
+                itemCount: goals.length,
+              )
+            ),
+            new Container(
+              child: ListView.builder(
+                itemBuilder: (context, index) => _buildCompRow(index),
+                itemCount: goalCompleted.length,
+              )
+            )
+          ])
         )
       )
     );
   }
 }
+
