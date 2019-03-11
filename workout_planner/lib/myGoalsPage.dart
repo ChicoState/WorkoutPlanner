@@ -222,26 +222,39 @@ class _MyGoalsPage extends State<MyGoalsPage>
         title: Text("Enter a goal"),
         titlePadding: EdgeInsets.all(10.0),
         contentPadding: EdgeInsets.all(10.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(5.0)
+          )
+        ),
         children: <Widget>[
           new Column(
             children: <Widget>[
               new TextField(
                 controller: goalController,
                 decoration: new InputDecoration(
-                    hintText: "Goal",
-                    filled: false,
-                    fillColor: Colors.grey[100],
-                    contentPadding: new EdgeInsets.all(5.0)
+                  labelText: "Goal",
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: new EdgeInsets.all(5.0),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  )
                 ),
+              ),
+              new SizedBox(
+                height: 5,
               ),
               new TextField(
                 controller: descController,
                 decoration: new InputDecoration(
-                    hintText: "Description",
-                    filled: false,
-                    fillColor: Colors.grey[100],
-                    contentPadding: new EdgeInsets.all(5.0)
+                  labelText: "Description",
+                  filled: true,
+                  fillColor: Colors.white,
+                  contentPadding: new EdgeInsets.all(5.0),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                  )
                 ),
               ),
               new Row(
@@ -249,8 +262,13 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 children: <Widget> [
                   new RaisedButton(
                     onPressed: () => _enterButton(),
-                    child: new Text('Enter'),
-                    color: Colors.blue[100],
+                    child: new Text(
+                      'Enter',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    color: Colors.blue,
                   ),
                   new RaisedButton(
                     onPressed: () {
@@ -258,8 +276,13 @@ class _MyGoalsPage extends State<MyGoalsPage>
                       descController.clear();
                       Navigator.pop(context);
                     },
-                    child: new Text('Cancel'),
-                    color: Colors.blue[100],
+                    child: new Text(
+                      'Cancel',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    color: Colors.blue,
                   )
                 ]
               ),
@@ -343,38 +366,39 @@ class _MyGoalsPage extends State<MyGoalsPage>
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          floatingActionButton: FloatingActionButton(
-            onPressed:() => _addGoalDialog(),
-            child: Icon(Icons.add),
-          ),
-          appBar: AppBar(
-            bottom: TabBar(tabs: [
-              Tab(text: "Active"),
-              Tab(text: "Completed")
-            ]),
-            title: Text("My Goals"),
-          ),
-          body: TabBarView(children: [
-            new Container (
-              child: ListView.builder(
-                itemBuilder: (context, index) => _buildActiveRow(index),
-                itemCount: goals.length,
-              )
-            ),
-            new Container(
-              child: ListView.builder(
-                itemBuilder: (context, index) => _buildCompRow(index),
-                itemCount: goalCompleted.length,
-              )
+      return Scaffold(
+        drawer: NavDrawer(),
+        body: DefaultTabController(
+            length: 2,
+            child: Scaffold(
+              floatingActionButton: FloatingActionButton(
+                onPressed:() => _addGoalDialog(),
+                child: Icon(Icons.add),
+              ),
+              appBar: AppBar(
+                bottom: TabBar(tabs: [
+                  Tab(text: "Active"),
+                  Tab(text: "Completed")
+                ]),
+                title: Text("My Goals"),
+              ),
+              body: TabBarView(children: [
+                new Container (
+                  child: ListView.builder(
+                    itemBuilder: (context, index) => _buildActiveRow(index),
+                    itemCount: goals.length,
+                  )
+                ),
+                new Container(
+                  child: ListView.builder(
+                    itemBuilder: (context, index) => _buildCompRow(index),
+                    itemCount: goalCompleted.length,
+                  )
+                )
+              ])
             )
-          ])
         )
-      )
-    );
+      );
   }
 }
 
