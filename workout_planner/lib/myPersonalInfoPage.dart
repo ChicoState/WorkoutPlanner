@@ -41,6 +41,20 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
   TextEditingController heightController = TextEditingController();
   TextEditingController genderController = TextEditingController();
 
+  void initState() {
+    super.initState();
+    db.getUser(1).then((result) {
+      print('result: $result');
+      setState((){
+         userNameController.text = result.username;
+         ageController.text = result.age.toString();
+         weightController.text = result.weight.toString();
+         heightController.text = result.height.toString();
+         genderController.text = result.gender;
+      });
+    });
+  }
+
   /*
   name: build
   type: Widget
@@ -63,7 +77,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
               //Element 1 - ColorAvatar
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.all(5.0),
+                  //padding: const EdgeInsets.all(0.0),
                   child: CircleAvatar(
                     backgroundColor: Colors.lightBlue,
                     child: Text("KS"),
@@ -72,6 +86,12 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
                 ),
               ),
 
+            ]
+            //#================================================ end children
+          ),
+          Row(
+            children: <Widget>[
+              //#============================================== start  children
               //Element 2 - Username
               Expanded(
                 child: Container(
@@ -81,15 +101,22 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
                 ),
               ),
 
+            ],
+            //#================================================ end children
+          ),
+          Row(
+            children: <Widget>[
+              //#============================================== start  children
               //Element 3 - Gender
               Expanded(
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: goalForm("Gender","Gender", genderController,
+                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
+                  child: goalForm("weight","Weight", weightController,
                       TextInputType.text,
                       TextInputAction.done),
                 )
               )
+
             ],
             //#================================================ end children
           ),
@@ -103,7 +130,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
                   //color: Colors.green,
                   width: 75.0,
                   //padding: const EdgeInsets.all(5.0),
-                  child: goalForm("Weight","Weight", weightController,
+                  child: goalForm("Gender","Gender", genderController,
                       TextInputType.number, TextInputAction.done),
                 ),
               ),
@@ -126,53 +153,106 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
               //#================================================ end children
             ],
           ),
+//          Row(
+//            //Weight, Age, Sex
+//            children: <Widget>[
+//              //#============================================== start  children
+//              Expanded(
+//                child: Container(
+//                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
+//                  //color: Colors.green,
+//                  //padding: const EdgeInsets.all(5.0),
+//                  child: goalForm("Weight","Weight", weightController,
+//                      TextInputType.number, TextInputAction.done),
+//                ),
+//              ),
+////              Expanded(
+////                child: Container(
+////                  padding: EdgeInsets.all(20.0),
+////                  width: 75.0,
+////                  child: goalForm("Age","Age", ageController,
+////                      TextInputType.number, TextInputAction.done),
+////                ),
+////              ),
+////              Expanded(
+////                child: Container(
+////                  padding: EdgeInsets.all(20.0),
+////                  width: 75.0,
+////                  child: goalForm("Height (ft)","Height (ft)", heightController,
+////                      TextInputType.number, TextInputAction.done),
+////                ),
+////              ),
+////              //#================================================ end children
+//            ],
+//          ),
+//          Row(
+//            //Weight, Age, Sex
+//            children: <Widget>[
+//              //#============================================== start  children
+//
+//              Expanded(
+//                child: Container(
+//                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
+//                  child: goalForm("Age","Age", ageController,
+//                      TextInputType.number, TextInputAction.done),
+//                ),
+//              ),
+////              Expanded(
+////                child: Container(
+////                  padding: EdgeInsets.all(20.0),
+////                  width: 75.0,
+////                  child: goalForm("Height (ft)","Height (ft)", heightController,
+////                      TextInputType.number, TextInputAction.done),
+////                ),
+////              ),
+////              //#================================================ end children
+//            ],
+//          ),
+////          Row(
+////            //Weight, Age, Sex
+////            children: <Widget>[
+////              //#============================================== start  children
+////
+////              Expanded(
+////                child: Container(
+////                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
+////                  child: goalForm("Height (ft)","Height (ft)", heightController,
+////                      TextInputType.number, TextInputAction.done),
+////                ),
+////              ),
+////              //#================================================ end children
+////            ],
+////          ),
           //Shows the Rest of the Free space on the page to work with.
           Expanded(
             child: Container(
-              color: Colors.blue,
               child: ListView(
                 children: <Widget>[
-                  Text("test"),
+                  RaisedButton(
+                      onPressed: _saveInfo,
+                    child: new Text("Submit"),
+                  )
                 ],
               ),
+              padding: EdgeInsets.all(50.0),
             ),
           ),
         ],
         //#================================================ end children
 
       ),
-      floatingActionButton:
-          FloatingActionButton(onPressed: () {
-            _saveInfo();
-          }, child: Icon(Icons.add)),
+//      floatingActionButton:
+//          FloatingActionButton(onPressed: () {
+//            _saveInfo();
+//          }, child: Icon(Icons.add)),
     );
   } //build
 
   void _saveInfo() async {
-
-    int result;
-    user.username = userNameController.text;
-    user.gender = genderController.text;
-    user.weight = int.parse(weightController.text) ?? null;
-    user.age = int.parse(ageController.text) ?? null;
-    user.height = int.parse(heightController.text) ?? null;
-    // !null == user exists and we're updating, else its a new user
-    if (user.id != null) {
-      result = await db.updateToTable(user, 'initial_table', 'id', 2);
-      print("updating");
-    }
-    else {
-      result = await db.insertToTable(user, 'initial_table');
-      print("inserting");
-    }
-    if (result !=0 ) {
-      print("Saved Sucessfully to database");
-    }
-    else {
-      print("Error not saved to database");
-    }
+    //determine if insert or update by checking user id
+    //if id exists in database then update the info
+    //if id does not exist then insert into database
   }
-
 
 }
 
@@ -232,6 +312,8 @@ class goalFormState extends State<goalForm> {
       textInputAction: widget._action,
     );
   }
-
-
 }
+
+
+
+////////////////////////////////////////////////////////////////////////////////

@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'package:path/path.dart';
+import 'package:workout_planner/models/User.dart';
 
 class DBhelper {
 
@@ -173,14 +174,17 @@ class DBhelper {
       return false;
     }
   }//lookUpTable
-//  //make private
-//  Future<Map<String,dynamic>> createNewTable(var tableObj, String tableName) async {
-//    Database db = await this.database;
-//    Map<String, dynamic> temp = await tableObj.toMap();
-//    print(temp);
-//    return temp;
-//  }
-  //Future close() async => _database.close();
+
+  Future<User> getUser(int id) async {
+    Database db = await this.database;
+
+    List<Map<String, dynamic>> result = await db.rawQuery(
+      'SELECT * FROM initial_table WHERE id = $id'
+    );
+
+    User user = User.fromMapObject(result[0]);
+    return user;
+  }
 
   /*
   this function DELETES THE DATABASE!!!
