@@ -252,6 +252,16 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     //determine if insert or update by checking user id
     //if id exists in database then update the info
     //if id does not exist then insert into database
+
+    user.id = 1;
+    user.username = userNameController.text;
+    user.gender = genderController.text;
+    user.weight = int.parse(weightController.text);
+    user.age = int.parse(ageController.text);
+    user.height = int.parse(heightController.text);
+
+    db.updateToTable(user, "initial_table", "id", 1);
+    user = await db.getUser(1);
   }
 
 }
