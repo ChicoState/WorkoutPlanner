@@ -153,77 +153,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
               //#================================================ end children
             ],
           ),
-//          Row(
-//            //Weight, Age, Sex
-//            children: <Widget>[
-//              //#============================================== start  children
-//              Expanded(
-//                child: Container(
-//                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-//                  //color: Colors.green,
-//                  //padding: const EdgeInsets.all(5.0),
-//                  child: goalForm("Weight","Weight", weightController,
-//                      TextInputType.number, TextInputAction.done),
-//                ),
-//              ),
-////              Expanded(
-////                child: Container(
-////                  padding: EdgeInsets.all(20.0),
-////                  width: 75.0,
-////                  child: goalForm("Age","Age", ageController,
-////                      TextInputType.number, TextInputAction.done),
-////                ),
-////              ),
-////              Expanded(
-////                child: Container(
-////                  padding: EdgeInsets.all(20.0),
-////                  width: 75.0,
-////                  child: goalForm("Height (ft)","Height (ft)", heightController,
-////                      TextInputType.number, TextInputAction.done),
-////                ),
-////              ),
-////              //#================================================ end children
-//            ],
-//          ),
-//          Row(
-//            //Weight, Age, Sex
-//            children: <Widget>[
-//              //#============================================== start  children
-//
-//              Expanded(
-//                child: Container(
-//                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-//                  child: goalForm("Age","Age", ageController,
-//                      TextInputType.number, TextInputAction.done),
-//                ),
-//              ),
-////              Expanded(
-////                child: Container(
-////                  padding: EdgeInsets.all(20.0),
-////                  width: 75.0,
-////                  child: goalForm("Height (ft)","Height (ft)", heightController,
-////                      TextInputType.number, TextInputAction.done),
-////                ),
-////              ),
-////              //#================================================ end children
-//            ],
-//          ),
-////          Row(
-////            //Weight, Age, Sex
-////            children: <Widget>[
-////              //#============================================== start  children
-////
-////              Expanded(
-////                child: Container(
-////                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-////                  child: goalForm("Height (ft)","Height (ft)", heightController,
-////                      TextInputType.number, TextInputAction.done),
-////                ),
-////              ),
-////              //#================================================ end children
-////            ],
-////          ),
-          //Shows the Rest of the Free space on the page to work with.
+
           Expanded(
             child: Container(
               child: ListView(
