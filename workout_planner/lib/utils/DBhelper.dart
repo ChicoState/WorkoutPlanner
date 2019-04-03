@@ -104,7 +104,6 @@ class DBhelper {
   async {
     Database db = await this.database;
 
-    colName = tableObj.id;
     bool doesTableExist = await _lookupTable(tableName);
     if(doesTableExist) {
       //update based on id

@@ -22,6 +22,11 @@ class User {
   int get height => _height;
 
   //setters
+
+  set id(int id) {
+    this._id = id;
+  }
+
   set username(String newUsername){
     if (newUsername.length <= 10) {
       this._username = newUsername;
