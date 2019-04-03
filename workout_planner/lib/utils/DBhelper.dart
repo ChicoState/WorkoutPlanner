@@ -110,6 +110,8 @@ class DBhelper {
       //UPDATE tableName SET colID = id;
       var result = await db.update(tableName, tableObj.toMap(),
           where: '$colName = ?', whereArgs: [id]);
+
+      //int(tableObj.username);
       return result;
     }
 

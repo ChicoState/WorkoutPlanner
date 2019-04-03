@@ -23,8 +23,8 @@ class User {
 
   //setters
 
-  set id(int id) {
-    this._id = id;
+  set id(int newID){
+    this._id = newID;
   }
 
   set username(String newUsername){

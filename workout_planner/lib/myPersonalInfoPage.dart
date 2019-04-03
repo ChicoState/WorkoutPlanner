@@ -255,9 +255,9 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
     user.id = 1;
     user.username = userNameController.text;
-    user.age = int.parse(ageController.text);
     user.gender = genderController.text;
     user.weight = int.parse(weightController.text);
+    user.age = int.parse(ageController.text);
     user.height = int.parse(heightController.text);
 
     db.updateToTable(user, "initial_table", "id", 1);
