@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'myGoalsPage.dart';
 import 'myPersonalInfoPage.dart';
 import 'exercisesPage.dart';
+import 'workoutPlanPage.dart';
 
 
 void main() => runApp(App());
@@ -71,6 +72,14 @@ class NavDrawer extends StatelessWidget
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(
                   builder: (context) => new ExercisesPage()));
+            },
+          ),
+          ListTile(
+            title: Text("Workout Plan"),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => new WorkoutPlanPage()));
             },
           )
         ],
