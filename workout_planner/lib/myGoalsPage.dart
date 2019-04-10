@@ -137,38 +137,43 @@ class _MyGoalsPage extends State<MyGoalsPage>
         goalIndex = index;
         _updateGoalDialog(goalIndex);
       },
-      child: Container(
-        padding: EdgeInsets.only(left: 10.0, top: 10.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Text(
-                    goals[index],
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold
-                    )
-                  ),
-                  Text(
-                    goalDescriptions[index],
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontStyle: FontStyle.italic,
-                    )
-                  ),
-                ],
+      child: Card(
+        color: Colors.blue[100],
+        elevation: 3,
+        margin: EdgeInsets.all(4),
+        child: Container(
+          padding: EdgeInsets.only(left: 10.0, top: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Text(
+                        goals[index],
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold
+                        )
+                    ),
+                    Text(
+                        goalDescriptions[index],
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontStyle: FontStyle.italic,
+                        )
+                    ),
+                  ],
+                ),
               ),
-            ),
-            IconButton(
-              icon: Icon(Icons.check),
-              onPressed: () => _deleteGoal(index)
-            )
-          ],
+              IconButton(
+                  icon: Icon(Icons.check),
+                  onPressed: () => _moveGoal(index)
+              )
+            ],
+          )
         )
       )
     );
@@ -181,7 +186,11 @@ class _MyGoalsPage extends State<MyGoalsPage>
           goalIndex = index;
           _updateGoalDialog(goalIndex);
         },
-        child: Container(
+        child: Card(
+          color: Colors.blue[100],
+          elevation: 3,
+          margin: EdgeInsets.all(4),
+          child: Container(
             padding: EdgeInsets.only(left: 10.0, top: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -190,6 +199,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
+
                       Text(
                           goalCompleted[index],
                           textAlign: TextAlign.left,
@@ -205,12 +215,19 @@ class _MyGoalsPage extends State<MyGoalsPage>
                             fontStyle: FontStyle.italic,
                           )
                       ),
+
+                      IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: () => _deleteGoal(index)
+                      )
                     ],
                   ),
                 ),
               ],
             )
+          )
         )
+
     );
   }
 
@@ -243,7 +260,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
                 ),
               ),
               new SizedBox(
-                height: 5,
+                height: 10,
               ),
               new TextField(
                 controller: descController,
@@ -349,7 +366,7 @@ class _MyGoalsPage extends State<MyGoalsPage>
     );
   }
 
-  _deleteGoal(int index)
+  _moveGoal(int index)
   {
     setState(() {
       goalTitle = goals.removeAt(index);
@@ -364,41 +381,50 @@ class _MyGoalsPage extends State<MyGoalsPage>
     });
   }
 
+  _deleteGoal(int index)
+  {
+    setState(() {
+      goalCompleted.removeAt(index);
+      goalDescCompleted.removeAt(index);
+      goalCompIndex--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
-        drawer: NavDrawer(),
-        body: DefaultTabController(
-            length: 2,
-            child: Scaffold(
-              floatingActionButton: FloatingActionButton(
-                onPressed:() => _addGoalDialog(),
-                child: Icon(Icons.add),
-              ),
-              appBar: AppBar(
-                bottom: TabBar(tabs: [
-                  Tab(text: "Active"),
-                  Tab(text: "Completed")
-                ]),
-                title: Text("My Goals"),
-              ),
-              body: TabBarView(children: [
-                new Container (
-                  child: ListView.builder(
-                    itemBuilder: (context, index) => _buildActiveRow(index),
-                    itemCount: goals.length,
-                  )
-                ),
-                new Container(
-                  child: ListView.builder(
-                    itemBuilder: (context, index) => _buildCompRow(index),
-                    itemCount: goalCompleted.length,
-                  )
+    return Scaffold(
+      drawer: NavDrawer(),
+      body: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            floatingActionButton: FloatingActionButton(
+              onPressed:() => _addGoalDialog(),
+              child: Icon(Icons.add),
+            ),
+            appBar: AppBar(
+              bottom: TabBar(tabs: [
+                Tab(text: "Active"),
+                Tab(text: "Completed")
+              ]),
+              title: Text("My Goals"),
+            ),
+            body: TabBarView(children: [
+              new Container (
+                child: ListView.builder(
+                  itemBuilder: (context, index) => _buildActiveRow(index),
+                  itemCount: goals.length,
                 )
-              ])
-            )
-        )
-      );
+              ),
+              new Container(
+                child: ListView.builder(
+                  itemBuilder: (context, index) => _buildCompRow(index),
+                  itemCount: goalCompleted.length,
+                )
+              )
+            ])
+          )
+      )
+    );
   }
 }
 

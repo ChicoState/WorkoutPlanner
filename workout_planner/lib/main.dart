@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'myGoalsPage.dart';
 import 'myPersonalInfoPage.dart';
+import 'exercisesPage.dart';
+
+
 void main() => runApp(App());
 
 class App extends StatelessWidget
@@ -53,12 +56,21 @@ class NavDrawer extends StatelessWidget
             },
           ),
 
-            ListTile(
-              title: Text("Personal Information"),
-              onTap: () {
+          ListTile(
+            title: Text("Personal Information"),
+            onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(
               builder: (context) => new MyPersonalInfoPage()));
+            },
+          ),
+
+          ListTile(
+            title: Text("Explore Exercises"),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => new ExercisesPage()));
             },
           )
         ],
