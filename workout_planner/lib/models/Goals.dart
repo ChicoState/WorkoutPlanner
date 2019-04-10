@@ -1,5 +1,7 @@
 
-class User {
+//TODO this should reflect the goal data
+/*
+class Goal {
 
   //private variables
   int _id;
@@ -22,11 +24,6 @@ class User {
   int get height => _height;
 
   //setters
-
-  set id(int newID){
-    this._id = newID;
-  }
-
   set username(String newUsername){
     if (newUsername.length <= 10) {
       this._username = newUsername;
@@ -115,3 +112,5 @@ class User {
 //  }
 
 }//User
+
+*/

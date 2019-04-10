@@ -104,13 +104,14 @@ class DBhelper {
   async {
     Database db = await this.database;
 
-    colName = tableObj.id;
     bool doesTableExist = await _lookupTable(tableName);
     if(doesTableExist) {
       //update based on id
       //UPDATE tableName SET colID = id;
       var result = await db.update(tableName, tableObj.toMap(),
           where: '$colName = ?', whereArgs: [id]);
+
+      //int(tableObj.username);
       return result;
     }
 

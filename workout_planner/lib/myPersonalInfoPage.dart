@@ -153,77 +153,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
               //#================================================ end children
             ],
           ),
-//          Row(
-//            //Weight, Age, Sex
-//            children: <Widget>[
-//              //#============================================== start  children
-//              Expanded(
-//                child: Container(
-//                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-//                  //color: Colors.green,
-//                  //padding: const EdgeInsets.all(5.0),
-//                  child: goalForm("Weight","Weight", weightController,
-//                      TextInputType.number, TextInputAction.done),
-//                ),
-//              ),
-////              Expanded(
-////                child: Container(
-////                  padding: EdgeInsets.all(20.0),
-////                  width: 75.0,
-////                  child: goalForm("Age","Age", ageController,
-////                      TextInputType.number, TextInputAction.done),
-////                ),
-////              ),
-////              Expanded(
-////                child: Container(
-////                  padding: EdgeInsets.all(20.0),
-////                  width: 75.0,
-////                  child: goalForm("Height (ft)","Height (ft)", heightController,
-////                      TextInputType.number, TextInputAction.done),
-////                ),
-////              ),
-////              //#================================================ end children
-//            ],
-//          ),
-//          Row(
-//            //Weight, Age, Sex
-//            children: <Widget>[
-//              //#============================================== start  children
-//
-//              Expanded(
-//                child: Container(
-//                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-//                  child: goalForm("Age","Age", ageController,
-//                      TextInputType.number, TextInputAction.done),
-//                ),
-//              ),
-////              Expanded(
-////                child: Container(
-////                  padding: EdgeInsets.all(20.0),
-////                  width: 75.0,
-////                  child: goalForm("Height (ft)","Height (ft)", heightController,
-////                      TextInputType.number, TextInputAction.done),
-////                ),
-////              ),
-////              //#================================================ end children
-//            ],
-//          ),
-////          Row(
-////            //Weight, Age, Sex
-////            children: <Widget>[
-////              //#============================================== start  children
-////
-////              Expanded(
-////                child: Container(
-////                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-////                  child: goalForm("Height (ft)","Height (ft)", heightController,
-////                      TextInputType.number, TextInputAction.done),
-////                ),
-////              ),
-////              //#================================================ end children
-////            ],
-////          ),
-          //Shows the Rest of the Free space on the page to work with.
+
           Expanded(
             child: Container(
               child: ListView(
@@ -252,6 +182,15 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     //determine if insert or update by checking user id
     //if id exists in database then update the info
     //if id does not exist then insert into database
+
+    user.id = 1;
+    user.username = userNameController.text;
+    user.gender = genderController.text;
+    user.weight = int.parse(weightController.text);
+    user.age = int.parse(ageController.text);
+    user.height = int.parse(heightController.text);
+
+    db.updateToTable(user, "initial_table", "id", 1);
   }
 
 }
