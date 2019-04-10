@@ -199,30 +199,28 @@ class _MyGoalsPage extends State<MyGoalsPage>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-
                       Text(
-                          goalCompleted[index],
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold
-                          )
+                        goalCompleted[index],
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold
+                        )
                       ),
                       Text(
-                          goalDescCompleted[index],
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontStyle: FontStyle.italic,
-                          )
+                        goalDescCompleted[index],
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontStyle: FontStyle.italic,
+                        )
                       ),
-
-                      IconButton(
-                        icon: Icon(Icons.delete),
-                        onPressed: () => _deleteGoal(index)
-                      )
                     ],
                   ),
                 ),
+                IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () => _deleteGoal(index)
+                )
               ],
             )
           )
