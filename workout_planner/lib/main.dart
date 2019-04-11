@@ -4,7 +4,6 @@ import 'myPersonalInfoPage.dart';
 import 'exercisesPage.dart';
 import 'workoutPlanPage.dart';
 
-
 void main() => runApp(App());
 
 class App extends StatelessWidget
@@ -69,6 +68,9 @@ class NavDrawer extends StatelessWidget
           ListTile(
             title: Text("Explore Exercises"),
             onTap: () {
+
+
+
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(
                   builder: (context) => new ExercisesPage()));

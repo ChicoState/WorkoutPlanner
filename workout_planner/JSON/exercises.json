@@ -1,0 +1,1710 @@
+[
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-bench-press",
+      "workout":"Dumbbell Bench Press",
+      "muscle_target":"Chest",
+      "equipment_type":"Dumbbell",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/pushups",
+      "workout":"Pushups",
+      "muscle_target":"Chest",
+      "equipment_type":"Body Only",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-flyes",
+      "workout":"Dumbbell Flyes",
+      "muscle_target":"Chest",
+      "equipment_type":"Dumbbell",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/incline-dumbbell-press",
+      "workout":"Incline Dumbbell Press",
+      "muscle_target":"Chest",
+      "equipment_type":"Dumbbell",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/low-cable-crossover",
+      "workout":"Low Cable Crossover",
+      "muscle_target":"Chest",
+      "equipment_type":"Cable",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/decline-dumbbell-flyes",
+      "workout":"Decline Dumbbell Flyes",
+      "muscle_target":"Chest",
+      "equipment_type":"Dumbbell",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dips-chest-version",
+      "workout":"Dips - Chest Version",
+      "muscle_target":"Chest",
+      "equipment_type":"Other",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-bench-press-medium-grip",
+      "workout":"Barbell Bench Press - Medium Grip",
+      "muscle_target":"Chest",
+      "equipment_type":"Barbell",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/bodyweight-flyes",
+      "workout":"Bodyweight Flyes",
+      "muscle_target":"Chest",
+      "equipment_type":"E-Z Curl Bar",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/incline-cable-flye",
+      "workout":"Incline Cable Flye",
+      "muscle_target":"Chest",
+      "equipment_type":"Cable",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/wide-grip-decline-barbell-bench-press",
+      "workout":"Wide-Grip Decline Barbell Bench Press",
+      "muscle_target":"Chest",
+      "equipment_type":"Barbell",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/incline-dumbbell-press-reverse-grip",
+      "workout":"Incline Dumbbell Press Reverse-Grip",
+      "muscle_target":"Chest",
+      "equipment_type":"Dumbbell",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/wide-grip-barbell-bench-press",
+      "workout":"Wide-Grip Barbell Bench Press",
+      "muscle_target":"Chest",
+      "equipment_type":"Barbell",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/decline-barbell-bench-press",
+      "workout":"Decline Barbell Bench Press",
+      "muscle_target":"Chest",
+      "equipment_type":"Barbell",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/incline-push-up",
+      "workout":"Incline Push-Up",
+      "muscle_target":"Chest",
+      "equipment_type":"Body Only",
+      "muscle_id":1
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/rickshaw-carry",
+      "workout":"Rickshaw Carry",
+      "muscle_target":"Forearms",
+      "equipment_type":"Other",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/wrist-rotations-with-straight-bar",
+      "workout":"Wrist Rotations with Straight Bar",
+      "muscle_target":"Forearms",
+      "equipment_type":"Barbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/palms-down-wrist-curl-over-a-bench",
+      "workout":"Palms-Down Wrist Curl Over A Bench",
+      "muscle_target":"Forearms",
+      "equipment_type":"Barbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/palms-up-barbell-wrist-curl-over-a-bench",
+      "workout":"Palms-Up Barbell Wrist Curl Over A Bench",
+      "muscle_target":"Forearms",
+      "equipment_type":"Barbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/farmers-walk",
+      "workout":"Farmer's Walk",
+      "muscle_target":"Forearms",
+      "equipment_type":"Other",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-palms-up-barbell-behind-the-back-wrist-curl",
+      "workout":"Standing Palms-Up Barbell Behind The Back Wrist Curl",
+      "muscle_target":"Forearms",
+      "equipment_type":"Barbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/finger-curls",
+      "workout":"Finger Curls",
+      "muscle_target":"Forearms",
+      "equipment_type":"Barbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-two-arm-palms-up-low-pulley-wrist-curl",
+      "workout":"Seated Two-Arm Palms-Up Low-Pulley Wrist Curl",
+      "muscle_target":"Forearms",
+      "equipment_type":"Cable",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/wrist-roller",
+      "workout":"Wrist Roller",
+      "muscle_target":"Forearms",
+      "equipment_type":"Other",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-one-arm-dumbbell-palms-up-wrist-curl",
+      "workout":"Seated One-Arm Dumbbell Palms-Up Wrist Curl",
+      "muscle_target":"Forearms",
+      "equipment_type":"Dumbbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-palms-down-barbell-wrist-curl",
+      "workout":"Seated Palms-Down Barbell Wrist Curl",
+      "muscle_target":"Forearms",
+      "equipment_type":"Barbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-lying-supination",
+      "workout":"Dumbbell Lying Supination",
+      "muscle_target":"Forearms",
+      "equipment_type":"Dumbbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-lying-pronation",
+      "workout":"Dumbbell Lying Pronation",
+      "muscle_target":"Forearms",
+      "equipment_type":"Dumbbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-palm-up-barbell-wrist-curl",
+      "workout":"Seated Palm-Up Barbell Wrist Curl",
+      "muscle_target":"Forearms",
+      "equipment_type":"Barbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/palms-up-dumbbell-wrist-curl-over-a-bench",
+      "workout":"Palms-Up Dumbbell Wrist Curl Over A Bench",
+      "muscle_target":"Forearms",
+      "equipment_type":"Dumbbell",
+      "muscle_id":2
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/weighted-pull-ups",
+      "workout":"Weighted Pull Ups",
+      "muscle_target":"Lats",
+      "equipment_type":"Other",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/pullups",
+      "workout":"Pullups",
+      "muscle_target":"Lats",
+      "equipment_type":"Body Only",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/chin-up",
+      "workout":"Chin-Up",
+      "muscle_target":"Lats",
+      "equipment_type":"Body Only",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/rocky-pull-upspulldowns",
+      "workout":"Rocky Pull-Ups/Pulldowns",
+      "muscle_target":"Lats",
+      "equipment_type":"Other",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/v-bar-pulldown",
+      "workout":"V-Bar Pulldown",
+      "muscle_target":"Lats",
+      "equipment_type":"Cable",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/muscle-up",
+      "workout":"Muscle Up",
+      "muscle_target":"Lats",
+      "equipment_type":"Other",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/shotgun-row",
+      "workout":"Shotgun Row",
+      "muscle_target":"Lats",
+      "equipment_type":"Cable",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/wide-grip-pull-up",
+      "workout":"Wide-Grip Pull-Up",
+      "muscle_target":"Lats",
+      "equipment_type":"Body Only",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/close-grip-front-lat-pulldown",
+      "workout":"Close-Grip Front Lat Pulldown",
+      "muscle_target":"Lats",
+      "equipment_type":"Cable",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/v-bar-pullup",
+      "workout":"V-Bar Pullup",
+      "muscle_target":"Lats",
+      "equipment_type":"Body Only",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/wide-grip-rear-pull-up",
+      "workout":"Wide-Grip Rear Pull-Up",
+      "muscle_target":"Lats",
+      "equipment_type":"Body Only",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/rope-straight-arm-pulldown",
+      "workout":"Rope Straight-Arm Pulldown",
+      "muscle_target":"Lats",
+      "equipment_type":"Cable",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/rope-climb",
+      "workout":"Rope Climb",
+      "muscle_target":"Lats",
+      "equipment_type":"Other",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/wide-grip-lat-pulldown",
+      "workout":"Wide-Grip Lat Pulldown",
+      "muscle_target":"Lats",
+      "equipment_type":"Cable",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/underhand-cable-pulldowns",
+      "workout":"Underhand Cable Pulldowns",
+      "muscle_target":"Lats",
+      "equipment_type":"Cable",
+      "muscle_id":3
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/t-bar-row-with-handle",
+      "workout":"T-Bar Row with Handle",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Barbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/reverse-grip-bent-over-rows",
+      "workout":"Reverse Grip Bent-Over Rows",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Barbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/one-arm-long-bar-row",
+      "workout":"One-Arm Long Bar Row",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Barbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/one-arm-dumbbell-row",
+      "workout":"One-Arm Dumbbell Row",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Dumbbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/bent-over-one-arm-long-bar-row",
+      "workout":"Bent Over One-Arm Long Bar Row",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Barbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/t-bar-row",
+      "workout":"T-Bar Row",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Barbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/bent-over-two-arm-long-bar-row",
+      "workout":"Bent Over Two-Arm Long Bar Row",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Barbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-incline-row",
+      "workout":"Dumbbell Incline Row",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Dumbbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/bodyweight-mid-row",
+      "workout":"Bodyweight Mid Row",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Other",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/bent-over-two-dumbbell-row-with-palms-in",
+      "workout":"Bent Over Two-Dumbbell Row With Palms In",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Dumbbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-cable-rows",
+      "workout":"Seated Cable Rows",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Cable",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/bent-over-barbell-row",
+      "workout":"Bent Over Barbell Row",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Barbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/alternating-renegade-row",
+      "workout":"Alternating Renegade Row",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Kettlebells",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-one-arm-cable-pulley-rows",
+      "workout":"Seated One-arm Cable Pulley Rows",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Cable",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/man-maker",
+      "workout":"Man Maker",
+      "muscle_target":"Middle Back",
+      "equipment_type":"Dumbbell",
+      "muscle_id":4
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/atlas-stones",
+      "workout":"Atlas Stones",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Other",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/deficit-deadlift",
+      "workout":"Deficit Deadlift",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Barbell",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/axle-deadlift",
+      "workout":"Axle Deadlift",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Other",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/hyperextensions-back-extensions",
+      "workout":"Hyperextensions (Back Extensions)",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Other",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/hyperextensions-with-no-hyperextension-bench",
+      "workout":"Hyperextensions With No Hyperextension Bench",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Body Only",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/deadlift-with-bands",
+      "workout":"Deadlift with Bands",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Barbell",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/deadlift-with-chains",
+      "workout":"Deadlift with Chains",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Barbell",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/rack-pull-with-bands",
+      "workout":"Rack Pull with Bands",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Barbell",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/rack-pulls",
+      "workout":"Rack Pulls",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Barbell",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/superman",
+      "workout":"Superman",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Body Only",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/weighted-ball-hyperextension",
+      "workout":"Weighted Ball Hyperextension",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Exercise Ball",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-back-extension",
+      "workout":"Seated Back Extension",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Machine",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/stiff-leg-barbell-good-morning",
+      "workout":"Stiff Leg Barbell Good Morning",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Barbell",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-good-mornings",
+      "workout":"Seated Good Mornings",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Barbell",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/atlas-stone-trainer",
+      "workout":"Atlas Stone Trainer",
+      "muscle_target":"Lower Back",
+      "equipment_type":"Other",
+      "muscle_id":5
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/lying-face-down-plate-neck-resistance",
+      "workout":"Lying Face Down Plate Neck Resistance",
+      "muscle_target":"Neck",
+      "equipment_type":"Other",
+      "muscle_id":6
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/lying-face-up-plate-neck-resistance",
+      "workout":"Lying Face Up Plate Neck Resistance",
+      "muscle_target":"Neck",
+      "equipment_type":"Other",
+      "muscle_id":6
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-head-harness-neck-resistance",
+      "workout":"Seated Head Harness Neck Resistance",
+      "muscle_target":"Neck",
+      "equipment_type":"Other",
+      "muscle_id":6
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/isometric-neck-exercise-sides",
+      "workout":"Isometric Neck Exercise - Sides",
+      "muscle_target":"Neck",
+      "equipment_type":"Body Only",
+      "muscle_id":6
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/isometric-neck-exercise-front-and-back",
+      "workout":"Isometric Neck Exercise - Front And Back",
+      "muscle_target":"Neck",
+      "equipment_type":"Body Only",
+      "muscle_id":6
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/neck-bridge-prone",
+      "workout":"Neck Bridge Prone",
+      "muscle_target":"Neck",
+      "equipment_type":"Body Only",
+      "muscle_id":6
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/side-neck-stretch",
+      "workout":"Side Neck Stretch",
+      "muscle_target":"Neck",
+      "equipment_type":"None",
+      "muscle_id":6
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/chin-to-chest-stretch",
+      "workout":"Chin To Chest Stretch",
+      "muscle_target":"Neck",
+      "equipment_type":"None",
+      "muscle_id":6
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/neck-smr",
+      "workout":"Neck-SMR",
+      "muscle_target":"Neck",
+      "equipment_type":"Other",
+      "muscle_id":6
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/single-leg-press",
+      "workout":"Single-Leg Press",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Machine",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/clean-from-blocks",
+      "workout":"Clean from Blocks",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Barbell",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-full-squat",
+      "workout":"Barbell Full Squat",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Barbell",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/tire-flip",
+      "workout":"Tire Flip",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Other",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/snatch",
+      "workout":"Snatch",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Barbell",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/hang-clean",
+      "workout":"Hang Clean",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Barbell",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/box-squat",
+      "workout":"Box Squat",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Barbell",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/reverse-band-box-squat",
+      "workout":"Reverse Band Box Squat",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Barbell",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/front-squats-with-two-kettlebells",
+      "workout":"Front Squats With Two Kettlebells",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Kettlebells",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/single-leg-push-off",
+      "workout":"Single Leg Push-off",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Other",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/rope-jumping",
+      "workout":"Rope Jumping",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Other",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-walking-lunge",
+      "workout":"Barbell Walking Lunge",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Barbell",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/olympic-squat-",
+      "workout":"Olympic Squat",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Barbell",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/kettlebell-pistol-squat",
+      "workout":"Kettlebell Pistol Squat",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Kettlebells",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/step-mill",
+      "workout":"Step Mill",
+      "muscle_target":"Quadriceps",
+      "equipment_type":"Machine",
+      "muscle_id":7
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/romanian-deadlift-with-dumbbells",
+      "workout":"Romanian Deadlift With Dumbbells",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Dumbbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/clean-deadlift",
+      "workout":"Clean Deadlift",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Barbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-deadlift",
+      "workout":"Barbell Deadlift",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Barbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/sumo-deadlift",
+      "workout":"Sumo Deadlift",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Barbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/power-snatch",
+      "workout":"Power Snatch",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Barbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/romanian-deadlift-from-deficit",
+      "workout":"Romanian Deadlift from Deficit",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Barbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/power-clean-from-blocks",
+      "workout":"Power Clean from Blocks",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Barbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/floor-glute-ham-raise",
+      "workout":"Floor Glute-Ham Raise",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"None",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/natural-glute-ham-raise",
+      "workout":"Natural Glute Ham Raise",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Body Only",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/lying-leg-curls",
+      "workout":"Lying Leg Curls",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Machine",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/snatch-deadlift",
+      "workout":"Snatch Deadlift",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Barbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/ball-leg-curl",
+      "workout":"Ball Leg Curl",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Exercise Ball",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/stiff-legged-dumbbell-deadlift",
+      "workout":"Stiff-Legged Dumbbell Deadlift",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Dumbbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/power-clean",
+      "workout":"Power Clean",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Barbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/hang-snatch",
+      "workout":"Hang Snatch",
+      "muscle_target":"Hamstrings",
+      "equipment_type":"Barbell",
+      "muscle_id":8
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/smith-machine-calf-raise",
+      "workout":"Smith Machine Calf Raise",
+      "muscle_target":"Calves",
+      "equipment_type":"Machine",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-calf-raises",
+      "workout":"Standing Calf Raises",
+      "muscle_target":"Calves",
+      "equipment_type":"Machine",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-dumbbell-calf-raise",
+      "workout":"Standing Dumbbell Calf Raise",
+      "muscle_target":"Calves",
+      "equipment_type":"Dumbbell",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-calf-raise",
+      "workout":"Seated Calf Raise",
+      "muscle_target":"Calves",
+      "equipment_type":"Machine",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/rocking-standing-calf-raise",
+      "workout":"Rocking Standing Calf Raise",
+      "muscle_target":"Calves",
+      "equipment_type":"Barbell",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/calf-press-on-the-leg-press-machine",
+      "workout":"Calf Press On The Leg Press Machine",
+      "muscle_target":"Calves",
+      "equipment_type":"Machine",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/calf-press",
+      "workout":"Calf Press",
+      "muscle_target":"Calves",
+      "equipment_type":"Machine",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-barbell-calf-raise",
+      "workout":"Standing Barbell Calf Raise",
+      "muscle_target":"Calves",
+      "equipment_type":"Barbell",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-seated-calf-raise",
+      "workout":"Barbell Seated Calf Raise",
+      "muscle_target":"Calves",
+      "equipment_type":"Barbell",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/balance-board",
+      "workout":"Balance Board",
+      "muscle_target":"Calves",
+      "equipment_type":"Other",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/donkey-calf-raises",
+      "workout":"Donkey Calf Raises",
+      "muscle_target":"Calves",
+      "equipment_type":"Other",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/smith-machine-reverse-calf-raises",
+      "workout":"Smith Machine Reverse Calf Raises",
+      "muscle_target":"Calves",
+      "equipment_type":"Machine",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-seated-one-leg-calf-raise",
+      "workout":"Dumbbell Seated One-Leg Calf Raise",
+      "muscle_target":"Calves",
+      "equipment_type":"Dumbbell",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/ankle-circles",
+      "workout":"Ankle Circles",
+      "muscle_target":"Calves",
+      "equipment_type":"None",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/peroneals-smr",
+      "workout":"Peroneals-SMR",
+      "muscle_target":"Calves",
+      "equipment_type":"Foam Roll",
+      "muscle_id":9
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dips-triceps-version",
+      "workout":"Dips - Triceps Version",
+      "muscle_target":"Triceps",
+      "equipment_type":"Body Only",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/decline-ez-bar-triceps-extension",
+      "workout":"Decline EZ Bar Triceps Extension",
+      "muscle_target":"Triceps",
+      "equipment_type":"Barbell",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-floor-press",
+      "workout":"Dumbbell Floor Press",
+      "muscle_target":"Triceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/close-grip-barbell-bench-press",
+      "workout":"Close-Grip Barbell Bench Press",
+      "muscle_target":"Triceps",
+      "equipment_type":"Barbell",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/triceps-pushdown-v-bar-attachment",
+      "workout":"Triceps Pushdown - V-Bar Attachment",
+      "muscle_target":"Triceps",
+      "equipment_type":"Cable",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/weighted-bench-dip",
+      "workout":"Weighted Bench Dip",
+      "muscle_target":"Triceps",
+      "equipment_type":"Other",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/kneeling-cable-triceps-extension",
+      "workout":"Kneeling Cable Triceps Extension",
+      "muscle_target":"Triceps",
+      "equipment_type":"Cable",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/reverse-grip-triceps-pushdown",
+      "workout":"Reverse Grip Triceps Pushdown",
+      "muscle_target":"Triceps",
+      "equipment_type":"Cable",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-dumbbell-triceps-extension",
+      "workout":"Standing Dumbbell Triceps Extension",
+      "muscle_target":"Triceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/push-ups-close-triceps-position",
+      "workout":"Push-Ups - Close Triceps Position",
+      "muscle_target":"Triceps",
+      "equipment_type":"Body Only",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/ez-bar-skullcrusher",
+      "workout":"EZ-Bar Skullcrusher",
+      "muscle_target":"Triceps",
+      "equipment_type":"E-Z Curl Bar",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/triceps-pushdown-rope-attachment",
+      "workout":"Triceps Pushdown - Rope Attachment",
+      "muscle_target":"Triceps",
+      "equipment_type":"Cable",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/cable-one-arm-tricep-extension",
+      "workout":"Cable One Arm Tricep Extension",
+      "muscle_target":"Triceps",
+      "equipment_type":"Cable",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/decline-close-grip-bench-to-skull-crusher",
+      "workout":"Decline Close-Grip Bench To Skull Crusher",
+      "muscle_target":"Triceps",
+      "equipment_type":"Barbell",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-triceps-press",
+      "workout":"Seated Triceps Press",
+      "muscle_target":"Triceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":10
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/smith-machine-shrug",
+      "workout":"Smith Machine Shrug",
+      "muscle_target":"Traps",
+      "equipment_type":"Machine",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/leverage-shrug",
+      "workout":"Leverage Shrug",
+      "muscle_target":"Traps",
+      "equipment_type":"Machine",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-dumbbell-upright-row",
+      "workout":"Standing Dumbbell Upright Row",
+      "muscle_target":"Traps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/kettlebell-sumo-high-pull",
+      "workout":"Kettlebell Sumo High Pull",
+      "muscle_target":"Traps",
+      "equipment_type":"Kettlebells",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-shrug",
+      "workout":"Dumbbell Shrug",
+      "muscle_target":"Traps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/calf-machine-shoulder-shrug",
+      "workout":"Calf-Machine Shoulder Shrug",
+      "muscle_target":"Traps",
+      "equipment_type":"Machine",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-shrug",
+      "workout":"Barbell Shrug",
+      "muscle_target":"Traps",
+      "equipment_type":"Barbell",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-shrug-behind-the-back",
+      "workout":"Barbell Shrug Behind The Back",
+      "muscle_target":"Traps",
+      "equipment_type":"Barbell",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/upright-cable-row",
+      "workout":"Upright Cable Row",
+      "muscle_target":"Traps",
+      "equipment_type":"Cable",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/cable-shrugs",
+      "workout":"Cable Shrugs",
+      "muscle_target":"Traps",
+      "equipment_type":"Cable",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/upright-row-with-bands",
+      "workout":"Upright Row - With Bands",
+      "muscle_target":"Traps",
+      "equipment_type":"Bands",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/smith-machine-behind-the-back-shrug",
+      "workout":"Smith Machine Behind the Back Shrug",
+      "muscle_target":"Traps",
+      "equipment_type":"Machine",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/smith-machine-upright-row",
+      "workout":"Smith Machine Upright Row",
+      "muscle_target":"Traps",
+      "equipment_type":"Machine",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/clean-shrug",
+      "workout":"Clean Shrug",
+      "muscle_target":"Traps",
+      "equipment_type":"Barbell",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/scapular-pull-up",
+      "workout":"Scapular Pull-Up",
+      "muscle_target":"Traps",
+      "equipment_type":"None",
+      "muscle_id":11
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/single-arm-linear-jammer",
+      "workout":"Single-Arm Linear Jammer",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Barbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/side-laterals-to-front-raise-",
+      "workout":"Side Laterals to Front Raise",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Dumbbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-palm-in-one-arm-dumbbell-press",
+      "workout":"Standing Palm-In One-Arm Dumbbell Press",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Dumbbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/clean-and-press",
+      "workout":"Clean and Press",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Barbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/push-press",
+      "workout":"Push Press",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Barbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/clean-and-jerk",
+      "workout":"Clean and Jerk",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Barbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-palms-in-dumbbell-press",
+      "workout":"Standing Palms-In Dumbbell Press",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Dumbbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-military-press",
+      "workout":"Standing Military Press",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Barbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/one-arm-kettlebell-push-press",
+      "workout":"One-Arm Kettlebell Push Press",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Kettlebells",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-barbell-military-press",
+      "workout":"Seated Barbell Military Press",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Barbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/one-arm-side-laterals",
+      "workout":"One-Arm Side Laterals",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Dumbbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/power-partials",
+      "workout":"Power Partials",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Dumbbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/seated-dumbbell-press",
+      "workout":"Seated Dumbbell Press",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Dumbbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-dumbbell-straight-arm-front-delt-raise-above-head",
+      "workout":"Standing Dumbbell Straight-Arm Front Delt Raise Above Head",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Dumbbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/reverse-flyes",
+      "workout":"Reverse Flyes",
+      "muscle_target":"Shoulders",
+      "equipment_type":"Dumbbell",
+      "muscle_id":12
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/one-arm-medicine-ball-slam",
+      "workout":"One-Arm Medicine Ball Slam",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Medicine Ball",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/landmine-180s",
+      "workout":"Landmine 180's",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Barbell",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/suspended-fallout",
+      "workout":"Suspended Fallout",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Other",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/plank",
+      "workout":"Plank",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Body Only",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-cable-lift",
+      "workout":"Standing Cable Lift",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Cable",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/bottoms-up",
+      "workout":"Bottoms Up",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Body Only",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/spell-caster",
+      "workout":"Spell Caster",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Dumbbell",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-v-sit-cross-jab",
+      "workout":"Dumbbell V-Sit Cross Jab",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Dumbbell",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/decline-reverse-crunch",
+      "workout":"Decline Reverse Crunch",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Body Only",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/spider-crawl",
+      "workout":"Spider Crawl",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Body Only",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/cross-body-crunch",
+      "workout":"Cross-Body Crunch",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Body Only",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/one-arm-high-pulley-cable-side-bends-",
+      "workout":"One-Arm High-Pulley Cable Side Bends",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Cable",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/elbow-to-knee",
+      "workout":"Elbow to Knee",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Body Only",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/cocoons",
+      "workout":"Cocoons",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Body Only",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/plate-twist",
+      "workout":"Plate Twist",
+      "muscle_target":"Abdominals",
+      "equipment_type":"Other",
+      "muscle_id":13
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-glute-bridge",
+      "workout":"Barbell Glute Bridge",
+      "muscle_target":"Glutes",
+      "equipment_type":"Barbell",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-hip-thrust",
+      "workout":"Barbell Hip Thrust",
+      "muscle_target":"Glutes",
+      "equipment_type":"Barbell",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/one-legged-cable-kickback",
+      "workout":"One-Legged Cable Kickback",
+      "muscle_target":"Glutes",
+      "equipment_type":"Cable",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/butt-lift-bridge",
+      "workout":"Butt Lift (Bridge)",
+      "muscle_target":"Glutes",
+      "equipment_type":"Body Only",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/single-leg-glute-bridge-",
+      "workout":"Single Leg Glute Bridge",
+      "muscle_target":"Glutes",
+      "equipment_type":"Body Only",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/step-up-with-knee-raise",
+      "workout":"Step-up with Knee Raise",
+      "muscle_target":"Glutes",
+      "equipment_type":"Body Only",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/kneeling-squat",
+      "workout":"Kneeling Squat",
+      "muscle_target":"Glutes",
+      "equipment_type":"Barbell",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/glute-kickback",
+      "workout":"Glute Kickback",
+      "muscle_target":"Glutes",
+      "equipment_type":"Body Only",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/flutter-kicks",
+      "workout":"Flutter Kicks",
+      "muscle_target":"Glutes",
+      "equipment_type":"Body Only",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/physioball-hip-bridge",
+      "workout":"Physioball Hip Bridge",
+      "muscle_target":"Glutes",
+      "equipment_type":"Exercise Ball",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/kneeling-jump-squat",
+      "workout":"Kneeling Jump Squat",
+      "muscle_target":"Glutes",
+      "equipment_type":"Barbell",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/pull-through",
+      "workout":"Pull Through",
+      "muscle_target":"Glutes",
+      "equipment_type":"Cable",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/hip-extension-with-bands",
+      "workout":"Hip Extension with Bands",
+      "muscle_target":"Glutes",
+      "equipment_type":"Bands",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/piriformis-smr",
+      "workout":"Piriformis-SMR",
+      "muscle_target":"Glutes",
+      "equipment_type":"Foam Roll",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/leg-lift",
+      "workout":"Leg Lift",
+      "muscle_target":"Glutes",
+      "equipment_type":"Body Only",
+      "muscle_id":14
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/incline-hammer-curls",
+      "workout":"Incline Hammer Curls",
+      "muscle_target":"Biceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/wide-grip-standing-barbell-curl",
+      "workout":"Wide-Grip Standing Barbell Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"Barbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/spider-curl",
+      "workout":"Spider Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"E-Z Curl Bar",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/ez-bar-curl",
+      "workout":"EZ-Bar Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"E-Z Curl Bar",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/hammer-curls",
+      "workout":"Hammer Curls",
+      "muscle_target":"Biceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/zottman-curl",
+      "workout":"Zottman Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/biceps-curl-to-shoulder-press",
+      "workout":"Biceps Curl To Shoulder Press",
+      "muscle_target":"Biceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/concentration-curls",
+      "workout":"Concentration Curls",
+      "muscle_target":"Biceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/barbell-curl",
+      "workout":"Barbell Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"Barbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/overhead-cable-curl",
+      "workout":"Overhead Cable Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"Cable",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/flexor-incline-dumbbell-curls",
+      "workout":"Flexor Incline Dumbbell Curls",
+      "muscle_target":"Biceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/machine-bicep-curl",
+      "workout":"Machine Bicep Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"Machine",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/dumbbell-bicep-curl",
+      "workout":"Dumbbell Bicep Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/cross-body-hammer-curl",
+      "workout":"Cross Body Hammer Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"Dumbbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/close-grip-ez-bar-curl",
+      "workout":"Close-Grip EZ Bar Curl",
+      "muscle_target":"Biceps",
+      "equipment_type":"Barbell",
+      "muscle_id":15
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/thigh-adductor",
+      "workout":"Thigh Adductor",
+      "muscle_target":"Adductors",
+      "equipment_type":"Machine",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/groiners-",
+      "workout":"Groiners",
+      "muscle_target":"Adductors",
+      "equipment_type":"Body Only",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/band-hip-adductions",
+      "workout":"Band Hip Adductions",
+      "muscle_target":"Adductors",
+      "equipment_type":"Bands",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/side-leg-raises",
+      "workout":"Side Leg Raises",
+      "muscle_target":"Adductors",
+      "equipment_type":"Body Only",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/lateral-bound-",
+      "workout":"Lateral Bound",
+      "muscle_target":"Adductors",
+      "equipment_type":"Body Only",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/groin-and-back-stretch",
+      "workout":"Groin and Back Stretch",
+      "muscle_target":"Adductors",
+      "equipment_type":"None",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/adductor",
+      "workout":"Adductor",
+      "muscle_target":"Adductors",
+      "equipment_type":"Foam Roll",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/side-lying-groin-stretch",
+      "workout":"Side Lying Groin Stretch",
+      "muscle_target":"Adductors",
+      "equipment_type":"None",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/adductorgroin-",
+      "workout":"Adductor/Groin",
+      "muscle_target":"Adductors",
+      "equipment_type":"None",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/lying-bent-leg-groin",
+      "workout":"Lying Bent Leg Groin",
+      "muscle_target":"Adductors",
+      "equipment_type":"Other",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/carioca-quick-step",
+      "workout":"Carioca Quick Step",
+      "muscle_target":"Adductors",
+      "equipment_type":"None",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/lateral-box-jump",
+      "workout":"Lateral Box Jump",
+      "muscle_target":"Adductors",
+      "equipment_type":"Other",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/lateral-cone-hops",
+      "workout":"Lateral Cone Hops",
+      "muscle_target":"Adductors",
+      "equipment_type":"Other",
+      "muscle_id":16
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/hip-circles-prone",
+      "workout":"Hip Circles (prone)",
+      "muscle_target":"Abductors",
+      "equipment_type":"Body Only",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/standing-hip-circles",
+      "workout":"Standing Hip Circles",
+      "muscle_target":"Abductors",
+      "equipment_type":"Body Only",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/clam",
+      "workout":"Clam",
+      "muscle_target":"Abductors",
+      "equipment_type":"Body Only",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/thigh-abductor",
+      "workout":"Thigh Abductor",
+      "muscle_target":"Abductors",
+      "equipment_type":"Machine",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/iliotibial-tract-smr",
+      "workout":"Iliotibial Tract-SMR",
+      "muscle_target":"Abductors",
+      "equipment_type":"Foam Roll",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/windmills",
+      "workout":"Windmills",
+      "muscle_target":"Abductors",
+      "equipment_type":"None",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/fire-hydrant",
+      "workout":"Fire Hydrant",
+      "muscle_target":"Abductors",
+      "equipment_type":"Body Only",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/monster-walk",
+      "workout":"Monster Walk",
+      "muscle_target":"Abductors",
+      "equipment_type":"Bands",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/it-band-and-glute-stretch",
+      "workout":"IT Band and Glute Stretch",
+      "muscle_target":"Abductors",
+      "equipment_type":"Other",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/lying-crossover",
+      "workout":"Lying Crossover",
+      "muscle_target":"Abductors",
+      "equipment_type":"Body Only",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/lateral-band-walk",
+      "workout":"Lateral Band Walk",
+      "muscle_target":"Abductors",
+      "equipment_type":"Bands",
+      "muscle_id":17
+   },
+   {
+      "link":"https://www.bodybuilding.com/exercises/hip-circle",
+      "workout":"Hip Circle",
+      "muscle_target":"Abductors",
+      "equipment_type":"Body Only",
+      "muscle_id":17
+   }
+]
