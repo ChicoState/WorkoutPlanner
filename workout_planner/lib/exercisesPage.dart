@@ -65,7 +65,6 @@ class _ExercisesPage extends State<ExercisesPage>
           )
         )
       )
-
     );
   }
 }

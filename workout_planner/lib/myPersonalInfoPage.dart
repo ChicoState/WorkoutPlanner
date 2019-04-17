@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'package:workout_planner/models/User.dart';
 import 'package:workout_planner/utils/DBhelper.dart';
-import 'dart:math';
+import 'auth.dart';
 
 /*
 Goals: Updated 2/27/2019
@@ -16,8 +16,20 @@ Goals: Updated 2/27/2019
  */
 // page to add and update personal weight
 class MyPersonalInfoPage extends StatefulWidget {
+  MyPersonalInfoPage({this.auth, this.onSignedOut});
 
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
   final User user = User();
+
+  void _signOut() async {
+    try {
+      await auth.signOut();
+      onSignedOut();
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   MyPersonalInfoPageState createState() => MyPersonalInfoPageState(this.user);
@@ -43,7 +55,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
   void initState() {
     super.initState();
-    db.getUser(1).then((result) {
+    db.getUser(0).then((result) {
       print('result: $result');
       setState((){
          userNameController.text = result.username;
@@ -65,7 +77,18 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavDrawer(),
-      appBar: AppBar(title: Text("Personal Information")),
+      appBar: AppBar(
+          title: Text("Personal Information"),
+        actions: <Widget>[
+          FlatButton(
+            child: Text(
+              'Logout',
+              style: TextStyle(fontSize: 17.0, color: Colors.white),
+            ),
+            onPressed: widget._signOut,
+          ),
+        ],
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -183,14 +206,14 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     //if id exists in database then update the info
     //if id does not exist then insert into database
 
-    user.id = 1;
+    user.id = 0;
     user.username = userNameController.text;
     user.gender = genderController.text;
     user.weight = int.parse(weightController.text);
     user.age = int.parse(ageController.text);
     user.height = int.parse(heightController.text);
 
-    db.updateToTable(user, "initial_table", "id", 1);
+    db.updateToTable(user, "initial_table", "id", 0);
   }
 
 }

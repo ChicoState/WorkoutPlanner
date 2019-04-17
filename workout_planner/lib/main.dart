@@ -3,6 +3,8 @@ import 'myGoalsPage.dart';
 import 'myPersonalInfoPage.dart';
 import 'exercisesPage.dart';
 import 'workoutPlanPage.dart';
+import 'auth.dart';
+import 'root.dart';
 
 void main() => runApp(App());
 
@@ -13,7 +15,7 @@ class App extends StatelessWidget
   {
     return MaterialApp(
       title: "Workout Planner",
-      home: HomePage()
+      home: RootPage(auth: Auth())
     );
   }
 }
@@ -26,6 +28,17 @@ class HomePage extends StatelessWidget
       appBar: AppBar(
         title: Text("Workout Planner")
       ),
+//
+//      body: Center(
+//        child: Column(
+//          children: <Widget>[
+//            RaisedButton(
+//              child: Text("Login"),
+//              onPressed: () ,
+//            )
+//          ]
+//        )
+//      ),
 
       drawer: NavDrawer()
     );
@@ -68,20 +81,27 @@ class NavDrawer extends StatelessWidget
           ListTile(
             title: Text("Explore Exercises"),
             onTap: () {
-
-
-
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(
                   builder: (context) => new ExercisesPage()));
             },
           ),
+
           ListTile(
             title: Text("Workout Plan"),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(
                   builder: (context) => new WorkoutPlanPage()));
+            },
+          ),
+
+          ListTile(
+            title: Text("Login"),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context) => new RootPage(auth: Auth())));
             },
           )
         ],
