@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'myGoalsPage.dart';
 import 'myPersonalInfoPage.dart';
@@ -6,7 +7,10 @@ import 'workoutPlanPage.dart';
 import 'auth.dart';
 import 'root.dart';
 
-void main() => runApp(App());
+void main() {
+  FirebaseDatabase.instance.setPersistenceEnabled(true);
+  runApp(App());
+}
 
 class App extends StatelessWidget
 {
@@ -28,17 +32,6 @@ class HomePage extends StatelessWidget
       appBar: AppBar(
         title: Text("Workout Planner")
       ),
-//
-//      body: Center(
-//        child: Column(
-//          children: <Widget>[
-//            RaisedButton(
-//              child: Text("Login"),
-//              onPressed: () ,
-//            )
-//          ]
-//        )
-//      ),
 
       drawer: NavDrawer()
     );
@@ -96,14 +89,14 @@ class NavDrawer extends StatelessWidget
             },
           ),
 
-          ListTile(
-            title: Text("Login"),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => new RootPage(auth: Auth())));
-            },
-          )
+//          ListTile(
+//            title: Text("Login"),
+//            onTap: () {
+//              Navigator.pop(context);
+//              Navigator.push(context, MaterialPageRoute(
+//                  builder: (context) => new RootPage(auth: Auth())));
+//            },
+//          )
         ],
       )
     );

@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'package:workout_planner/models/User.dart';
+//import 'package:workout_planner/models/User.dart';
 import 'package:workout_planner/utils/DBhelper.dart';
 import 'auth.dart';
+import 'userClass.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-/*
-Goals: Updated 2/27/2019
-- Figure out TextEditingController (Widget Tree & Dispose) // ongoing
-- Add database statements to TextFormFields // ongoing
-- Figure out how to init TextEditingController & how to create an instance
-   w/o needing to pass a TextEditingController to goalForm // ongoing
-- Need to add RegEx to limit TextForm input and validation (red text) // ongoing
-- Need to add a dropdownmenu options for gender input //ongoing
 
- */
+
 // page to add and update personal weight
 class MyPersonalInfoPage extends StatefulWidget {
   MyPersonalInfoPage({this.auth, this.onSignedOut});
 
   final BaseAuth auth;
   final VoidCallback onSignedOut;
-  final User user = User();
 
   void _signOut() async {
     try {
@@ -32,19 +27,24 @@ class MyPersonalInfoPage extends StatefulWidget {
   }
 
   @override
-  MyPersonalInfoPageState createState() => MyPersonalInfoPageState(this.user);
+  MyPersonalInfoPageState createState() => MyPersonalInfoPageState();
 }
+
+final mainReference = FirebaseDatabase.instance.reference();
+final FirebaseAuth firebase = FirebaseAuth.instance;
+final Firestore firebaseDB = Firestore.instance;
+
+
 
 class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
   DBhelper db = DBhelper();
-  User user;
 
   //testing
 
   //
 
-  MyPersonalInfoPageState(this.user);
+  MyPersonalInfoPageState();
 
   // All the TextEditingControllers for each TextFormField
   TextEditingController userNameController = TextEditingController();
@@ -55,16 +55,16 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
   void initState() {
     super.initState();
-    db.getUser(0).then((result) {
-      print('result: $result');
-      setState((){
-         userNameController.text = result.username;
-         ageController.text = result.age.toString();
-         weightController.text = result.weight.toString();
-         heightController.text = result.height.toString();
-         genderController.text = result.gender;
-      });
-    });
+//    db.getUser(0).then((result) {
+//      print('result: $result');
+//      setState((){
+//         userNameController.text = result.username;
+//         ageController.text = result.age.toString();
+//         weightController.text = result.weight.toString();
+//         heightController.text = result.height.toString();
+//         genderController.text = result.gender;
+//      });
+//    });
   }
 
   /*
@@ -205,15 +205,58 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     //determine if insert or update by checking user id
     //if id exists in database then update the info
     //if id does not exist then insert into database
+    User userObject = new User();
 
-    user.id = 0;
-    user.username = userNameController.text;
-    user.gender = genderController.text;
-    user.weight = int.parse(weightController.text);
-    user.age = int.parse(ageController.text);
-    user.height = int.parse(heightController.text);
+    userObject.username = userNameController.text;
+    userObject.gender = genderController.text;
+    userObject.weight = int.parse(weightController.text);
+    userObject.age = int.parse(ageController.text);
+    userObject.height = int.parse(heightController.text);
 
-    db.updateToTable(user, "initial_table", "id", 0);
+    FirebaseUser user = await widget.auth.getCurrentUser();
+    var userID = user.uid;
+
+    var snap = await Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments();
+
+    print(snap.documents);
+
+    if(snap.documents.isEmpty)
+    {
+      final col = firebaseDB.collection("users").document(userID).collection("personalInfo");
+
+      col.add(userObject.toMap());
+    }
+    else
+      print("not null");
+      //TODO update what's in the DB
+
+
+    /* TODO DON"T DELETE THIS WORKS
+    final col = firebaseDB.collection("users").document(userID).collection("personalInfo");
+
+    col.add(userObject.toMap());
+
+    var snap = await Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments();
+
+    print(snap.documents[4].data);
+    */
+
+
+//    Firestore.instance.runTransaction((transaction) async
+//    {
+//      DocumentSnapshot snap = await Firestore.instance.collection('users').
+//        document(userID).get();
+//      await transaction.update(snap.reference, {
+//        'textInput': inputText
+//      });
+//    });
+
+    print(user);
+
+    //mainReference.push().set(user.toJson());
+
+
+
   }
 
 }
