@@ -240,7 +240,7 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
     _isIos = Theme.of(context).platform == TargetPlatform.iOS;
     return Scaffold(
         appBar: AppBar(
-          title: Text('Flutter login demo'),
+          title: Text('Workout Planner'),
         ),
         body: Stack(
           children: <Widget>[
