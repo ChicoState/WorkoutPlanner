@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
 
 class WorkoutPlanPage extends StatefulWidget
 {
@@ -17,6 +19,12 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
   final exerCompController = new TextEditingController();
   final repsCompController = new TextEditingController();
   final setsCompController = new TextEditingController();
+
+  int _radioValue;
+  String showGoal;
+
+  String hintReps;
+  String hintSets;
 
   var exerTitle = '';
   var exerReps = '';
@@ -207,6 +215,38 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
 
   _buildActiveRow(int index)
   {
+    new Card (
+        color: Colors.blue[100],
+        elevation : 4,
+        child : Container(
+            padding: EdgeInsets.only(left: 10.0, top: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Text(
+                          showGoal,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold
+                          )
+                      ),
+                    ],
+                  ),
+                ),
+                IconButton(
+                    icon: Icon(Icons.check),
+                    onPressed: () => _deleteGoal(index)
+                )
+              ],
+            )
+        )
+    );
+
     return new GestureDetector(
         onTap: ()
         {
@@ -354,7 +394,8 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                 new TextField(
                   controller: repsController,
                   decoration: new InputDecoration(
-                      labelText: "Enter Reps",
+                      hintText: hintReps,
+//                      labelText: hintReps,
                       filled: true,
                       fillColor: Colors.white,
                       contentPadding: new EdgeInsets.all(5.0),
@@ -366,7 +407,8 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                 new TextField(
                   controller: setsController,
                   decoration: new InputDecoration(
-                      labelText: "Enter Sets",
+                      hintText: hintSets,
+//                      labelText: hintSets,
                       filled: true,
                       fillColor: Colors.white,
                       contentPadding: new EdgeInsets.all(5.0),
@@ -601,6 +643,108 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     });
   }
 
+  _handleRadioValueChanged(int value)
+  {
+    setState(() {
+      _radioValue = value;
+
+      switch (_radioValue) {
+        case 0:
+          hintReps = "Enter Reps (Recommended: 4-7)";
+          hintSets = "Enter Sets (Recommended: 3-6)";
+          showGoal = "Maintain Weight";
+          break;
+        case 1:
+          hintReps = "Enter Reps (Recommended: 3-5)";
+          hintSets = "Enter Sets (Recommended: 4-7)";
+          showGoal = "Gain Muscle";
+          break;
+        case 2:
+          hintReps = "Enter Reps (Recommended: 8-12)";
+          hintSets = "Enter Sets (Recommended: 3-5)";
+          showGoal = "Lose Weight";
+          break;
+      }
+    });  }
+
+  _changeGoal()
+  {
+    showDialog(
+      context: context,
+      child: SimpleDialog(
+        title: Text("Please Select Your Goal"),
+        titlePadding: EdgeInsets.all(10.0),
+        contentPadding: EdgeInsets.all(10.0),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+                Radius.circular(5.0)
+            )
+        ),
+        children: <Widget>[
+          new Row(
+            children: <Widget> [
+            new Column(
+            children: <Widget>[
+              new Radio(
+                  value: 0,
+                 groupValue: _radioValue,
+                 onChanged: _handleRadioValueChanged,
+                activeColor: Colors.red,
+
+              ),
+            ],
+            ),
+              new Column(
+                children: <Widget>[
+                  new Text("Maintain")
+                ],
+              )
+          ]
+          ),
+          new Row(
+              children: <Widget> [
+                new Column(
+                  children: <Widget>[
+                    new Radio(
+                      value: 1,
+                      groupValue: _radioValue,
+                      onChanged: _handleRadioValueChanged,
+                      activeColor: Colors.purple,
+                    ),
+                  ],
+                ),
+                new Column(
+                  children: <Widget>[
+                    new Text("Gain Muscle")
+                  ],
+                )
+              ]
+          ),
+          new Row(
+              children: <Widget> [
+                new Column(
+                  children: <Widget>[
+                    new Radio(
+                        value: 2,
+                        groupValue: _radioValue,
+                        onChanged: _handleRadioValueChanged,
+                      activeColor: Colors.green,
+
+                    ),
+                  ],
+                ),
+                new Column(
+                  children: <Widget>[
+                    new Text("Lose Weight")
+                  ],
+                )
+              ]
+          ),
+        ]
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -608,9 +752,34 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
         body: DefaultTabController(
             length: 2,
             child: Scaffold(
-                floatingActionButton: FloatingActionButton(
-                  onPressed:() => _addGoalDialog(),
-                  child: Icon(Icons.add),
+                floatingActionButton: SpeedDial(
+                  animatedIcon: AnimatedIcons.menu_close,
+                  animatedIconTheme: IconThemeData(size: 22.0),
+                  curve: Curves.bounceIn,
+                  overlayColor: Colors.black,
+                  overlayOpacity: 0.5,
+                  onOpen: () => print('OPENING DIAL'),
+                  onClose: () => print('DIAL CLOSED'),
+                  tooltip: 'Speed Dial',
+                  heroTag: 'speed-dial-hero-tag',
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  elevation: 8.0,
+                  shape: CircleBorder(),
+                  children: [
+                    SpeedDialChild(
+                        child: Icon(Icons.accessibility),
+                        backgroundColor: Colors.red,
+                        label: 'Goal',
+                        onTap: () => _changeGoal(),
+                    ),
+                    SpeedDialChild(
+                      child: Icon(Icons.brush),
+                      backgroundColor: Colors.blue,
+                      label: 'Plan',
+                      onTap:() => _addGoalDialog(),
+                    ),
+                  ],
                 ),
                 appBar: AppBar(
                   bottom: TabBar(tabs: [
@@ -638,4 +807,3 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     );
   }
 }
-
