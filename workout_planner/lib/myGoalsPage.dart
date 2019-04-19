@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'main.dart';
-import 'goalClass.dart';
+import 'models/Goals.dart';
 
 class MyGoalsPage extends StatefulWidget
 {

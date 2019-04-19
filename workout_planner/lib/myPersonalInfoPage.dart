@@ -3,7 +3,7 @@ import 'main.dart';
 //import 'package:workout_planner/models/User.dart';
 import 'package:workout_planner/utils/DBhelper.dart';
 import 'auth.dart';
-import 'userClass.dart';
+import 'models/User.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -217,8 +217,6 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     var userID = user.uid;
 
     var snap = await Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments();
-
-    print(snap.documents);
 
     if(snap.documents.isEmpty)
     {
