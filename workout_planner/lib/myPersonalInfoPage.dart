@@ -34,8 +34,6 @@ final mainReference = FirebaseDatabase.instance.reference();
 final FirebaseAuth firebase = FirebaseAuth.instance;
 final Firestore firebaseDB = Firestore.instance;
 
-
-
 class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
   DBhelper db = DBhelper();
@@ -76,6 +74,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       drawer: NavDrawer(),
       appBar: AppBar(
           title: Text("Personal Information"),
@@ -89,115 +88,198 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
           ),
         ],
       ),
+
+//      bottomNavigationBar: BottomAppBar(
+//        child: Row(
+//          mainAxisSize: MainAxisSize.max,
+//          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//          children: <Widget>[
+//            RaisedButton(
+//                child: Text("Submit"),
+//                color: Theme.of(context).accentColor,
+//                onPressed: () => _saveInfo()
+//            )
+//          ],
+//        )
+//      ),
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          //#============================================== start  children
-          Text("Personal Information Page"),
-          Row(
-            children: <Widget>[
-              //#============================================== start  children
-              //Element 1 - ColorAvatar
-              Expanded(
-                child: Container(
-                  //padding: const EdgeInsets.all(0.0),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.lightBlue,
-                    child: Text("KS"),
-                    radius: 30.0,
-                  ),
-                ),
-              ),
-
-            ]
-            //#================================================ end children
-          ),
-          Row(
-            children: <Widget>[
-              //#============================================== start  children
-              //Element 2 - Username
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                  child: goalForm("Username", "Username", userNameController,
-                      TextInputType.text, TextInputAction.done),
-                ),
-              ),
-
-            ],
-            //#================================================ end children
-          ),
-          Row(
-            children: <Widget>[
-              //#============================================== start  children
-              //Element 3 - Gender
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-                  child: goalForm("weight","Weight", weightController,
-                      TextInputType.text,
-                      TextInputAction.done),
-                )
-              )
-
-            ],
-            //#================================================ end children
-          ),
-          Row(
-            //Weight, Age, Sex
-            children: <Widget>[
-              //#============================================== start  children
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(20.0),
-                  //color: Colors.green,
-                  width: 75.0,
-                  //padding: const EdgeInsets.all(5.0),
-                  child: goalForm("Gender","Gender", genderController,
-                      TextInputType.number, TextInputAction.done),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(20.0),
-                  width: 75.0,
-                  child: goalForm("Age","Age", ageController,
-                      TextInputType.number, TextInputAction.done),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(20.0),
-                  width: 75.0,
-                  child: goalForm("Height (ft)","Height (ft)", heightController,
-                      TextInputType.number, TextInputAction.done),
-                ),
-              ),
-              //#================================================ end children
-            ],
-          ),
-
           Expanded(
-            child: Container(
-              child: ListView(
-                children: <Widget>[
-                  RaisedButton(
-                      onPressed: _saveInfo,
-                    child: new Text("Submit"),
-                  )
-                ],
-              ),
-              padding: EdgeInsets.all(50.0),
-            ),
-          ),
-        ],
-        //#================================================ end children
+            child: Column(
+              children: <Widget>[
+                //#============================================== start  children
+                Row(
+                  children: <Widget>[
+                    //#============================================== start  children
+                    //Element 1 - ColorAvatar
+                    Expanded(
+                      child: Container(
+                        //padding: const EdgeInsets.all(0.0),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.lightBlue,
+                          child: Text("KS"),
+                          radius: 30.0,
+                        ),
+                      ),
+                    ),
 
+                  ]
+                  //#================================================ end children
+                ),
+                Row(
+                  children: <Widget>[
+                    //#============================================== start  children
+                    //Element 2 - Username
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: goalForm("Username", "Username", userNameController,
+                            TextInputType.text, TextInputAction.done),
+                      ),
+                    ),
+
+                  ],
+                  //#================================================ end children
+                ),
+                Row(
+                  children: <Widget>[
+                    //#============================================== start  children
+                    //Element 3 - Gender
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 100.0),
+                        child: goalForm("weight","Weight", weightController,
+                            TextInputType.text,
+                            TextInputAction.done),
+                      )
+                    )
+
+                  ],
+                  //#================================================ end children
+                ),
+                Row(
+                  //Weight, Age, Sex
+                  children: <Widget>[
+                    //#============================================== start  children
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(20.0),
+                        //color: Colors.green,
+                        width: 75.0,
+                        //padding: const EdgeInsets.all(5.0),
+                        child: goalForm("Gender","Gender", genderController,
+                            TextInputType.number, TextInputAction.done),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(20.0),
+                        width: 75.0,
+                        child: goalForm("Age","Age", ageController,
+                            TextInputType.number, TextInputAction.done),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(20.0),
+                        width: 75.0,
+                        child: goalForm("Height (ft)","Height (ft)", heightController,
+                            TextInputType.number, TextInputAction.done),
+                      ),
+                    ),
+                    //#================================================ end children
+                  ],
+                ),
+
+  //          Expanded(
+  //            child: Container(
+  //              child: ListView(
+  //                children: <Widget>[
+  //                  RaisedButton(
+  //                      onPressed: _saveInfo,
+  //                    child: new Text("Submit"),
+  //                  )
+  //                ],
+  //              ),
+  //              padding: EdgeInsets.all(50.0),
+  //            ),
+  //          ),
+          ],
+          //#================================================ end children
+        ),
       ),
-//      floatingActionButton:
-//          FloatingActionButton(onPressed: () {
-//            _saveInfo();
-//          }, child: Icon(Icons.add)),
+
+      Expanded(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                SizedBox(width: 10.0,),
+                Text("Username:"),
+                SizedBox(width: 10.0,),
+                //Text("${getInfo("user")}")
+                Text("${getInfo("user")}")
+
+              ]
+            ),
+            SizedBox(height: 10.0),
+            Row(
+                children: <Widget>[
+                  SizedBox(width: 10.0,),
+                  Text("Weight:"),
+                  SizedBox(width: 10.0,),
+                  //Text("${getInfo("weight")}")
+                  Text("${getInfo("weight")}")
+
+                ]
+            ),
+            SizedBox(height: 10.0),
+            Row(
+                children: <Widget>[
+                  SizedBox(width: 10.0,),
+                  Text("Height:"),
+                  SizedBox(width: 10.0,),
+                  //Text("${getInfo("height")}")
+                  Text("${getInfo("height")}")
+
+                ]
+            ),
+            SizedBox(height: 10.0),
+            Row(
+                children: <Widget>[
+                  SizedBox(width: 10.0,),
+                  Text("Gender:"),
+                  SizedBox(width: 10.0,),
+                  //Text("${getInfo("gender")}")
+                  Text("${getInfo("gender")}")
+
+                ]
+            ),
+            SizedBox(height: 10.0),
+            Row(
+                children: <Widget>[
+                  SizedBox(width: 10.0,),
+                  Text("Age:"),
+                  SizedBox(width: 10.0,),
+                  //Text("${getInfo("age")}")
+                  Text("${getInfo("age")}")
+                ]
+            ),
+            SizedBox(height: 10.0),
+          ],
+        )
+      ),
+          
+      RaisedButton(
+        onPressed: _saveInfo,
+        child: new Text("Submit"),
+      )
+
+      ],),
     );
   } //build
 
@@ -218,6 +300,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
     var snap = await Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments();
 
+    // if there's no personal info in the DB for this user, add it with the submitted fields
     if(snap.documents.isEmpty)
     {
       final col = firebaseDB.collection("users").document(userID).collection("personalInfo");
@@ -252,12 +335,53 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     print(user);
 
     //mainReference.push().set(user.toJson());
-
-
-
   }
 
+  getInfo(String switchOn) async
+  {
+    FirebaseUser user = await widget.auth.getCurrentUser();
+    var userID = user.uid;
+
+    var snap = await Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments();
+
+    if(snap.documents.isEmpty)
+    {
+      print("ERROR: Nothing in the DB");
+
+      return "null";
+    }
+    else
+    {
+      var data = snap.documents[0].data;
+
+      switch(switchOn)
+      {
+        case "user":
+        {
+          return data[4].toString();
+        }
+        case "weight":
+        {
+          return data[1].toString();
+        }
+        case "height":
+        {
+          return data[3].toString();
+        }
+        case "gender":
+        {
+          return data[0].toString();
+        }
+        case "age":
+        {
+          return data[2].toString();
+        }
+      }
+    }
+  }
 }
+
+
 
 /*
  name: goalForm

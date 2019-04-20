@@ -32,14 +32,14 @@ class User {
   }
 
   set gender(String newGender) {
-    if (newGender == 'Male' || newGender == 'male') {
-      this._gender = newGender;
+    if (newGender == 'Male' || newGender == 'male' || newGender == 'M' || newGender == 'm') {
+      this._gender = "Male";
     }
-    else if (newGender == 'Female' || newGender == 'female') {
-      this._gender = newGender;
+    else if (newGender == 'Female' || newGender == 'female' || newGender == 'F' || newGender == 'f') {
+      this._gender = "Female";
     }
     else {
-      this._gender = 'NULL';
+      this._gender = 'Error: Bad gender';
     }
   }
 
