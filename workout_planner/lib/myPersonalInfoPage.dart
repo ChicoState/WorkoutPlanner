@@ -36,7 +36,7 @@ final Firestore firebaseDB = Firestore.instance;
 
 class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
-  DBhelper db = DBhelper();
+  //DBhelper db = DBhelper();
 
   //testing
 
@@ -53,6 +53,21 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
   void initState() {
     super.initState();
+    widget.auth.getCurrentUser().then((user) {
+      print('result: $user');
+      var userID = user.uid;
+
+     Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments().then((snap) {
+       var data = snap.documents[0].data;
+       setState(() {
+        userNameController.text = data['username'].toString();
+        ageController.text = data['age'].toString();
+        weightController.text = data['weight'].toString();
+        heightController.text = data['height'].toString();
+        genderController.text = data['gender'].toString();
+       });
+     });
+    });
 //    db.getUser(0).then((result) {
 //      print('result: $result');
 //      setState((){
@@ -222,54 +237,55 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
                 Text("Username:"),
                 SizedBox(width: 10.0,),
                 //Text("${getInfo("user")}")
-                Text("${getInfo("user")}")
+                Text(userNameController.text)
+
 
               ]
             ),
-            SizedBox(height: 10.0),
-            Row(
-                children: <Widget>[
-                  SizedBox(width: 10.0,),
-                  Text("Weight:"),
-                  SizedBox(width: 10.0,),
-                  //Text("${getInfo("weight")}")
-                  Text("${getInfo("weight")}")
-
-                ]
-            ),
-            SizedBox(height: 10.0),
-            Row(
-                children: <Widget>[
-                  SizedBox(width: 10.0,),
-                  Text("Height:"),
-                  SizedBox(width: 10.0,),
-                  //Text("${getInfo("height")}")
-                  Text("${getInfo("height")}")
-
-                ]
-            ),
-            SizedBox(height: 10.0),
-            Row(
-                children: <Widget>[
-                  SizedBox(width: 10.0,),
-                  Text("Gender:"),
-                  SizedBox(width: 10.0,),
-                  //Text("${getInfo("gender")}")
-                  Text("${getInfo("gender")}")
-
-                ]
-            ),
-            SizedBox(height: 10.0),
-            Row(
-                children: <Widget>[
-                  SizedBox(width: 10.0,),
-                  Text("Age:"),
-                  SizedBox(width: 10.0,),
-                  //Text("${getInfo("age")}")
-                  Text("${getInfo("age")}")
-                ]
-            ),
-            SizedBox(height: 10.0),
+//            SizedBox(height: 10.0),
+//            Row(
+//                children: <Widget>[
+//                  SizedBox(width: 10.0,),
+//                  Text("Weight:"),
+//                  SizedBox(width: 10.0,),
+//                  //Text("${getInfo("weight")}")
+//                  Text("${getInfo("weight")}")
+//
+//                ]
+//            ),
+//            SizedBox(height: 10.0),
+//            Row(
+//                children: <Widget>[
+//                  SizedBox(width: 10.0,),
+//                  Text("Height:"),
+//                  SizedBox(width: 10.0,),
+//                  //Text("${getInfo("height")}")
+//                  Text("${getInfo("height")}")
+//
+//                ]
+//            ),
+//            SizedBox(height: 10.0),
+//            Row(
+//                children: <Widget>[
+//                  SizedBox(width: 10.0,),
+//                  Text("Gender:"),
+//                  SizedBox(width: 10.0,),
+//                  //Text("${getInfo("gender")}")
+//                  Text("${getInfo("gender")}")
+//
+//                ]
+//            ),
+//            SizedBox(height: 10.0),
+//            Row(
+//                children: <Widget>[
+//                  SizedBox(width: 10.0,),
+//                  Text("Age:"),
+//                  SizedBox(width: 10.0,),
+//                  //Text("${getInfo("age")}")
+//                  Text("${getInfo("age")}")
+//                ]
+//            ),
+//            SizedBox(height: 10.0),
           ],
         )
       ),
@@ -316,11 +332,12 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     final col = firebaseDB.collection("users").document(userID).collection("personalInfo");
 
     col.add(userObject.toMap());
-
-    var snap = await Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments();
-
-    print(snap.documents[4].data);
     */
+
+    //var snaps = await Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments();
+
+    //print(snaps.documents[3].data);
+
 
 
 //    Firestore.instance.runTransaction((transaction) async
@@ -337,7 +354,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     //mainReference.push().set(user.toJson());
   }
 
-  getInfo(String switchOn) async
+  void getInfo(String switchOn) async
   {
     FirebaseUser user = await widget.auth.getCurrentUser();
     var userID = user.uid;
@@ -348,7 +365,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     {
       print("ERROR: Nothing in the DB");
 
-      return "null";
+//      return "null";
     }
     else
     {
@@ -358,23 +375,30 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
       {
         case "user":
         {
-          return data[4].toString();
+          userNameController.text = data['username'].toString();
+          print(userNameController.text);
+          break;
         }
         case "weight":
         {
-          return data[1].toString();
+           weightController.text = data['weight'].toString();
+           break;
+
         }
         case "height":
         {
-          return data[3].toString();
+           heightController.text = data['height'].toString();
+           break;
         }
         case "gender":
         {
-          return data[0].toString();
+          genderController.text = data['gender'].toString();
+          break;
         }
         case "age":
         {
-          return data[2].toString();
+          ageController.text = data['age'].toString();
+          break;
         }
       }
     }
