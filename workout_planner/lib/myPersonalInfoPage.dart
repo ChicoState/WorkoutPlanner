@@ -4,7 +4,6 @@ import 'main.dart';
 import 'package:workout_planner/utils/DBhelper.dart';
 import 'auth.dart';
 import 'models/User.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -30,22 +29,15 @@ class MyPersonalInfoPage extends StatefulWidget {
   MyPersonalInfoPageState createState() => MyPersonalInfoPageState();
 }
 
-final mainReference = FirebaseDatabase.instance.reference();
 final FirebaseAuth firebase = FirebaseAuth.instance;
 final Firestore firebaseDB = Firestore.instance;
 
-class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
-
-  //DBhelper db = DBhelper();
-
-  //testing
-
-  //
+class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
+{
 
   MyPersonalInfoPageState();
 
   // All the TextEditingControllers for each TextFormField
-  TextEditingController userNameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
   TextEditingController weightController = TextEditingController();
   TextEditingController heightController = TextEditingController();
@@ -57,10 +49,11 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
       print('result: $user');
       var userID = user.uid;
 
+      //TODO this has an error on no data and it doesn't update when new data is added
+
      Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments().then((snap) {
        var data = snap.documents[0].data;
        setState(() {
-        userNameController.text = data['username'].toString();
         ageController.text = data['age'].toString();
         weightController.text = data['weight'].toString();
         heightController.text = data['height'].toString();
@@ -146,21 +139,6 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
                 Row(
                   children: <Widget>[
                     //#============================================== start  children
-                    //Element 2 - Username
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: goalForm("Username", "Username", userNameController,
-                            TextInputType.text, TextInputAction.done),
-                      ),
-                    ),
-
-                  ],
-                  //#================================================ end children
-                ),
-                Row(
-                  children: <Widget>[
-                    //#============================================== start  children
                     //Element 3 - Gender
                     Expanded(
                       child: Container(
@@ -232,27 +210,16 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             Row(
-              children: <Widget>[
-                SizedBox(width: 10.0,),
-                Text("Username:"),
-                SizedBox(width: 10.0,),
-                //Text("${getInfo("user")}")
-                Text(userNameController.text)
+                children: <Widget>[
+                  SizedBox(width: 10.0,),
+                  Text("Weight:"),
+                  SizedBox(width: 10.0,),
+                  //Text("${getInfo("weight")}")
+                  Text(weightController.text)
 
 
-              ]
+                ]
             ),
-//            SizedBox(height: 10.0),
-//            Row(
-//                children: <Widget>[
-//                  SizedBox(width: 10.0,),
-//                  Text("Weight:"),
-//                  SizedBox(width: 10.0,),
-//                  //Text("${getInfo("weight")}")
-//                  Text("${getInfo("weight")}")
-//
-//                ]
-//            ),
 //            SizedBox(height: 10.0),
 //            Row(
 //                children: <Widget>[
@@ -299,13 +266,10 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     );
   } //build
 
-  void _saveInfo() async {
-    //determine if insert or update by checking user id
-    //if id exists in database then update the info
-    //if id does not exist then insert into database
+  void _saveInfo() async
+  {
     User userObject = new User();
 
-    userObject.username = userNameController.text;
     userObject.gender = genderController.text;
     userObject.weight = int.parse(weightController.text);
     userObject.age = int.parse(ageController.text);
@@ -316,13 +280,11 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
     var snap = await Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments();
 
+    final col = firebaseDB.collection("users").document(userID).collection("personalInfo");
+
     // if there's no personal info in the DB for this user, add it with the submitted fields
     if(snap.documents.isEmpty)
-    {
-      final col = firebaseDB.collection("users").document(userID).collection("personalInfo");
-
       col.add(userObject.toMap());
-    }
     else
       print("not null");
       //TODO update what's in the DB
@@ -339,17 +301,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
     //print(snaps.documents[3].data);
 
 
-
-//    Firestore.instance.runTransaction((transaction) async
-//    {
-//      DocumentSnapshot snap = await Firestore.instance.collection('users').
-//        document(userID).get();
-//      await transaction.update(snap.reference, {
-//        'textInput': inputText
-//      });
-//    });
-
-    print(user);
+    //print(user);
 
     //mainReference.push().set(user.toJson());
   }
@@ -373,12 +325,6 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
       switch(switchOn)
       {
-        case "user":
-        {
-          userNameController.text = data['username'].toString();
-          print(userNameController.text);
-          break;
-        }
         case "weight":
         {
            weightController.text = data['weight'].toString();

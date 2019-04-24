@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'main.dart';
 import 'models/Goals.dart';
 
@@ -8,8 +7,6 @@ class MyGoalsPage extends StatefulWidget
   @override
   _MyGoalsPage createState() => _MyGoalsPage();
 }
-
-final mainReference = FirebaseDatabase.instance.reference();
 
 // page to add, track, and edit goals
 class _MyGoalsPage extends State<MyGoalsPage>
@@ -145,7 +142,6 @@ class _MyGoalsPage extends State<MyGoalsPage>
 
     newGoal.setProperties(goalController.text, descController.text, 0);
 
-    mainReference.push().set(newGoal.toJson());
 
 
 
