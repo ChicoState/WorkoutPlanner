@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
-//import 'package:workout_planner/models/User.dart';
 import 'package:workout_planner/utils/DBhelper.dart';
 import 'auth.dart';
 import 'models/User.dart';
@@ -32,13 +31,14 @@ class MyPersonalInfoPage extends StatefulWidget {
 final FirebaseAuth firebase = FirebaseAuth.instance;
 final Firestore firebaseDB = Firestore.instance;
 
-
-
 class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
 {
   String userID = "";
 
-
+  var firebaseAge = "";
+  var firebaseWeight = "";
+  var firebaseHeight = "";
+  var firebaseGender = "";
 
   MyPersonalInfoPageState();
 
@@ -51,12 +51,13 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
   void initState() {
     super.initState();
     widget.auth.getCurrentUser().then((user) {
-      print('result: $user');
+
       userID = user.uid;
 
-      //TODO this has an error on no data and it doesn't update when new data is added
+      if(userID == "")
+        print("ERROR: USERID IS NULL");
 
-     Firestore.instance.collection('users').document(userID).collection('personalInfo').getDocuments().then((snap) {
+     Firestore.instance.collection(userID).getDocuments().then((snap) {
        var data = snap.documents[0].data;
        setState(() {
         ageController.text = data['age'].toString();
@@ -66,16 +67,6 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
        });
      });
     });
-//    db.getUser(0).then((result) {
-//      print('result: $result');
-//      setState((){
-//         userNameController.text = result.username;
-//         ageController.text = result.age.toString();
-//         weightController.text = result.weight.toString();
-//         heightController.text = result.height.toString();
-//         genderController.text = result.gender;
-//      });
-//    });
   }
 
   /*
@@ -101,20 +92,6 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
           ),
         ],
       ),
-
-//      bottomNavigationBar: BottomAppBar(
-//        child: Row(
-//          mainAxisSize: MainAxisSize.max,
-//          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//          children: <Widget>[
-//            RaisedButton(
-//                child: Text("Submit"),
-//                color: Theme.of(context).accentColor,
-//                onPressed: () => _saveInfo()
-//            )
-//          ],
-//        )
-//      ),
 
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -191,152 +168,78 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                     //#================================================ end children
                   ],
                 ),
-
-  //          Expanded(
-  //            child: Container(
-  //              child: ListView(
-  //                children: <Widget>[
-  //                  RaisedButton(
-  //                      onPressed: _saveInfo,
-  //                    child: new Text("Submit"),
-  //                  )
-  //                ],
-  //              ),
-  //              padding: EdgeInsets.all(50.0),
-  //            ),
-  //          ),
-          ],
+              ],
           //#================================================ end children
-        ),
-      ),
+            ),
+          ),
 
-//      Expanded(
-//        child: Column(
-//          mainAxisAlignment: MainAxisAlignment.start,
-//          crossAxisAlignment: CrossAxisAlignment.end,
-//          children: <Widget>[
-//            Row(
-//                children: <Widget>[
-//                  SizedBox(width: 10.0,),
-//                  Text("Weight:"),
-//                  SizedBox(width: 10.0,),
-//                  //Text("${getInfo("weight")}")
-//                  Text(weightController.text)
-//
-//                ]
-//            ),
-//            SizedBox(height: 10.0),
-//            Row(
-//                children: <Widget>[
-//                  SizedBox(width: 10.0,),
-//                  Text("Height:"),
-//                  SizedBox(width: 10.0,),
-//                  //Text("${getInfo("height")}")
-//                  Text(heightController.text)
-//
-//                ]
-//            ),
-//            SizedBox(height: 10.0),
-//            Row(
-//                children: <Widget>[
-//                  SizedBox(width: 10.0,),
-//                  Text("Gender:"),
-//                  SizedBox(width: 10.0,),
-//                  //Text("${getInfo("gender")}")
-//                  Text(genderController.text)
-//
-//                ]
-//            ),
-//            SizedBox(height: 10.0),
-//            Row(
-//                children: <Widget>[
-//                  SizedBox(width: 10.0,),
-//                  Text("Age:"),
-//                  SizedBox(width: 10.0,),
-//                  //Text("${getInfo("age")}")
-//                  Text(ageController.text)
-//
-//                ]
-//            ),
-//            SizedBox(height: 10.0),
-//          ],
-//        )
-//      ),
-
-      Expanded(
-        child: Column(
-          children: <Widget>[
-            StreamBuilder(
-              stream: firebaseDB.document(userID).collection("personalInfo").snapshots(),
-              builder: (context, snapshot)
-              {
-                if(!snapshot.hasData)
-                  return Text("Loading data...");
-                else
-                  return Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Row(
+          //TODO on initial page load when default data is present, there are errors displaying below
+          //TODO   when the page is reloaded it's fine
+          Expanded(
+            child: Column(
+              children: <Widget>[
+                StreamBuilder(
+                  stream: firebaseDB.collection(userID).document("personalInfo").snapshots(),
+                  builder: (context, snapshot) {
+                    return Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          Row(
                             children: <Widget>[
                               SizedBox(width: 10.0,),
                               Text("Weight:"),
                               SizedBox(width: 10.0,),
-                              //Text("${getInfo(snapshot)}")
-
+                              Text(snapshot.data['weight'].toString())
                             ]
-                        ),
-                        SizedBox(height: 10.0),
-                        Row(
+                          ),
+                          SizedBox(height: 10.0),
+                          Row(
                             children: <Widget>[
                               SizedBox(width: 10.0,),
                               Text("Height:"),
                               SizedBox(width: 10.0,),
-                              //Text("${getInfo("height")}")
-                              //Text(snapshot.data['height'].toString())
-
+                              Text(snapshot.data['height'].toString())
                             ]
-                        ),
-                        SizedBox(height: 10.0),
-                        Row(
+                          ),
+                          SizedBox(height: 10.0),
+                          Row(
                             children: <Widget>[
                               SizedBox(width: 10.0,),
                               Text("Gender:"),
                               SizedBox(width: 10.0,),
-                              //Text("${getInfo("gender")}")
-                              //Text(snapshot.data['gender'].toString())
-
+                              Text(snapshot.data['gender'].toString())
                             ]
-                        ),
-                        SizedBox(height: 10.0),
-                        Row(
+                          ),
+                          SizedBox(height: 10.0),
+                          Row(
                             children: <Widget>[
                               SizedBox(width: 10.0,),
                               Text("Age:"),
                               SizedBox(width: 10.0,),
-                              //Text("${getInfo("age")}")
-                              //Text(snapshot.data['age'].toString())
-
+                              Text(snapshot.data['age'].toString())
                             ]
-                        ),
-                        SizedBox(height: 10.0),
-                      ],
-                    )
-                  );
-              }
+                          ),
+                          SizedBox(height: 10.0),
+                        ],
+                      )
+                    );
+                  }
+                )
+              ],
             )
-          ],
-        )
+          ),
+
+
+
+          RaisedButton(
+            onPressed: _saveInfo,
+            child: new Text("Submit"),
+          )
+
+        ],
       ),
-
-
-      RaisedButton(
-        onPressed: _saveInfo,
-        child: new Text("Submit"),
-      )
-
-      ],),
     );
   } //build
 
@@ -349,34 +252,32 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
     userObject.age = int.parse(ageController.text);
     userObject.height = int.parse(heightController.text);
 
-    var snap = await Firestore.instance.collection(userID).getDocuments();
+    //var snap = await firebaseDB.collection(userID).getDocuments();
 
     DocumentReference doc = firebaseDB.collection(userID).document("personalInfo");
 
+    firebaseDB.runTransaction((transaction) async {
+      await transaction.update(
+          doc, userObject.toMap());
+    });
+
     // if there's no personal info in the DB for this user, add it with the submitted fields
-    if(snap.documents.isEmpty)
-    {
-      print("empty");
-      firebaseDB.runTransaction((transaction) async {
-        await transaction.set(
-            doc, userObject.toMap());
-      });
-    }
-    else // update the field if it exists
-    {
-      print("not empty");
-      firebaseDB.runTransaction((transaction) async {
-        await transaction.update(
-            doc, userObject.toMap());
-      });
-    }
-  }
-
-  getInfo(var snapshot)
-  {
-    //print(snapshot);
-
-
+//    if(snap.documents.isEmpty)//TODO this won't work in the future when there are multiple documents
+//    {
+//      print("empty");
+//      firebaseDB.runTransaction((transaction) async {
+//        await transaction.set(
+//            doc, userObject.toMap());
+//      });
+//    }
+//    else // update the field if it exists
+//    {
+//      print("not empty");
+//      firebaseDB.runTransaction((transaction) async {
+//        await transaction.update(
+//            doc, userObject.toMap());
+//      });
+//    }
   }
 }
 

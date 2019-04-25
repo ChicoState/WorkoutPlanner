@@ -65,7 +65,7 @@ class NavDrawer extends StatelessWidget
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context, MaterialPageRoute(
-              builder: (context) => new MyPersonalInfoPage()));
+              builder: (context) => new RootPage(auth: Auth())));
             },
           ),
 
