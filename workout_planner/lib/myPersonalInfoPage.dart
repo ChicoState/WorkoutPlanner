@@ -178,7 +178,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
           Expanded(
             child: Column(
               children: <Widget>[
-                StreamBuilder(
+                StreamBuilder(      // TODO maybe this is better as a future builder?
                   stream: firebaseDB.collection(userID).document("personalInfo").snapshots(),
                   builder: (context, snapshot) {
                     return Expanded(
