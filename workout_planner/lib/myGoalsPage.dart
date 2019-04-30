@@ -21,6 +21,8 @@ final userID = "5fs7CFXQgFhYRqa6tCWB4ha4O0m1";
 class _MyGoalsPage extends State<MyGoalsPage> {
   final goalController = new TextEditingController();
   final descController = new TextEditingController();
+  List<dynamic> goalList = List<dynamic>();
+  var checkBox = Icon(Icons.check_box_outline_blank);
 
   _addGoalDialog() {
     showDialog(
@@ -142,22 +144,22 @@ class _MyGoalsPage extends State<MyGoalsPage> {
 
   _commitGoal() async
   {
-    Goal newGoal = new Goal();
-
-    newGoal.goalName = goalController.text;
-    newGoal.goalDescription = descController.text;
-    newGoal.goalCompleted = false;
-
-    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    String userID = user.uid;
-
-    // yeah, this is dumb but it works
-    var doc = firebaseDB.collection(userID).document("goals").collection("goals").document();
-
-    firebaseDB.runTransaction((transaction) async {
-      await transaction.set(
-          doc, newGoal.toMap());
-    });
+//    Goal newGoal = new Goal();
+//
+//    newGoal.goalName = goalController.text;
+//    newGoal.goalDescription = descController.text;
+//    newGoal.goalCompleted = false;
+//
+//    FirebaseUser user = await FirebaseAuth.instance.currentUser();
+//    String userID = user.uid;
+//
+//    // yeah, this is dumb but it works
+//    var doc = firebaseDB.collection(userID).document("goals").collection("goals").document();
+//
+//    firebaseDB.runTransaction((transaction) async {
+//      await transaction.set(
+//          doc, newGoal.toMap());
+//    });
 
   }
 
@@ -222,70 +224,113 @@ class _MyGoalsPage extends State<MyGoalsPage> {
 //                  itemBuilder: (context, index) => _buildActiveRow(index),
 //                  itemCount: goals.length,
 //                )
-
-  buildActive() async
-  {
-    print("CALLING");
-    final QuerySnapshot result = await firebaseDB.collection(userID).document("goals").collection("goals").getDocuments();
-    final List<DocumentSnapshot> documents = result.documents;
-
-    //documents.forEach((data) => print(data));
-
-    if(documents.length < 1)
-      return Text("No goals");
-    else
-      return ListView.builder(
-        itemCount: documents.length,
-        itemBuilder: (context, index)
-        {
-          GestureDetector(
-              onTap: () {
-                print("tapped");
-                //goalIndex = index;
-                //_updateGoalDialog(goalIndex);
-              },
-              child: Card(
+  buildStream(){
+    return StreamBuilder(
+        stream: firebaseDB.collection(userID).document("goals").collection("goals").snapshots(),
+        builder: (context, snapshot) {
+          //print(snapshot.data.documents[0]['name']);
+          buildActive(snapshot);
+          return ListView.builder(
+              itemCount: goalList.length,
+              itemBuilder: (context, index){
+                return Card(
                   color: Colors.blue[100],
-                  elevation: 3,
-                  margin: EdgeInsets.all(4),
-                  child: Container(
-                      padding: EdgeInsets.only(left: 10.0, top: 10.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: <Widget>[
-                                Text(
-                                    documents[index]['name'],
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        fontSize: 30.0,
-                                        fontWeight: FontWeight.bold
-                                    )
-                                ),
-                                Text(
-                                    documents[index]['description'],
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      fontStyle: FontStyle.italic,
-                                    )
-                                ),
-                              ],
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.check),
-                            //onPressed: () => _moveGoal(index)
-                          )
-                        ],
-                      )
-                  )
-              )
+                  elevation: 2.0,
+                  child: ListTile(
+                    leading: GestureDetector(
+                      child: checkBox,
+                      onTap: ()  {
+                        print("finished ${goalList[index]}");
+//                                  setState(() {
+//                                    checkBox = Icon(Icons.check_box, color: Colors.grey);
+//                                  });
+                      },
+                    ),
+                    title: Text(goalList[index]),
+                    trailing: GestureDetector(
+                      child: Icon(Icons.delete, color: Colors.grey),
+                      onTap: (){
+                        print("deleting ${goalList[index]}");
+                      },
+                    ),
+                    onTap: (){
+                      print("${goalList[index]} tapped ");
+                    },
+                  ),
+                );
+              }
           );
         }
-      );
+    );
+  }
+  buildActive(AsyncSnapshot<QuerySnapshot> snap)
+  {
+    print("CALLING");
+    //final QuerySnapshot result = await firebaseDB.collection(userID).document("goals").collection("goals").getDocuments();
+    //final List<DocumentSnapshot> documents = snap;
+
+    //documents.forEach((data) => print(data['name']));
+
+
+      goalList = snap.data.documents
+        .map((doc) => doc['name']).toList();
+      print(goalList);
+//      return Text("finished Call");
+//    if(documents.length < 1)
+//      return Text("No goals");
+//    else
+//      return ListView.builder(
+//        itemCount: documents.length,
+//        itemBuilder: (context, index)
+//        {
+//          GestureDetector(
+//              onTap: () {
+//                print("tapped");
+//                //goalIndex = index;
+//                //_updateGoalDialog(goalIndex);
+//              },
+//              child: Card(
+//                  color: Colors.blue[100],
+//                  elevation: 3,
+//                  margin: EdgeInsets.all(4),
+//                  child: Container(
+//                      padding: EdgeInsets.only(left: 10.0, top: 10.0),
+//                      child: Row(
+//                        mainAxisAlignment: MainAxisAlignment.center,
+//                        children: <Widget>[
+//                          Expanded(
+//                            child: Column(
+//                              crossAxisAlignment: CrossAxisAlignment.stretch,
+//                              children: <Widget>[
+//                                Text(
+//                                    documents[index]['name'],
+//                                    textAlign: TextAlign.left,
+//                                    style: TextStyle(
+//                                        fontSize: 30.0,
+//                                        fontWeight: FontWeight.bold
+//                                    )
+//                                ),
+//                                Text(
+//                                    documents[index]['description'],
+//                                    style: TextStyle(
+//                                      fontSize: 20.0,
+//                                      fontStyle: FontStyle.italic,
+//                                    )
+//                                ),
+//                              ],
+//                            ),
+//                          ),
+//                          IconButton(
+//                            icon: Icon(Icons.check),
+//                            //onPressed: () => _moveGoal(index)
+//                          )
+//                        ],
+//                      )
+//                  )
+//              )
+//          );
+//        }
+//      );
 
 
   }
@@ -311,13 +356,8 @@ class _MyGoalsPage extends State<MyGoalsPage> {
           ),
           body: TabBarView(children: [
             Container(
-              child:
-                StreamBuilder(
-                  stream: firebaseDB.collection(userID).document("goals").collection("goals").snapshots(),
-                  builder: (context, snapshot) {
-                    return buildActive();
-                  }
-                )
+              child: buildStream()
+
 //
 ////                  if(!snapshot.hasData)
 ////                    return Text("No goals");
