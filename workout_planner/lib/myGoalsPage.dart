@@ -266,73 +266,9 @@ class _MyGoalsPage extends State<MyGoalsPage> {
   buildActive(AsyncSnapshot<QuerySnapshot> snap)
   {
     print("CALLING");
-    //final QuerySnapshot result = await firebaseDB.collection(userID).document("goals").collection("goals").getDocuments();
-    //final List<DocumentSnapshot> documents = snap;
-
-    //documents.forEach((data) => print(data['name']));
-
-
-      goalList = snap.data.documents
-        .map((doc) => doc['name']).toList();
-      print(goalList);
-//      return Text("finished Call");
-//    if(documents.length < 1)
-//      return Text("No goals");
-//    else
-//      return ListView.builder(
-//        itemCount: documents.length,
-//        itemBuilder: (context, index)
-//        {
-//          GestureDetector(
-//              onTap: () {
-//                print("tapped");
-//                //goalIndex = index;
-//                //_updateGoalDialog(goalIndex);
-//              },
-//              child: Card(
-//                  color: Colors.blue[100],
-//                  elevation: 3,
-//                  margin: EdgeInsets.all(4),
-//                  child: Container(
-//                      padding: EdgeInsets.only(left: 10.0, top: 10.0),
-//                      child: Row(
-//                        mainAxisAlignment: MainAxisAlignment.center,
-//                        children: <Widget>[
-//                          Expanded(
-//                            child: Column(
-//                              crossAxisAlignment: CrossAxisAlignment.stretch,
-//                              children: <Widget>[
-//                                Text(
-//                                    documents[index]['name'],
-//                                    textAlign: TextAlign.left,
-//                                    style: TextStyle(
-//                                        fontSize: 30.0,
-//                                        fontWeight: FontWeight.bold
-//                                    )
-//                                ),
-//                                Text(
-//                                    documents[index]['description'],
-//                                    style: TextStyle(
-//                                      fontSize: 20.0,
-//                                      fontStyle: FontStyle.italic,
-//                                    )
-//                                ),
-//                              ],
-//                            ),
-//                          ),
-//                          IconButton(
-//                            icon: Icon(Icons.check),
-//                            //onPressed: () => _moveGoal(index)
-//                          )
-//                        ],
-//                      )
-//                  )
-//              )
-//          );
-//        }
-//      );
-
-
+    goalList = snap.data.documents
+      .map((doc) => doc['name']).toList();
+    print(goalList);
   }
 
 
