@@ -7,6 +7,9 @@ import 'models/User.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:numberpicker/numberpicker.dart';
+import 'package:flutter_picker/flutter_picker.dart';
+
 
 
 
@@ -52,6 +55,12 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
   TextEditingController weightController = TextEditingController();
   TextEditingController heightController = TextEditingController();
   TextEditingController genderController = TextEditingController();
+
+  int weight = 150;
+  int age = 20;
+  int heightFeet = 5;
+  int heightInch = 3;
+  String sex = "Other";
 
   void initState() {
     super.initState();
@@ -128,55 +137,149 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
             //#================================================ end children
           ),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
+              Container(
+                  child: Text(
+                    "Weight",
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2.0
+                    ),
+                  )
+              ),
+              Expanded(
+                child: new FlatButton(
+                  onPressed: _showWeightDialog,
+                  child: Text("$weight"),
+                  color: Colors.grey,
+                )
+              ),
+              
               //#============================================== start  children
               //Element 3 - Gender
-              Expanded(
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-                  child: goalForm("weight","Weight", weightController,
-                      TextInputType.text,
-                      TextInputAction.done),
-                )
-              )
+//              Expanded(
+//                child: Container(
+//                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
+//                  child: goalForm("weight","Weight", weightController,
+//                      TextInputType.text,
+//                      TextInputAction.done),
+//                )
+//              )
 
             ],
             //#================================================ end children
           ),
           Row(
-            //Weight, Age, Sex
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //Height, Age, Sex
             children: <Widget>[
+              Container(
+                  child: Text(
+                    "Age",
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2.0
+                    ),
+                  )
+              ),
+              Expanded(
+                child: new FlatButton(
+                  onPressed: _showAgeDialog,
+                  child: Text("$age"),
+                  color: Colors.grey,
+                )
+              ),
+
               //#============================================== start  children
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(20.0),
-                  //color: Colors.green,
-                  width: 75.0,
-                  //padding: const EdgeInsets.all(5.0),
-                  child: goalForm("Gender","Gender", genderController,
-                      TextInputType.number, TextInputAction.done),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(20.0),
-                  width: 75.0,
-                  child: goalForm("Age","Age", ageController,
-                      TextInputType.number, TextInputAction.done),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  padding: EdgeInsets.all(20.0),
-                  width: 75.0,
-                  child: goalForm("Height (ft)","Height (ft)", heightController,
-                      TextInputType.number, TextInputAction.done),
-                ),
-              ),
+//              Expanded(
+//                child: Container(
+//                  padding: EdgeInsets.all(20.0),
+//                  //color: Colors.green,
+//                  width: 75.0,
+//                  //padding: const EdgeInsets.all(5.0),
+//                  child: goalForm("Gender","Gender", genderController,
+//                      TextInputType.number, TextInputAction.done),
+//                ),
+//              ),
+//              Expanded(
+//                child: Container(
+//                  padding: EdgeInsets.all(20.0),
+//                  width: 75.0,
+//                  child: goalForm("Age","Age", ageController,
+//                         TextInputType.number, TextInputAction.done),
+//                ),
+//              ),
+//              Expanded(
+//                child: Container(
+//                  padding: EdgeInsets.all(20.0),
+//                  width: 75.0,
+//                  child: goalForm("Height (ft)","Height (ft)", heightController,
+//                      TextInputType.number, TextInputAction.done),
+//                ),
+//              ),
               //#================================================ end children
             ],
           ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                child: Text(
+                  "Height: FEET",
+                  style: TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 2.0
+                  ),
+                )
+              ),
+              new FlatButton(
+                onPressed: _showHeightFeetDialog,
+                child: Text("$heightFeet"),
+                color: Colors.grey,
+              ),
+              Container(
+                  child: Text(
+                    "INCH",
+                    style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2.0
+                    ),
+                  )
+              ),
+              new FlatButton(
+                onPressed: _showHeightInchDialog,
+                child: Text("$heightInch"),
+                color: Colors.grey,
+              ),
+            ]
+          ),
 
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                  child: Text(
+                    "Sex:",
+                    style: TextStyle(
+                        fontSize: 20,
+                        letterSpacing: 2.0
+                    ),
+                  )
+              ),
+              Expanded(
+                child: new FlatButton(
+                  onPressed: _showSex,
+                  child: Text("$sex"),
+                  color: Colors.grey,
+                )
+              ),
+            ]
+          ),
           Expanded(
             child: Container(
               child: ListView(
@@ -200,6 +303,130 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 //          }, child: Icon(Icons.add)),
     );
   } //build
+
+  _showSex(){
+      Picker picker = new Picker(
+          adapter: PickerDataAdapter(data: [
+            new PickerItem(
+              text: Text("Male"),
+              value: 0,
+                ),
+            new PickerItem(
+              text: Text("Female"),
+              value: 1,
+            ),
+            new PickerItem(
+              text: Text("Other"),
+              value: 2,
+            )
+          ]),
+          changeToFirst: true,
+          hideHeader: true,
+          delimiter: [
+            PickerDelimiter(child: Container(
+              width: 35.0,
+              alignment: Alignment.center,
+            ))
+          ],
+          title: new Text("Select Sex"),
+          textAlign: TextAlign.left,
+          columnPadding: const EdgeInsets.all(8.0),
+          onConfirm: (Picker picker, List value) {
+            if(value[0] == 0){
+              setState(() => sex = "Male");
+            }
+            else if(value[0] == 1){
+              setState(() => sex = "Female");
+            }
+            else if(value[0] == 2){
+              setState(() => sex = "Other");
+            }
+          }
+      );
+      picker.showDialog(context);
+    }
+
+  _showWeightDialog(){
+    new Picker(
+        adapter: NumberPickerAdapter(data: [
+          NumberPickerColumn(begin: 60, end: 700),
+        ]),
+        looping: true,
+        delimiter: [
+          PickerDelimiter(child: Container(
+            width: 35.0,
+            alignment: Alignment.center,
+          ))
+        ],
+        hideHeader: true,
+        title: new Text("Please Select Your Weight"),
+        onConfirm: (Picker picker, List value) {
+          setState(() => weight = (value[0]+60));
+        }
+    ).showDialog(context);
+  }
+
+  _showAgeDialog(){
+    new Picker(
+        adapter: NumberPickerAdapter(data: [
+          NumberPickerColumn(begin: 10, end: 99),
+        ]),
+        delimiter: [
+          PickerDelimiter(child: Container(
+            width: 35.0,
+            alignment: Alignment.center,
+          ))
+        ],
+        hideHeader: true,
+        title: new Text("Please Select Your Age"),
+        onConfirm: (Picker picker, List value) {
+          setState(() => age = (value[0]+10));
+        }
+    ).showDialog(context);
+  }
+
+  _showHeightFeetDialog(){
+    new Picker(
+        adapter: NumberPickerAdapter(data: [
+          NumberPickerColumn(begin: 3, end: 7),
+        ]),
+        delimiter: [
+          PickerDelimiter(child: Container(
+            width: 35.0,
+            alignment: Alignment.center,
+          ))
+        ],
+        hideHeader: true,
+        title: new Text("Please Select Your Height(FT)"),
+        onConfirm: (Picker picker, List value) {
+          setState(() => heightFeet = (value[0]+3));
+        }
+    ).showDialog(context);
+  }
+  _showHeightInchDialog(){
+    new Picker(
+      adapter: NumberPickerAdapter(data: [
+      NumberPickerColumn(begin: 0, end: 11),
+      ]),
+      delimiter: [
+        PickerDelimiter(child: Container(
+          width: 35.0,
+          alignment: Alignment.center,
+        ))
+      ],
+      hideHeader: true,
+      title: new Text("Please Select Your Height(INCH)"),
+      onConfirm: (Picker picker, List value) {
+        setState(() => heightInch = (value[0]+0));
+      }
+    ).showDialog(context);
+  }
+
+
+
+
+
+
 
   void _saveInfo() async {
     //determine if insert or update by checking user id
@@ -267,12 +494,11 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
  */
 class goalForm extends StatefulWidget {
 
-  //
   String _hintDec;
   String _labelDec;
   TextEditingController _controller = TextEditingController();
   TextInputType _keyboard;
-  TextInputAction _action ;
+  TextInputAction _action;
 
   //Constructor for goalForm
   goalForm(this._hintDec, this._labelDec, this._controller, this._keyboard,
@@ -320,3 +546,16 @@ class goalFormState extends State<goalForm> {
 
 
 ////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+////Age Form
+//Expanded(
+//child: Container(
+//padding: EdgeInsets.all(20.0),
+//width: 75.0,
+//child: goalForm("Age","Age", ageController,
+//TextInputType.number, TextInputAction.done),
+//),
+//),
