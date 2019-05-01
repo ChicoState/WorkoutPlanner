@@ -152,8 +152,14 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
               Expanded(
                 child: new FlatButton(
                   onPressed: _showWeightDialog,
-                  child: Text("$weight"),
-                  color: Colors.grey,
+                  child: Text(
+                    "$weight",
+                    style: TextStyle(
+                      fontSize: 30,
+                      letterSpacing: 2.0
+                    ),
+                  ),
+
                 )
               ),
               
@@ -188,7 +194,13 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
               Expanded(
                 child: new FlatButton(
                   onPressed: _showAgeDialog,
-                  child: Text("$age"),
+                  child: Text(
+                    "$age",
+                    style: TextStyle(
+                        fontSize: 30,
+                        letterSpacing: 2.0
+                    ),
+                  ),
                   color: Colors.grey,
                 )
               ),
@@ -238,7 +250,13 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
               ),
               new FlatButton(
                 onPressed: _showHeightFeetDialog,
-                child: Text("$heightFeet"),
+                child: Text(
+                  "$heightFeet",
+                  style: TextStyle(
+                      fontSize: 30,
+                      letterSpacing: 2.0
+                  ),
+                ),
                 color: Colors.grey,
               ),
               Container(
@@ -252,7 +270,13 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
               ),
               new FlatButton(
                 onPressed: _showHeightInchDialog,
-                child: Text("$heightInch"),
+                child: Text(
+                  "$heightInch",
+                  style: TextStyle(
+                      fontSize: 30,
+                      letterSpacing: 2.0
+                  ),
+                ),
                 color: Colors.grey,
               ),
             ]
@@ -274,7 +298,13 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
               Expanded(
                 child: new FlatButton(
                   onPressed: _showSex,
-                  child: Text("$sex"),
+                  child: Text(
+                    "$sex",
+                    style: TextStyle(
+                        fontSize: 30,
+                        letterSpacing: 2.0
+                    ),
+                  ),
                   color: Colors.grey,
                 )
               ),
