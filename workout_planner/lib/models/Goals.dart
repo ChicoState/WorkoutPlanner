@@ -1,25 +1,51 @@
 class Goal
 {
-  String goalName;
-  String goalDescription;
-  int goalCompleted; // 0 = goal should be in the active tab, 1 = goal should be in the completed tab
+  String _goalName;
+  String _goalDescription;
+  bool _goalCompleted; // false = goal should be in the active tab, true = goal should be in the completed tab
 
-  Goal({this.goalName, this.goalDescription, this.goalCompleted});
+  Goal.set(this._goalName, this._goalDescription, this._goalCompleted);
 
-  setProperties(String name, String desc, int comp)
-  {
-    goalName = name;
-    goalDescription = desc;
-    goalCompleted = comp;
+  Goal();
+
+  //getters
+
+  String get goalName => _goalName;
+
+  String get goalDescription => _goalDescription;
+
+  bool get goalCompleted => _goalCompleted;
+
+  //setters
+
+  set goalName(name) {
+    this._goalName = name;
   }
 
-  toJson()
-  {
-    return {
-      "name" : goalName,
-      "description" : goalDescription,
-      "completed" : goalCompleted
-    };
+  set goalDescription(desc) {
+    this._goalDescription = desc;
   }
+
+  set goalCompleted(comp) {
+    this._goalCompleted = comp;
+  }
+
+  Goal.fromMapObject(Map<String, dynamic> myMap) {
+    this._goalName = myMap['name'];
+    this._goalDescription = myMap['description'];
+    this._goalCompleted = myMap['completed'];
+  }//User.fromMapObjects
+
+  Map<String, dynamic> toMap() {
+
+    //empty map object
+    var myMap = Map<String, dynamic>();
+
+    myMap['name'] = _goalName;
+    myMap['description'] = _goalDescription;
+    myMap['completed'] = _goalCompleted;
+
+    return myMap;
+  }// toMap()
 
 }

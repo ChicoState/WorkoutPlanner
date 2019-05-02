@@ -316,7 +316,7 @@ class _MyGoalsPage extends State<MyGoalsPage> {
           ),
           body: TabBarView(children: [
             Container(
-              child: userID==""?CircularProgressIndicator():buildStream()
+              child: userID == "" ? CircularProgressIndicator() : buildStream()
             ),
             Container (
               child: Text("Build completed")

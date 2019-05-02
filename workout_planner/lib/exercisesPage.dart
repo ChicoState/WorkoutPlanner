@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+
 
 class ExercisesPage extends StatefulWidget
 {
@@ -53,8 +55,24 @@ class _ExercisesPage extends State<ExercisesPage>
                           Text("${jsonData[index]['equipment_type']}") ],
                         ),
 
-                        Text("${jsonData[index]['link']}" //TODO make this link clickable
-                        )
+                        Container(
+                          child: Linkify(
+                            onOpen: (url) async {
+                              var url = jsonData[index]['link'];
+                              print("On open");
+                              if(await canLaunch(url)) {
+                                await launch(url);
+                              } else {
+                                throw 'Could not launch $url';
+                              }
+                            },
+                            humanize: true,
+                            text: "${jsonData[index]['link']}"
+                          )
+                        ),
+
+                        //Text("${jsonData[index]['link']}") //TODO make this link clickable
+
                       ],
                     )
                   );

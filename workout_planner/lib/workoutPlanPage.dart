@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 
 class WorkoutPlanPage extends StatefulWidget
@@ -32,10 +31,11 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
   List<String> exerSetsCompleted = [];
   var exerCompIndex = 0;
 
-  String hintReps;
-  String hintSets;
+  String hintSets = "Recommended Sets: 6-8";
+  String hintReps = "Recommended Reps: 10-20";
 
-  String _buttonValue;
+  int _buttonValue = 2;
+
   String showGoal;
 
   _commitGoal()
@@ -643,42 +643,6 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     });
   }
 
-  _PlanDialog()
-  {
-    showDialog(
-      context: context,
-      child: SimpleDialog(
-        title: Text("Please Select Your Goal"),
-        titlePadding: EdgeInsets.all(10.0),
-        contentPadding: EdgeInsets.all(10.0),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-                Radius.circular(5.0)
-            )
-        ),
-        children: <Widget>[
-          Center(
-            child: new ButtonBar(
-              children: <Widget>[
-                new RaisedButton(
-                  child: new Text('Maintain'),
-                  onPressed: null,
-                ),
-                new RaisedButton(
-                  child: new Text('Gain Muscle'),
-                  onPressed: null,
-                ),
-                new RaisedButton(
-                  child: new Text('Lose Weight'),
-                  onPressed: null,
-                ),
-              ])
-          )
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -686,36 +650,60 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
         body: DefaultTabController(
             length: 2,
             child: Scaffold(
-                floatingActionButton: SpeedDial(
-                  animatedIcon: AnimatedIcons.menu_close,
-                  animatedIconTheme: IconThemeData(size: 22.0),
-                  curve: Curves.bounceIn,
-                  overlayColor: Colors.black,
-                  overlayOpacity: 0.5,
-                  onOpen: () => print('OPENING DIAL'),
-                  onClose: () => print('DIAL CLOSED'),
-                  tooltip: 'Speed Dial',
-                  heroTag: 'speed-dial-hero-tag',
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
-                  elevation: 8.0,
-                  shape: CircleBorder(),
-                  children: [
-                    SpeedDialChild(
-                        child: Icon(Icons.accessibility),
-                        backgroundColor: Colors.red,
-                        label: 'Plan',
-                        onTap: () => _addGoalDialog(),
-                    ),
-                    SpeedDialChild(
-                      child: Icon(Icons.brush),
-                      backgroundColor: Colors.blue,
-                      label: 'Goal',
-                      onTap:() => _PlanDialog(),
-                    ),
-                  ],
+                floatingActionButton: FloatingActionButton(
+                  onPressed: _addGoalDialog,
+                  child: Icon(Icons.add),
                 ),
                 appBar: AppBar(
+                  actions: <Widget>[
+                    PopupMenuButton<int>(
+                        itemBuilder: (context) => [
+                          PopupMenuItem(
+                            value: 0,
+                            child: Text("Select a goal"),
+                            enabled: false,
+                          ),
+                          PopupMenuItem(
+                            value: 1,
+                            child: Text("Lose Weight"),
+                          ),
+                          PopupMenuItem(
+                          value: 2,
+                          child: Text("Maintain"),
+                          ),
+                          PopupMenuItem(
+                            value: 3,
+                            child: Text("Gain Muscle"),
+                          ),
+                        ],
+                      elevation: 50.0,
+                      offset: Offset(0.0, 375.0),
+                      initialValue: _buttonValue,
+                      onSelected: (value) {
+                        if (value == 1) {
+                          setState(() {
+                            _buttonValue = 1;
+                          });
+                          hintSets = "Recommended Sets: 6-8";
+                          hintReps = "Recommended Reps: 10-20";
+                        }
+                        else if (value == 2) {
+                          setState(() {
+                            _buttonValue = 2;
+                          });
+                          hintSets = "Recommended Sets: 4-6";
+                          hintReps = "Recommended Reps: 8-12";
+                        }
+                        else if (value == 3) {
+                          setState(() {
+                            _buttonValue = 3;
+                          });
+                          hintSets = "Recommended Sets: 4-6";
+                          hintReps = "Recommended Reps: 2-5";
+                        }
+                      }
+                    )
+                  ],
                   bottom: TabBar(tabs: [
                     Tab(text: "Active"),
                     Tab(text: "Completed")
@@ -741,98 +729,4 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     );
   }
 }
-
-//class PlanDialog extends StatefulWidget
-//{
-//  @override
-//  _PlanDialog createState() => new _PlanDialog();
-//}
-//
-//class _PlanDialog extends State<PlanDialog>
-//{
-//  _handleRadioValueChanged(int value)
-//  {
-//    setState((){
-//      _radioValue = value;
-//
-//      switch (_radioValue) {
-//        case 0:
-//          {
-//            hintReps = "Enter Reps (Recommended: 4-7)";
-//            hintSets = "Enter Sets (Recommended: 3-6)";
-//            showGoal = "Maintain Weight";
-//            break;
-//          }
-//        case 1:
-//          {
-//            hintReps = "Enter Reps (Recommended: 3-5)";
-//            hintSets = "Enter Sets (Recommended: 4-7)";
-//            showGoal = "Gain Muscle";
-//            break;
-//          }
-//        case 2:
-//          {
-//            hintReps = "Enter Reps (Recommended: 8-12)";
-//            hintSets = "Enter Sets (Recommended: 3-5)";
-//            showGoal = "Lose Weight";
-//            break;
-//          }
-//        default:
-//          {
-//            hintReps = "Reps";
-//            hintSets = "Sets";
-//            showGoal = " ";
-//            break;
-//          }
-//      }
-//    });
-//  }
-//
-//    @override
-//    Widget build(BuildContext context) {
-//      return new Dialog(
-////        context: context,
-//        child: SimpleDialog(
-//            title: Text("Please Select Your Goal"),
-//            titlePadding: EdgeInsets.all(10.0),
-//            contentPadding: EdgeInsets.all(10.0),
-//            shape: RoundedRectangleBorder(
-//                borderRadius: BorderRadius.all(
-//                    Radius.circular(5.0)
-//                )
-//            ),
-//            children: <Widget>[
-//              RadioListTile(
-//                value: 0,
-//                groupValue: _radioValue,
-//                title: Text("Maintain"),
-//                subtitle: Text("Maintain"),
-//                onChanged: _handleRadioValueChanged,
-//                activeColor: Colors.red,
-//                selected: false,
-//              ),
-//              RadioListTile(
-//                value: 1,
-//                groupValue: _radioValue,
-//                title: Text("Lose Weight"),
-//                subtitle: Text("Lose Weight"),
-//                onChanged: _handleRadioValueChanged,
-//                activeColor: Colors.blue,
-//                selected: false,
-//              ),
-//              RadioListTile(
-//                value: 2,
-//                groupValue: _radioValue,
-//                title: Text("Gain Muscle"),
-//                subtitle: Text("Gain Muscle"),
-//                onChanged: _handleRadioValueChanged,
-//                activeColor: Colors.green,
-//                selected: false,
-//              ),
-//            ]
-//        ),
-//      );
-//    }
-// }
-
 
