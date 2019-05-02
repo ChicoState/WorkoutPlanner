@@ -20,12 +20,6 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
   final repsCompController = new TextEditingController();
   final setsCompController = new TextEditingController();
 
-  int _radioValue;
-  String showGoal;
-
-  String hintReps;
-  String hintSets;
-
   var exerTitle = '';
   var exerReps = '';
   var exerSets = '';
@@ -37,6 +31,12 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
   List<String> exerRepsCompleted = [];
   List<String> exerSetsCompleted = [];
   var exerCompIndex = 0;
+
+  String hintReps;
+  String hintSets;
+
+  String _buttonValue;
+  String showGoal;
 
   _commitGoal()
   {
@@ -643,31 +643,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     });
   }
 
-  _handleRadioValueChanged(int value)
-  {
-    setState(() {
-      _radioValue = value;
-
-      switch (_radioValue) {
-        case 0:
-          hintReps = "Enter Reps (Recommended: 4-7)";
-          hintSets = "Enter Sets (Recommended: 3-6)";
-          showGoal = "Maintain Weight";
-          break;
-        case 1:
-          hintReps = "Enter Reps (Recommended: 3-5)";
-          hintSets = "Enter Sets (Recommended: 4-7)";
-          showGoal = "Gain Muscle";
-          break;
-        case 2:
-          hintReps = "Enter Reps (Recommended: 8-12)";
-          hintSets = "Enter Sets (Recommended: 3-5)";
-          showGoal = "Lose Weight";
-          break;
-      }
-    });  }
-
-  _changeGoal()
+  _PlanDialog()
   {
     showDialog(
       context: context,
@@ -681,66 +657,24 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
             )
         ),
         children: <Widget>[
-          new Row(
-            children: <Widget> [
-            new Column(
-            children: <Widget>[
-              new Radio(
-                  value: 0,
-                 groupValue: _radioValue,
-                 onChanged: _handleRadioValueChanged,
-                activeColor: Colors.red,
-
-              ),
-            ],
-            ),
-              new Column(
-                children: <Widget>[
-                  new Text("Maintain")
-                ],
-              )
-          ]
-          ),
-          new Row(
-              children: <Widget> [
-                new Column(
-                  children: <Widget>[
-                    new Radio(
-                      value: 1,
-                      groupValue: _radioValue,
-                      onChanged: _handleRadioValueChanged,
-                      activeColor: Colors.purple,
-                    ),
-                  ],
+          Center(
+            child: new ButtonBar(
+              children: <Widget>[
+                new RaisedButton(
+                  child: new Text('Maintain'),
+                  onPressed: null,
                 ),
-                new Column(
-                  children: <Widget>[
-                    new Text("Gain Muscle")
-                  ],
-                )
-              ]
-          ),
-          new Row(
-              children: <Widget> [
-                new Column(
-                  children: <Widget>[
-                    new Radio(
-                        value: 2,
-                        groupValue: _radioValue,
-                        onChanged: _handleRadioValueChanged,
-                      activeColor: Colors.green,
-
-                    ),
-                  ],
+                new RaisedButton(
+                  child: new Text('Gain Muscle'),
+                  onPressed: null,
                 ),
-                new Column(
-                  children: <Widget>[
-                    new Text("Lose Weight")
-                  ],
-                )
-              ]
-          ),
-        ]
+                new RaisedButton(
+                  child: new Text('Lose Weight'),
+                  onPressed: null,
+                ),
+              ])
+          )
+        ],
       ),
     );
   }
@@ -770,14 +704,14 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                     SpeedDialChild(
                         child: Icon(Icons.accessibility),
                         backgroundColor: Colors.red,
-                        label: 'Goal',
-                        onTap: () => _changeGoal(),
+                        label: 'Plan',
+                        onTap: () => _addGoalDialog(),
                     ),
                     SpeedDialChild(
                       child: Icon(Icons.brush),
                       backgroundColor: Colors.blue,
-                      label: 'Plan',
-                      onTap:() => _addGoalDialog(),
+                      label: 'Goal',
+                      onTap:() => _PlanDialog(),
                     ),
                   ],
                 ),
@@ -807,3 +741,98 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     );
   }
 }
+
+//class PlanDialog extends StatefulWidget
+//{
+//  @override
+//  _PlanDialog createState() => new _PlanDialog();
+//}
+//
+//class _PlanDialog extends State<PlanDialog>
+//{
+//  _handleRadioValueChanged(int value)
+//  {
+//    setState((){
+//      _radioValue = value;
+//
+//      switch (_radioValue) {
+//        case 0:
+//          {
+//            hintReps = "Enter Reps (Recommended: 4-7)";
+//            hintSets = "Enter Sets (Recommended: 3-6)";
+//            showGoal = "Maintain Weight";
+//            break;
+//          }
+//        case 1:
+//          {
+//            hintReps = "Enter Reps (Recommended: 3-5)";
+//            hintSets = "Enter Sets (Recommended: 4-7)";
+//            showGoal = "Gain Muscle";
+//            break;
+//          }
+//        case 2:
+//          {
+//            hintReps = "Enter Reps (Recommended: 8-12)";
+//            hintSets = "Enter Sets (Recommended: 3-5)";
+//            showGoal = "Lose Weight";
+//            break;
+//          }
+//        default:
+//          {
+//            hintReps = "Reps";
+//            hintSets = "Sets";
+//            showGoal = " ";
+//            break;
+//          }
+//      }
+//    });
+//  }
+//
+//    @override
+//    Widget build(BuildContext context) {
+//      return new Dialog(
+////        context: context,
+//        child: SimpleDialog(
+//            title: Text("Please Select Your Goal"),
+//            titlePadding: EdgeInsets.all(10.0),
+//            contentPadding: EdgeInsets.all(10.0),
+//            shape: RoundedRectangleBorder(
+//                borderRadius: BorderRadius.all(
+//                    Radius.circular(5.0)
+//                )
+//            ),
+//            children: <Widget>[
+//              RadioListTile(
+//                value: 0,
+//                groupValue: _radioValue,
+//                title: Text("Maintain"),
+//                subtitle: Text("Maintain"),
+//                onChanged: _handleRadioValueChanged,
+//                activeColor: Colors.red,
+//                selected: false,
+//              ),
+//              RadioListTile(
+//                value: 1,
+//                groupValue: _radioValue,
+//                title: Text("Lose Weight"),
+//                subtitle: Text("Lose Weight"),
+//                onChanged: _handleRadioValueChanged,
+//                activeColor: Colors.blue,
+//                selected: false,
+//              ),
+//              RadioListTile(
+//                value: 2,
+//                groupValue: _radioValue,
+//                title: Text("Gain Muscle"),
+//                subtitle: Text("Gain Muscle"),
+//                onChanged: _handleRadioValueChanged,
+//                activeColor: Colors.green,
+//                selected: false,
+//              ),
+//            ]
+//        ),
+//      );
+//    }
+// }
+
+
