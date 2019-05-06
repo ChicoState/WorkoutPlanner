@@ -5,7 +5,6 @@ import 'auth.dart';
 import 'models/User.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:numberpicker/numberpicker.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
 

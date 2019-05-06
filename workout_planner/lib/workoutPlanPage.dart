@@ -215,38 +215,6 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
 
   _buildActiveRow(int index)
   {
-    new Card (
-        color: Colors.blue[100],
-        elevation : 4,
-        child : Container(
-            padding: EdgeInsets.only(left: 10.0, top: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Text(
-                          showGoal,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.bold
-                          )
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(
-                    icon: Icon(Icons.check),
-                    onPressed: () => _deleteGoal(index)
-                )
-              ],
-            )
-        )
-    );
-
     return new GestureDetector(
         onTap: ()
         {
