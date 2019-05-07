@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'main.dart';
 import 'models/Goals.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'auth.dart';
 
 
@@ -25,7 +24,8 @@ final Firestore firebaseDB = Firestore.instance;
 class _MyGoalsPage extends State<MyGoalsPage> {
   final goalController = new TextEditingController();
   final descController = new TextEditingController();
-  List<dynamic> goalList = List<dynamic>();
+  List<Goal> goalList = List<Goal>();
+  List<Goal> goalListComp = List<Goal>();
   var checkBox = Icon(Icons.check_box_outline_blank);
   String userID = "";
 
@@ -246,41 +246,32 @@ class _MyGoalsPage extends State<MyGoalsPage> {
     return StreamBuilder(
         stream: firebaseDB.collection(userID).document("goals").collection("goals").snapshots(),
         builder: (context, snapshot) {
-          //print(snapshot.data.documents[0]['name']);
           buildActive(snapshot);
           return ListView.builder(
               itemCount: goalList.length,
               itemBuilder: (context, index){
-                return Card(
-                  color: Colors.blue[100],
-                  elevation: 2.0,
-                  child: ListTile(
-                    leading: GestureDetector(
-                      child: checkBox,
-                      onTap: ()  {
-                        print("finished ${goalList[index]}");
-//                                  setState(() {
-//                                    checkBox = Icon(Icons.check_box, color: Colors.grey);
-//                                  });
-                      },
-                    ),
-                    title: Text(goalList[index]),
-                    trailing: GestureDetector(
-                      child: Icon(Icons.delete, color: Colors.grey),
-                      onTap: (){
-                        print("deleting ${goalList[index]}");
-                      },
-                    ),
-                    onTap: (){
-                      print("${goalList[index]} tapped ");
-                    },
-                  ),
-                );
+                return buildCard(snapshot, index, false);
               }
           );
         }
     );
   }
+
+  buildStreamComp(){
+    return StreamBuilder(
+        stream: firebaseDB.collection(userID).document("goals").collection("goals").snapshots(),
+        builder: (context, snapshot) {
+          buildComp(snapshot);
+          return ListView.builder(
+              itemCount: goalListComp.length,
+              itemBuilder: (context, index){
+                return buildCard(snapshot, index, true);
+              }
+          );
+        }
+    );
+  }
+
   buildActive(AsyncSnapshot<QuerySnapshot> snap)
   {
     print("CALLING");
@@ -289,13 +280,91 @@ class _MyGoalsPage extends State<MyGoalsPage> {
       print("snap is null");
     else {
       print("snap is not null: ${snap.data}");
+      Goal goal = Goal();
+
+      //lol this function is magic
       goalList = snap.data.documents
-          .map((doc) => doc['name']).toList();
-    }
+        .map((doc) => (
+           goal = Goal.set(doc['name'],doc['description'],doc['completed'])))
+          .toList();
+
+      for(int index = goalList.length-1; index>-1; index--){
+        if(goalList[index].goalCompleted == true) {
+            //goalListComp.add(goalList[index]);
+            goalList.removeAt(index);
+        }
+      }
+    }//else
+
     print(goalList);
+    print("end buildActive");
   }
 
+  buildComp(AsyncSnapshot<QuerySnapshot> snap)
+  {
+    print("CALLING");
 
+    if(snap.data == null)
+      print("snap is null");
+    else {
+      print("snap is not null: ${snap.data}");
+      Goal goal = Goal();
+
+      //lol this function is magic
+      goalListComp = snap.data.documents
+          .map((doc) => (
+          goal = Goal.set(doc['name'],doc['description'],doc['completed'])))
+          .toList();
+    }//else
+
+    for(int index = goalListComp.length-1; index>-1; index--){
+      if(goalListComp[index].goalCompleted == false) {
+        //goalListComp.add(goalList[index]);
+        goalListComp.removeAt(index);
+      }
+    }
+    print(goalListComp);
+    print("end buildComp");
+  }
+
+  buildCard(var snapshot, int index, bool completed){
+    //create List refrence
+    List<Goal> goalListRef = List<Goal>();
+
+    //
+    if(completed){
+      goalListRef = goalListComp;
+    }
+    else{
+      goalListRef = goalList;
+    }
+
+      return Card(
+        color: Colors.blue[100],
+        elevation: 2.0,
+        child: ListTile(
+          leading: GestureDetector(
+            child: checkBox,
+            onTap: () {
+              print("finished ${goalListRef[index]}");
+              //print(snapshot.data.documents[index]['name']);
+            },
+          ),
+          title: Text(goalListRef[index].goalName),
+          subtitle: Text(goalListRef[index].goalDescription),
+          trailing: GestureDetector(
+            child: Icon(Icons.delete, color: Colors.grey),
+            onTap: () {
+              print("deleting ${goalListRef[index]}");
+            },
+          ),
+          onTap: () {
+            print("${goalListRef[index]} tapped ");
+          },
+        ),
+      );
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -319,7 +388,7 @@ class _MyGoalsPage extends State<MyGoalsPage> {
               child: userID == "" ? CircularProgressIndicator() : buildStream()
             ),
             Container (
-              child: Text("Build completed")
+              child: userID == "" ? CircularProgressIndicator() : buildStreamComp()
               //child: buildActive()
             ),
             ])
