@@ -671,7 +671,123 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
 //      //print(exerSets);
 //    });
 //  }
-
+//
+//
+//  _buildActiveRow(int index)
+//  {
+//    return new GestureDetector(
+//        onTap: ()
+//        {
+//          exerIndex = index;
+//          _updateGoalDialog(exerIndex);
+//        },
+//        child: Card (
+//          color: Colors.blue[100],
+//          elevation : 4,
+//          child : Container(
+//              padding: EdgeInsets.only(left: 10.0, top: 10.0),
+//              child: Row(
+//                mainAxisAlignment: MainAxisAlignment.center,
+//                children: <Widget>[
+//                  Expanded(
+//                    child: Column(
+//                      crossAxisAlignment: CrossAxisAlignment.stretch,
+//                      children: <Widget>[
+//                        Text(
+//                            exer[index],
+//                            textAlign: TextAlign.left,
+//                            style: TextStyle(
+//                                fontSize: 30.0,
+//                                fontWeight: FontWeight.bold
+//                            )
+//                        ),
+//                        Text(
+//                            "Reps: ${exerRep[index]} ",
+//                            style: TextStyle(
+//                              fontSize: 20.0,
+//                              fontStyle: FontStyle.italic,
+//                            )
+//                        ),
+//                        Text(
+//                            "Sets: ${exerSet[index]}",
+//                            style: TextStyle(
+//                              fontSize: 20.0,
+//                              fontStyle: FontStyle.italic,
+//                            )
+//                        ),
+//                      ],
+//                    ),
+//                  ),
+//                  IconButton(
+//                      icon: Icon(Icons.check),
+//                      onPressed: () => _deleteGoal(index)
+//                  )
+//                ],
+//              )
+//          )
+//        )
+//    );
+//  }
+//  _buildCompRow(int index)
+//  {
+//    return new GestureDetector(
+//        onTap: ()
+//        {
+//          exerIndex = index;
+//          _updateCompGoalDialog(exerIndex);
+//        },
+//        child: Card(
+//        color: Colors.blue[100],
+//        elevation: 4,
+//          child: Container(
+//              padding: EdgeInsets.only(left: 10.0, top: 10.0),
+//              child: Row(
+//                mainAxisAlignment: MainAxisAlignment.center,
+//                children: <Widget>[
+//                  Expanded(
+//                    child: Column(
+//                      crossAxisAlignment: CrossAxisAlignment.stretch,
+//                      children: <Widget>[
+//                        Text(
+//                            exerCompleted[index],
+//                            textAlign: TextAlign.left,
+//                            style: TextStyle(
+//                                fontSize: 30.0,
+//                                fontWeight: FontWeight.bold
+//                            )
+//                        ),
+//                        Text(
+//                            "Reps: ${exerRepsCompleted[index]}",
+//                            style: TextStyle(
+//                              fontSize: 20.0,
+//                              fontStyle: FontStyle.italic,
+//                            )
+//                        ),
+//                        Text(
+//                            "Sets: ${exerSetsCompleted[index]}",
+//                            style: TextStyle(
+//                              fontSize: 20.0,
+//                              fontStyle: FontStyle.italic,
+//                            )
+//                        ),
+//                      ],
+//                    ),
+//                  ),
+//                  IconButton(
+//                      icon: Icon(Icons.refresh),
+//                      onPressed: () => _redoGoal(index)
+//                  ),
+//                  IconButton(
+//                      icon: Icon(Icons.delete),
+//                      onPressed: () => _deleteCompletedGoal(index)
+//                  )
+//                ],
+//              )
+//          )
+//        )
+//    );
+//  }
+//
   _addGoalDialog()
   {
     showDialog(
