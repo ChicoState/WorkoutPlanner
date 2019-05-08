@@ -107,7 +107,11 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
           //TODO on initial page load when default data is present, there are errors displaying below
           //TODO   when the page is reloaded it's fine
           //#============================================== start  children
-          Text("Personal Information Page"),
+          Text(
+            "Personal Information Page",
+            style: TextStyle(
+              fontSize: 20,)
+            ),
           Row(
             children: <Widget>[
               //#============================================== start  children
@@ -118,7 +122,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                   child: CircleAvatar(
                     backgroundColor: Colors.lightBlue,
                     child: Text("KS"),
-                    radius: 30.0,
+                    radius: 50.0,
                   ),
                 ),
               ),
@@ -143,31 +147,30 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
 //          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
                   child: Text(
-                    "Weight",
+                    "Weight:   ",
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       letterSpacing: 2.0
                     ),
                   )
               ),
-              Expanded(
-                child: new FlatButton(
+              OutlineButton(
+                  borderSide: BorderSide(color: Colors.black),
+                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                   onPressed: _showWeightDialog,
                   child: Text(
                     "$weight",
                     style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 20,
                       letterSpacing: 2.0
                     ),
                   ),
-
-                )
               ),
-              
+
               //#============================================== start  children
               //Element 3 - Gender
 //              Expanded(
@@ -184,105 +187,108 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             //Height, Age, Sex
             children: <Widget>[
               Container(
                   child: Text(
-                    "Age",
+                    "Age:       ",
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18,
                       letterSpacing: 2.0
                     ),
                   )
               ),
-              Expanded(
-                child: new FlatButton(
+              OutlineButton(
+                  borderSide: BorderSide(color: Colors.black),
+                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                   onPressed: _showAgeDialog,
                   child: Text(
                     "$age",
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 20,
                         letterSpacing: 2.0
                     ),
                   ),
-                  color: Colors.grey,
-                )
               ),
             ],
           ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
                 child: Text(
-                  "Height: FEET",
+                  "Height: Ft  ",
                   style: TextStyle(
                     fontSize: 20,
                     letterSpacing: 2.0
                   ),
                 )
               ),
-              new FlatButton(
+              new OutlineButton(
+                borderSide: BorderSide(color: Colors.black),
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                 onPressed: _showHeightFeetDialog,
                 child: Text(
                   "$heightFeet",
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 20,
                       letterSpacing: 2.0
                   ),
                 ),
-                color: Colors.grey,
+                //color: Colors.grey,
               ),
               Container(
                   child: Text(
-                    "INCH",
+                    "  In  ",
                     style: TextStyle(
                       fontSize: 20,
                       letterSpacing: 2.0
                     ),
                   )
               ),
-              new FlatButton(
+              new OutlineButton(
+                borderSide: BorderSide(color: Colors.black),
+                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                 onPressed: _showHeightInchDialog,
                 child: Text(
                   "$heightInch",
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 20,
                       letterSpacing: 2.0
                   ),
                 ),
-                color: Colors.grey,
+                //color: Colors.grey,
               ),
             ]
           ),
 
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
                   child: Text(
-                    "Sex:",
+                    "Sex:     ",
                     style: TextStyle(
                         fontSize: 20,
                         letterSpacing: 2.0
                     ),
                   )
               ),
-              Expanded(
-                child: new FlatButton(
+             OutlineButton(
+                  borderSide: BorderSide(color: Colors.black),
+                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(100.0)),
+
                   onPressed: _showSex,
                   child: Text(
                     "$sex",
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 20,
                         letterSpacing: 2.0
                     ),
                   ),
-                  color: Colors.grey,
-                )
               ),
             ]
           ),
