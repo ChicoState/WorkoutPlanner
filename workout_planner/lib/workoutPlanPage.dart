@@ -19,6 +19,9 @@ final Firestore firebaseDB = Firestore.instance;
 class _WorkoutPlanPage extends State<WorkoutPlanPage>
 {
   String userID = "";
+    List<Workout> workoutActive = List<Workout>();
+    List<Workout> workoutComp = List<Workout>();
+
   List<dynamic> workoutNames = List<dynamic>();
   List<dynamic> workoutSets = List<dynamic>();
   List<dynamic> workoutReps = List<dynamic>();
@@ -67,7 +70,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
   {
     showDialog(
       context: context,
-      child: SimpleDialog(
+      builder: (_) => SimpleDialog(
           title: Text("Enter an exercise"),
           titlePadding: EdgeInsets.all(10.0),
           contentPadding: EdgeInsets.all(10.0),
@@ -95,6 +98,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                   height: 5,
                 ),
                 new TextField(
+                  keyboardType: TextInputType.number,
                   controller: repsController,
                   decoration: new InputDecoration(
                       hintText: hintReps,
@@ -111,6 +115,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                   height: 10,
                 ),
                 new TextField(
+                  keyboardType: TextInputType.number,
                   controller: setsController,
                   decoration: new InputDecoration(
                       hintText: hintSets,
@@ -127,6 +132,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                   height: 10,
                 ),
                 new TextField(
+                  keyboardType: TextInputType.number,
                   controller: weightsController,
                   decoration: new InputDecoration(
                       labelText: "Weight",
@@ -185,7 +191,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     {
       showDialog(
           context: context,
-          child:SimpleDialog(
+          builder: (_) => SimpleDialog(
             title: Text(
                 "Error",
                 style: TextStyle(
@@ -225,155 +231,229 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
   _commitGoal()
   {
     //TODO update for adding to firebase with workout class
-    Workout newWorkout = new Workout();
+    Workout workout = new Workout();
 
-    newWorkout.workoutName = exerController.text;
-    newWorkout.reps = int.parse(repsController.text);
-    newWorkout.sets = int.parse(setsController.text);
-    newWorkout.weight = int.parse(weightsController.text);
+    workout.workoutName = exerController.text;
+    workout.reps = int.parse(repsController.text);
+    workout.sets = int.parse(setsController.text);
+    workout.weight = int.parse(weightsController.text);
+    workout.completed = false;
+
 
     var doc = firebaseDB.collection(userID).document("plans").collection("plans").document();
 
     firebaseDB.runTransaction((transaction) async {
       await transaction.set(
-        doc, newWorkout.toMap());
+        doc, workout.toMap());
     });
   }
 
+  buildStreamComp() {
+    return StreamBuilder(
+      stream: firebaseDB.collection(userID).document("plans")
+          .collection("plansCompleted").snapshots(),
+      builder: (context, snapshot) {
+        if(!snapshot.hasData){
+          return CircularProgressIndicator();
+        }
+        buildLists(snapshot,true);
+        return ListView.builder(
+         itemCount: workoutComp.length,
+         itemBuilder: (context, index) {
+           return buildCards(snapshot,index,true);
+         },
+        );
+      }
+    );
+  }
+
+  buildCards(var snapshot, int index, bool completed){
+    List<Workout> workoutRef = List<Workout>();
+
+    if(!completed){
+      workoutRef = workoutActive;
+      print(workoutRef);
+    }
+    else{
+      workoutRef = workoutComp;
+      print(workoutRef);
+    }
+    return Card(
+        color: Colors.blue[100],
+        elevation: 2.0,
+        child: Container(
+            padding: EdgeInsets.only(left: 10.0, top: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+
+                      Text(
+                        //snapshot.data['name'].toString(),
+                          "${workoutRef[index].workoutName}",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold
+                          )
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            //snapshot.data['sets'].toString(),
+                              "${workoutRef[index].sets}",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontStyle: FontStyle.italic,
+                              )
+                          ),
+                          Text(" sets")
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            //snapshot.data['reps'].toString(),
+                              "${workoutRef[index].reps}",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontStyle: FontStyle.italic,
+                              )
+                          ),
+                          Text(" reps")
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            //snapshot.data['weight'].toString(),
+                              "${workoutRef[index].weight}",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontStyle: FontStyle.italic,
+                              )
+                          ),
+                          Text(" lbs")
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Column(
+                  children: <Widget>[
+                    IconButton(
+                      icon: workoutRef[index].completed == true
+                          ? Icon(Icons.arrow_back)
+                          : Icon(Icons.check),
+                      onPressed: () =>
+                          workoutRef[index].completed == true
+                            ? _switchSides(index,true)
+                            : _switchSides(index,false)
+                      //onPressed: () => _moveGoal(index)
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.delete),
+                      onPressed: () => _deleteFromFB(index,
+                          workoutRef[index].completed)
+                    )
+                  ],
+                )
+              ],
+            )
+        )
+
+    );
+  }
   buildStream(){
     return StreamBuilder(
         stream: firebaseDB.collection(userID).document("plans").collection("plans").snapshots(),
         builder: (context, snapshot) {
-          //print(snapshot.data.documents[0]['name']);
-          buildActive(snapshot);
+          if(!snapshot.hasData){
+            return CircularProgressIndicator();
+          }
+          buildLists(snapshot, false);
           return ListView.builder(
-              itemCount: workoutNames.length,
+              itemCount: workoutActive.length,
               itemBuilder: (context, index){
-                return Card(
-                  color: Colors.blue[100],
-                  elevation: 2.0,
-                  child: Container(
-                    padding: EdgeInsets.only(left: 10.0, top: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              Text(
-                                  //snapshot.data['name'].toString(),
-                                  "${workoutNames[index]}",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      fontSize: 30.0,
-                                      fontWeight: FontWeight.bold
-                                  )
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                      //snapshot.data['sets'].toString(),
-                                      "${workoutSets[index]}",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontStyle: FontStyle.italic,
-                                      )
-                                  ),
-                                  Text(" sets")
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                      //snapshot.data['reps'].toString(),
-                                      "${workoutReps[index]}",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontStyle: FontStyle.italic,
-                                      )
-                                  ),
-                                  Text(" reps")
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                      //snapshot.data['weight'].toString(),
-                                      "${workoutWeights[index]}",
-                                      style: TextStyle(
-                                        fontSize: 20.0,
-                                        fontStyle: FontStyle.italic,
-                                      )
-                                  ),
-                                  Text(" lbs")
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        Column(
-                          children: <Widget>[
-                            IconButton(
-                              icon: Icon(Icons.check),
-                              //onPressed: () => _moveGoal(index)
-                            ),
-                            IconButton(
-                              icon: Icon(Icons.delete),
-                              //onPressed: () => _deleteGoal(index)
-                            )
-                          ],
-                        )
-                      ],
-                    )
-                  )
-                  /*
-                  ListTile(
-                    leading: GestureDetector(
-                      child: checkBox,
-                      onTap: ()  {
-                        print("finished ${workoutList[index]}");
-                      },
-                    ),
-                    title: Text(workoutList[index]),
-                    trailing: GestureDetector(
-                      child: Icon(Icons.delete, color: Colors.grey),
-                      onTap: (){
-                        print("deleting ${workoutList[index]}");
-                      },
-                    ),
-                    onTap: (){
-                      print("${workoutList[index]} tapped ");
-                    },
-
-                  ),
-                  */
-                  //)
-                );
+               return buildCards(snapshot, index, false);
               }
           );
         }
     );
   }
 
-  buildActive(AsyncSnapshot<QuerySnapshot> snap)
+  buildLists(AsyncSnapshot<QuerySnapshot> snap, completed)
   {
-    print("CALLING");
-
-    if(snap.data == null)
-      print("snap is null");
-    else {
-      print("snap is not null: ${snap.data}");
-      workoutNames = snap.data.documents.map((doc) => doc['name']).toList();
-      workoutReps = snap.data.documents.map((doc) => doc['reps']).toList();
-      workoutSets = snap.data.documents.map((doc) => doc['sets']).toList();
-      workoutWeights = snap.data.documents.map((doc) => doc['weight']).toList();
+    Workout work;
+    if(!completed){
+      workoutActive = snap.data.documents.map((doc) => (
+      work = Workout.set(doc['name'],doc['reps'],doc['sets'],doc['weight'],
+      doc['completed'])
+      )).toList();
     }
-    print(workoutNames);
+    else{
+      workoutComp = snap.data.documents.map((doc) => (
+          work = Workout.set(doc['name'],doc['reps'],doc['sets'],doc['weight'],
+          doc['completed'])
+      )).toList();
+    }
   }
 
+  _switchSides(int index, bool completed){
+    Workout work;
+    String col = "";
+    if(!completed) {
+      col = "plansCompleted";
+      work = workoutActive[index];
+      workoutActive.removeAt(index);
+      _deleteFromFB(index, work.completed);
 
+      work.completed = true;
+      workoutComp.add(work);
+    }
+    else{
+      col = "plans";
+      work = workoutComp[index];
+      workoutComp.removeAt(index);
+      _deleteFromFB(index, work.completed);
 
+      work.completed = false;
+      workoutActive.add(work);
+    }
+    var doc = firebaseDB.collection(userID).document("plans")
+        .collection(col).document();
+
+    firebaseDB.runTransaction((transaction) async {
+      await transaction.set(
+          doc, work.toMap());
+    });
+  }
+
+  _deleteFromFB(int index, bool complete){
+
+    var foundDocID;
+    String col = "";
+    complete == false ? col = "plans" : col = "plansCompleted";
+
+    print("index is at $index and collection is $col");
+    var doc;
+
+    firebaseDB.collection(userID).document("plans").collection(col).snapshots().listen((snapshot) async
+    {
+      foundDocID = snapshot.documents.elementAt(index).documentID.toString();
+
+      doc = firebaseDB.collection(userID).document("plans").collection(col).document(foundDocID);
+
+    });
+
+    firebaseDB.runTransaction((transaction) async {
+      await transaction.delete(doc);
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -446,7 +526,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                       child: userID == "" ? CircularProgressIndicator() : buildStream()
                   ),
                   Container(
-                    child: Text("Completed page")
+                    child: userID == "" ? CircularProgressIndicator() : buildStreamComp()
 //                      child: ListView.builder(
 //                        itemBuilder: (context, index) => _buildCompRow(index),
 //                        itemCount: exerCompleted.length,

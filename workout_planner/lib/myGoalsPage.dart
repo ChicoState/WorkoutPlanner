@@ -224,12 +224,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
            goal = Goal.set(doc['name'],doc['description'],doc['completed'])))
           .toList();
 
-//      for(int index = goalList.length-1; index>-1; index--){
-//        if(goalList[index].goalCompleted == true) {
-//            //goalListComp.add(goalList[index]);
-//            goalList.removeAt(index);
-//        }
-//      }
     }//else
 
     print(goalList);
@@ -253,12 +247,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
           .toList();
     }//else
 
-//    for(int index = goalListComp.length-1; index>-1; index--){
-//      if(goalListComp[index].goalCompleted == false) {
-//        //goalListComp.add(goalList[index]);
-//        goalListComp.removeAt(index);
-//      }
-//    }
     print(goalListComp);
     print("end buildComp");
   }
@@ -487,7 +475,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
     firebaseDB.runTransaction((transaction) async {
       await transaction.delete(doc);
     });
-    print("end delete");
   }
 
   @override

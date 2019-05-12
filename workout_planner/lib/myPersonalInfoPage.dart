@@ -262,82 +262,81 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
   displayFirebaseText()
   {
-    if(userID == "") {
-      return CircularProgressIndicator();
-    }
-    else
-      return Expanded(
-        child: Column(
-          children: <Widget>[
-            StreamBuilder(
-              stream: firebaseDB.collection(userID).document("personalInfo").snapshots(),
-              builder: (context, snapshot) {
-                return Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          SizedBox(width: 10.0,),
-                          Text("Weight:", style: TextStyle(fontSize: 25),),
-                          SizedBox(width: 10.0,),
-                          userID == "" ? Text("") : Text("${snapshot.data['weight'].toString()} lbs.", style: TextStyle(fontSize: 25))
-                        ]
-                      ),
-                      SizedBox(height: 10.0),
-                      Row(
-                        children: <Widget>[
-                          SizedBox(width: 10.0,),
-                          Text("Height:", style: TextStyle(fontSize: 25)),
-                          SizedBox(width: 10.0,),
-                          userID == "" ? Text("") : Text(
-                              "${(snapshot.data['height'] / 12).floor().toString()} ft. ${(snapshot.data['height'] % 12).toString()} in. " ,
-                              style: TextStyle(fontSize: 25))
-                        ]
-                      ),
-                      SizedBox(height: 10.0),
-                      Row(
-                        children: <Widget>[
-                          SizedBox(width: 10.0,),
-                          Text("Gender:", style: TextStyle(fontSize: 25)),
-                          SizedBox(width: 10.0,),
-                          userID == "" ? Text("") : Text(snapshot.data['gender'].toString(), style: TextStyle(fontSize: 25))
-                        ]
-                      ),
-                      SizedBox(height: 10.0),
-                      Row(
-                        children: <Widget>[
-                          SizedBox(width: 10.0,),
-                          Text("Age:", style: TextStyle(fontSize: 25)),
-                          SizedBox(width: 10.0,),
-                          userID == "" ? Text("") : Text(snapshot.data['age'].toString(), style: TextStyle(fontSize: 25))
-                        ]
-                      ),
-                      SizedBox(height: 10.0),
-                      SizedBox(height: 10.0),
-                      Row(
-                          children: <Widget>[
-                            SizedBox(width: 10.0,),
-                            Text("BMI:", style: TextStyle(fontSize: 25)),
-                            SizedBox(width: 10.0,),
-                            userID == ""
-                                ? Text("")
-                                : Text(
-                                    "${((snapshot.data['weight']) * 703 /
-                                        (snapshot.data['height'] * snapshot.data['height'])).toStringAsFixed(2)}",
-                                    style: TextStyle(fontSize: 25))
-                          ]
-                      ),
-                      SizedBox(height: 10.0),
-                    ],
-                  )
-                );
+    return Expanded(
+      child: Column(
+        children: <Widget>[
+          StreamBuilder(
+            stream: firebaseDB.collection(userID).document("personalInfo").snapshots(),
+            builder: (context, snapshot) {
+              if(!snapshot.hasData){
+                return CircularProgressIndicator();
               }
-            )
-          ],
-        )
-    );
+              return Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        SizedBox(width: 10.0,),
+                        Text("Weight:", style: TextStyle(fontSize: 25),),
+                        SizedBox(width: 10.0,),
+                        userID == "" ? Text("") : Text("${snapshot.data['weight'].toString()} lbs.", style: TextStyle(fontSize: 25))
+                      ]
+                    ),
+                    SizedBox(height: 10.0),
+                    Row(
+                      children: <Widget>[
+                        SizedBox(width: 10.0,),
+                        Text("Height:", style: TextStyle(fontSize: 25)),
+                        SizedBox(width: 10.0,),
+                        userID == "" ? Text("") : Text(
+                            "${(snapshot.data['height'] / 12).floor().toString()} ft. ${(snapshot.data['height'] % 12).toString()} in. " ,
+                            style: TextStyle(fontSize: 25))
+                      ]
+                    ),
+                    SizedBox(height: 10.0),
+                    Row(
+                      children: <Widget>[
+                        SizedBox(width: 10.0,),
+                        Text("Gender:", style: TextStyle(fontSize: 25)),
+                        SizedBox(width: 10.0,),
+                        userID == "" ? Text("") : Text(snapshot.data['gender'].toString(), style: TextStyle(fontSize: 25))
+                      ]
+                    ),
+                    SizedBox(height: 10.0),
+                    Row(
+                      children: <Widget>[
+                        SizedBox(width: 10.0,),
+                        Text("Age:", style: TextStyle(fontSize: 25)),
+                        SizedBox(width: 10.0,),
+                        userID == "" ? Text("") : Text(snapshot.data['age'].toString(), style: TextStyle(fontSize: 25))
+                      ]
+                    ),
+                    SizedBox(height: 10.0),
+                    SizedBox(height: 10.0),
+                    Row(
+                        children: <Widget>[
+                          SizedBox(width: 10.0,),
+                          Text("BMI:", style: TextStyle(fontSize: 25)),
+                          SizedBox(width: 10.0,),
+                          userID == ""
+                              ? Text("")
+                              : Text(
+                                  "${((snapshot.data['weight']) * 703 /
+                                      (snapshot.data['height'] * snapshot.data['height'])).toStringAsFixed(2)}",
+                                  style: TextStyle(fontSize: 25))
+                        ]
+                    ),
+                    SizedBox(height: 10.0),
+                  ],
+                )
+              );
+            }
+          )
+        ],
+      )
+  );
   }
 
   _showSex(){
