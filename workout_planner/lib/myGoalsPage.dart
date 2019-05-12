@@ -85,16 +85,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       new RaisedButton(
-                        onPressed: () => _enterButton(),
-                        child: new Text(
-                          'Enter',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        color: Colors.blue,
-                      ),
-                      new RaisedButton(
                         onPressed: () {
                           goalController
                               .clear(); // makes sure there isn't leftover text from the last input
@@ -108,7 +98,18 @@ class _MyGoalsPage extends State<MyGoalsPage> {
                           ),
                         ),
                         color: Colors.blue,
-                      )
+                      ),
+
+                      new RaisedButton(
+                        onPressed: () => _enterButton(),
+                        child: new Text(
+                          'Enter',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        color: Colors.blue,
+                      ),
                     ]
                 ),
               ],
@@ -289,13 +290,16 @@ class _MyGoalsPage extends State<MyGoalsPage> {
           },
         ),
         onTap: () {
-          showUpdateDialog(goalListRef[index], index);
+          showUpdateDialog(goalListRef[index].goalName,
+                           goalListRef[index].goalCompleted,
+                           goalListRef[index].goalCompleted,
+                           index);
         },
       ),
     );
   }
 
-  showUpdateDialog(goalList, index)
+  showUpdateDialog(name, desc, comp, index)
   {
     showDialog(
       context: context,
@@ -354,7 +358,7 @@ class _MyGoalsPage extends State<MyGoalsPage> {
                       "Cancel",
                       style: TextStyle(color: Colors.black)
                   ),
-                  onPressed: () => updateGoal(goalList, index),
+                  onPressed: () => Navigator.of(context).pop(),
                 ),
 
                 SizedBox(width: 15),
@@ -364,7 +368,7 @@ class _MyGoalsPage extends State<MyGoalsPage> {
                       "Update Goal",
                       style: TextStyle(color: Colors.black)
                   ),
-                  onPressed: () => Navigator.of(context).pop(),
+                  onPressed: () => updateGoal(name, desc, comp, index)
                 ),
               ],
             )
@@ -374,19 +378,19 @@ class _MyGoalsPage extends State<MyGoalsPage> {
     );
   }
 
-  updateGoal(goalList, index)
+  updateGoal(name, desc, comp, index)
   {
     Goal newGoal = new Goal();
 
     goalController.text.isEmpty ?
-      newGoal.goalName = goalList.goalName :
+      newGoal.goalName = name :
         newGoal.goalName = goalController.text;
 
     descController.text.isEmpty ?
-      newGoal.goalDescription = goalList.goalDescription :
+      newGoal.goalDescription = desc :
         newGoal.goalDescription = descController.text;
 
-    newGoal.goalCompleted = goalList.goalCompleted;
+    newGoal.goalCompleted = comp;
 
     var foundDocID;
     var doc;
