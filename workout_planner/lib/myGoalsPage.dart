@@ -17,9 +17,6 @@ class MyGoalsPage extends StatefulWidget
 
 final Firestore firebaseDB = Firestore.instance;
 
-//TODO get userID from current user
-//final userID = "5fs7CFXQgFhYRqa6tCWB4ha4O0m1";
-
 // page to add, track, and edit goals
 class _MyGoalsPage extends State<MyGoalsPage> {
   final goalController = new TextEditingController();
@@ -180,67 +177,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
     });
   }
 
-//  buildActive() async
-//  {
-//    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-//    String userID = user.uid;
-//
-//    StreamBuilder(
-//      stream: firebaseDB.collection(userID).document("goals").collection("goals").snapshots(),
-//      builder: (context, snapshot) {
-//        return new GestureDetector(
-//          onTap: () {
-//            print("tapped");
-//            //goalIndex = index;
-//            //_updateGoalDialog(goalIndex);
-//          },
-//          child: Card(
-//            color: Colors.blue[100],
-//            elevation: 3,
-//            margin: EdgeInsets.all(4),
-//            child: Container(
-//              padding: EdgeInsets.only(left: 10.0, top: 10.0),
-//              child: Row(
-//                mainAxisAlignment: MainAxisAlignment.center,
-//                children: <Widget>[
-//                  Expanded(
-//                    child: Column(
-//                      crossAxisAlignment: CrossAxisAlignment.stretch,
-//                      children: <Widget>[
-//                        Text(
-//                            snapshot.data['name'].toString(),
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                                fontSize: 30.0,
-//                                fontWeight: FontWeight.bold
-//                            )
-//                        ),
-//                        Text(
-//                            snapshot.data['description'].toString(),
-//                            style: TextStyle(
-//                              fontSize: 20.0,
-//                              fontStyle: FontStyle.italic,
-//                            )
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-//                  IconButton(
-//                    icon: Icon(Icons.check),
-//                    //onPressed: () => _moveGoal(index)
-//                  )
-//                ],
-//              )
-//            )
-//          )
-//        );
-//      }
-//    );
-//  }
-//                child: ListView.builder(
-//                  itemBuilder: (context, index) => _buildActiveRow(index),
-//                  itemCount: goals.length,
-//                )
   buildStream(){
     return StreamBuilder(
         stream: firebaseDB.collection(userID).document("goals").collection("goals").snapshots(),
@@ -339,36 +275,156 @@ class _MyGoalsPage extends State<MyGoalsPage> {
       goalListRef = goalList;
     }
 
-      return Card(
-        color: Colors.blue[100],
-        elevation: 2.0,
-        child: ListTile(
-          leading: GestureDetector(
-            child: goalListRef[index].goalCompleted == false
-            ? Icon(Icons.check_box_outline_blank)
-            : Icon(Icons.check_box),
-            onTap: () {
-              print("finished ${goalListRef[index]}");
-              goalListRef[index].goalCompleted == false
-              ? _addToComp(goalListRef[index], index)
-              : _addToActive(goalListRef[index], index);
-              //print(snapshot.data.documents[index]['name']);
-            },
-          ),
-          title: Text(goalListRef[index].goalName),
-          subtitle: Text(goalListRef[index].goalDescription),
-          trailing: GestureDetector(
-            child: Icon(Icons.delete, color: Colors.grey),
-            onTap: () {
-              //print("deleting ${goalListRef[index]}");
-              _deleteFromFB(index, goalListRef[index].goalCompleted);
-            },
-          ),
+    return Card(
+      color: Colors.blue[100],
+      elevation: 2.0,
+      child: ListTile(
+        leading: GestureDetector(
+          child: goalListRef[index].goalCompleted == false
+          ? Icon(Icons.check_box_outline_blank)
+          : Icon(Icons.check_box),
           onTap: () {
-            print("${goalListRef[index]} tapped ");
+            print("finished ${goalListRef[index]}");
+            goalListRef[index].goalCompleted == false
+            ? _addToComp(goalListRef[index], index)
+            : _addToActive(goalListRef[index], index);
+            //print(snapshot.data.documents[index]['name']);
           },
         ),
-      );
+        title: Text(goalListRef[index].goalName),
+        subtitle: Text(goalListRef[index].goalDescription),
+        trailing: GestureDetector(
+          child: Icon(Icons.delete, color: Colors.grey),
+          onTap: () {
+            //print("deleting ${goalListRef[index]}");
+            _deleteFromFB(index, goalListRef[index].goalCompleted);
+          },
+        ),
+        onTap: () {
+          showUpdateDialog(goalListRef[index], index);
+        },
+      ),
+    );
+  }
+
+  showUpdateDialog(goalList, index)
+  {
+    showDialog(
+      context: context,
+      builder: (BuildContext context)
+      {
+        return AlertDialog(
+          title: Text("Update Goal"),
+          content: Container(
+            height: 150,
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text("Goal", style: TextStyle(fontSize: 20.0)),
+                    SizedBox(width: 10),
+                    Flexible(
+                        child: TextFormField(
+                            controller: goalController,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(5.0)
+                            )
+                        )
+                    )
+                  ],
+                ),
+
+                SizedBox(height: 15),
+
+                Row(
+                  children: <Widget>[
+                    Text("Description", style: TextStyle(fontSize: 20.0)),
+                    SizedBox(width: 10),
+                    Flexible(
+                        child: TextFormField(
+                            maxLines: 2,
+                            controller: descController,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(5.0)
+                            )
+                        )
+                    )
+                  ],
+                ),
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                RaisedButton(
+                  child: Text(
+                      "Cancel",
+                      style: TextStyle(color: Colors.black)
+                  ),
+                  onPressed: () => updateGoal(goalList, index),
+                ),
+
+                SizedBox(width: 15),
+
+                RaisedButton(
+                  child: Text(
+                      "Update Goal",
+                      style: TextStyle(color: Colors.black)
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ],
+            )
+          ],
+        );
+      }
+    );
+  }
+
+  updateGoal(goalList, index)
+  {
+    Goal newGoal = new Goal();
+
+    goalController.text.isEmpty ?
+      newGoal.goalName = goalList.goalName :
+        newGoal.goalName = goalController.text;
+
+    descController.text.isEmpty ?
+      newGoal.goalDescription = goalList.goalDescription :
+        newGoal.goalDescription = descController.text;
+
+    newGoal.goalCompleted = goalList.goalCompleted;
+
+    var foundDocID;
+    var doc;
+
+    firebaseDB.collection(userID).document("goals").collection("goals").snapshots().listen((snapshot) async
+    {
+      foundDocID = snapshot.documents.elementAt(index).documentID.toString();
+
+      doc = firebaseDB.collection(userID).document("goals").collection("goals").document(foundDocID);
+    });
+
+    try{
+      firebaseDB.runTransaction((transaction) async {
+        await transaction.update(
+          doc, newGoal.toMap());
+      });
+    }catch(e){
+      print("error updating goals, printing error");
+      print(e);
+    }
+
+    goalController.clear();
+    descController.clear();
+
+    Navigator.pop(context);
+
   }
 
   _addToComp(Goal goal, int index){
