@@ -150,16 +150,8 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                 new Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget> [
-                      new RaisedButton(
-                        onPressed: () => _enterButton(),
-                        child: new Text(
-                          'Enter',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        color: Colors.blue,
-                      ),
+
+
                       new RaisedButton(
                         onPressed: () {
                           exerController.clear(); // makes sure there isn't leftover text from the last input
@@ -175,7 +167,19 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                           ),
                         ),
                         color: Colors.blue,
-                      )
+                      ),
+
+                      new RaisedButton(
+                        onPressed: () => _enterButton(),
+                        child: new Text(
+                          'Enter',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        color: Colors.blue,
+                      ),
+
                     ]
                 ),
               ],
@@ -278,7 +282,14 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
       workoutRef = workoutComp;
       print(workoutRef);
     }
-    return Card(
+
+    return GestureDetector(
+      onTap: () => showUpdateDialog(workoutRef[index].workoutName,
+                                    workoutRef[index].reps,
+                                    workoutRef[index].sets,
+                                    workoutRef[index].weight,
+                                    index),
+      child: Card(
         color: Colors.blue[100],
         elevation: 2.0,
         child: Container(
@@ -303,19 +314,6 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                       Row(
                         children: <Widget>[
                           Text(
-                            //snapshot.data['sets'].toString(),
-                              "${workoutRef[index].sets}",
-                              style: TextStyle(
-                                fontSize: 20.0,
-                                fontStyle: FontStyle.italic,
-                              )
-                          ),
-                          Text(" sets")
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Text(
                             //snapshot.data['reps'].toString(),
                               "${workoutRef[index].reps}",
                               style: TextStyle(
@@ -326,6 +324,20 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                           Text(" reps")
                         ],
                       ),
+                      Row(
+                        children: <Widget>[
+                          Text(
+                            //snapshot.data['sets'].toString(),
+                              "${workoutRef[index].sets}",
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontStyle: FontStyle.italic,
+                              )
+                          ),
+                          Text(" sets")
+                        ],
+                      ),
+
                       Row(
                         children: <Widget>[
                           Text(
@@ -364,6 +376,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
               ],
             )
         )
+      )
 
     );
   }
@@ -400,6 +413,170 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
           doc['completed'])
       )).toList();
     }
+  }
+
+  showUpdateDialog(name, reps, sets, weight, index)
+  {
+    showDialog(
+      context: context,
+      builder: (BuildContext context)
+      {
+        return AlertDialog(
+          title: Text("Update Workout"),
+          content: Container(
+            height: 300,
+            child: Column(
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Text("Exercise", style: TextStyle(fontSize: 20.0)),
+                    SizedBox(width: 10),
+                    Flexible(
+                        child: TextFormField(
+                            controller: exerController,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(5.0)
+                            )
+                        )
+                    )
+                  ],
+                ),
+
+                SizedBox(height: 15),
+
+                Row(
+                  children: <Widget>[
+                    Text("Reps", style: TextStyle(fontSize: 20.0)),
+                    SizedBox(width: 10),
+                    Flexible(
+                        child: TextFormField(
+                            controller: repsController,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(5.0)
+                            )
+                        )
+                    )
+                  ],
+                ),
+
+                SizedBox(height: 15),
+
+                Row(
+                  children: <Widget>[
+                    Text("Sets", style: TextStyle(fontSize: 20.0)),
+                    SizedBox(width: 10),
+                    Flexible(
+                        child: TextFormField(
+                            controller: setsController,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(5.0)
+                            )
+                        )
+                    )
+                  ],
+                ),
+
+                SizedBox(height: 15),
+
+                Row(
+                  children: <Widget>[
+                    Text("Weight", style: TextStyle(fontSize: 20.0)),
+                    SizedBox(width: 10),
+                    Flexible(
+                        child: TextFormField(
+                            controller: weightsController,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                                contentPadding: EdgeInsets.all(5.0)
+                            )
+                        )
+                    )
+                  ],
+                ),
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                RaisedButton(
+                  child: Text(
+                      "Cancel",
+                      style: TextStyle(color: Colors.black)
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+
+                SizedBox(width: 15),
+
+                RaisedButton(
+                    child: Text(
+                        "Update Goal",
+                        style: TextStyle(color: Colors.black)
+                    ),
+                    onPressed: () => updateWorkout(name, reps, sets, weight, index)
+                ),
+              ],
+            )
+          ],
+        );
+      }
+    );
+
+  }
+
+  updateWorkout(name, reps, sets, weight, index)
+  {
+    Workout newWorkout = new Workout();
+
+    exerController.text.isEmpty ?
+      newWorkout.workoutName = name :
+        newWorkout.workoutName = exerController.text;
+
+    repsController.text.isEmpty ?
+      newWorkout.reps = reps :
+        newWorkout.reps = int.parse(repsController.text);
+
+    setsController.text.isEmpty ?
+      newWorkout.sets = sets :
+        newWorkout.sets = int.parse(setsController.text);
+
+    weightsController.text.isEmpty ?
+      newWorkout.weight = weight :
+        newWorkout.weight = int.parse(weightsController.text);
+
+    var foundDocID;
+    var doc;
+
+    firebaseDB.collection(userID).document("plans").collection("plans").snapshots().listen((snapshot) async
+    {
+      foundDocID = snapshot.documents.elementAt(index).documentID.toString();
+
+      doc = firebaseDB.collection(userID).document("plans").collection("plans").document(foundDocID);
+    });
+
+    try{
+      firebaseDB.runTransaction((transaction) async {
+        await transaction.update(
+          doc, newWorkout.toMap());
+      });
+    }catch(e){
+      print("error updating plans, printing error");
+      print(e);
+    }
+
+    exerController.clear();
+    setsController.clear();
+    repsController.clear();
+    weightsController.clear();
+
+    Navigator.pop(context);
+
   }
 
   _switchSides(int index, bool completed){
