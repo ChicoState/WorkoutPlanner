@@ -26,7 +26,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
   final descController = new TextEditingController();
   List<Goal> goalList = List<Goal>();
   List<Goal> goalListComp = List<Goal>();
-  var checkBox = Icon(Icons.check_box_outline_blank);
   String userID = "";
 
 
@@ -259,7 +258,8 @@ class _MyGoalsPage extends State<MyGoalsPage> {
 
   buildStreamComp(){
     return StreamBuilder(
-        stream: firebaseDB.collection(userID).document("goals").collection("goals").snapshots(),
+        stream: firebaseDB.collection(userID).document("goals")
+            .collection("goalsCompleted").snapshots(),
         builder: (context, snapshot) {
           buildComp(snapshot);
           return ListView.builder(
@@ -288,12 +288,12 @@ class _MyGoalsPage extends State<MyGoalsPage> {
            goal = Goal.set(doc['name'],doc['description'],doc['completed'])))
           .toList();
 
-      for(int index = goalList.length-1; index>-1; index--){
-        if(goalList[index].goalCompleted == true) {
-            //goalListComp.add(goalList[index]);
-            goalList.removeAt(index);
-        }
-      }
+//      for(int index = goalList.length-1; index>-1; index--){
+//        if(goalList[index].goalCompleted == true) {
+//            //goalListComp.add(goalList[index]);
+//            goalList.removeAt(index);
+//        }
+//      }
     }//else
 
     print(goalList);
@@ -317,18 +317,18 @@ class _MyGoalsPage extends State<MyGoalsPage> {
           .toList();
     }//else
 
-    for(int index = goalListComp.length-1; index>-1; index--){
-      if(goalListComp[index].goalCompleted == false) {
-        //goalListComp.add(goalList[index]);
-        goalListComp.removeAt(index);
-      }
-    }
+//    for(int index = goalListComp.length-1; index>-1; index--){
+//      if(goalListComp[index].goalCompleted == false) {
+//        //goalListComp.add(goalList[index]);
+//        goalListComp.removeAt(index);
+//      }
+//    }
     print(goalListComp);
     print("end buildComp");
   }
 
   buildCard(var snapshot, int index, bool completed){
-    //create List refrence
+    //create List reference
     List<Goal> goalListRef = List<Goal>();
 
     //
@@ -344,9 +344,14 @@ class _MyGoalsPage extends State<MyGoalsPage> {
         elevation: 2.0,
         child: ListTile(
           leading: GestureDetector(
-            child: checkBox,
+            child: goalListRef[index].goalCompleted == false
+            ? Icon(Icons.check_box_outline_blank)
+            : Icon(Icons.check_box),
             onTap: () {
               print("finished ${goalListRef[index]}");
+              goalListRef[index].goalCompleted == false
+              ? _addToComp(goalListRef[index], index)
+              : _addToActive(goalListRef[index], index);
               //print(snapshot.data.documents[index]['name']);
             },
           ),
@@ -355,7 +360,8 @@ class _MyGoalsPage extends State<MyGoalsPage> {
           trailing: GestureDetector(
             child: Icon(Icons.delete, color: Colors.grey),
             onTap: () {
-              print("deleting ${goalListRef[index]}");
+              //print("deleting ${goalListRef[index]}");
+              _deleteFromFB(index, goalListRef[index].goalCompleted);
             },
           ),
           onTap: () {
@@ -364,7 +370,70 @@ class _MyGoalsPage extends State<MyGoalsPage> {
         ),
       );
   }
-  
+
+  _addToComp(Goal goal, int index){
+
+    //remove from firebase & local list
+    goalList.removeAt(index);
+    _deleteFromFB(index, goal.goalCompleted);
+
+    //add to completed list
+    goal.goalCompleted = true;
+    goalListComp.add(goal);
+
+    //add to new collection/document
+    var doc = firebaseDB.collection(userID).document("goals")
+        .collection("goalsCompleted").document();
+
+    firebaseDB.runTransaction((transaction) async {
+      await transaction.set(
+          doc, goal.toMap());
+    });
+
+  }
+
+  _addToActive(Goal goal, int index){
+
+    //remove from firebase & local list
+    goalListComp.removeAt(index);
+    _deleteFromFB(index, goal.goalCompleted);
+
+    //add to completed list
+    goal.goalCompleted = false;
+    goalListComp.add(goal);
+
+    //add to new collection/document
+    var doc = firebaseDB.collection(userID).document("goals")
+        .collection("goals").document();
+
+    firebaseDB.runTransaction((transaction) async {
+      await transaction.set(
+          doc, goal.toMap());
+    });
+
+  }
+  _deleteFromFB(int index, bool complete){
+
+    var foundDocID;
+    String col = "";
+    complete == false ? col = "goals" : col = "goalsCompleted";
+
+    var doc;
+
+    firebaseDB.collection(userID).document("goals").collection(col).snapshots().listen((snapshot) async
+    {
+      foundDocID = snapshot.documents.elementAt(index).documentID.toString();
+
+      doc = firebaseDB.collection(userID).document("goals").collection(col).document(foundDocID);
+
+    });
+
+    firebaseDB.runTransaction((transaction) async {
+      await transaction.delete(doc);
+    });
+    print("end delete");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
