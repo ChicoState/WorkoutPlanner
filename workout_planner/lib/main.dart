@@ -5,6 +5,7 @@ import 'exercisesPage.dart';
 import 'workoutPlanPage.dart';
 import 'auth.dart';
 import 'root.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
   runApp(App());
@@ -37,8 +38,32 @@ class HomePage extends StatelessWidget
   }
 }
 
-class NavDrawer extends StatelessWidget
+class NavDrawer extends StatefulWidget{
+
+  @override
+  NavDrawerState createState() => NavDrawerState();
+}
+
+class NavDrawerState extends State<NavDrawer>
 {
+
+//  BaseAuth auth;
+//  String userID = "";
+//  String userEmail = "";
+//
+//  void initState() {
+//    super.initState();
+//    auth.getCurrentUser().then((user) {
+//      setState(() {
+//        userID = user.uid;
+//      });
+//      userEmail = user.email;
+//
+//      if (userID == "")
+//        print("ERROR: USERID IS NULL");
+//    });
+//  }
+
   @override
   Widget build(BuildContext context)
   {
@@ -46,7 +71,24 @@ class NavDrawer extends StatelessWidget
       child: ListView(
         children: <Widget>[
           DrawerHeader(
-            child: Text("Actions\n <ADD LOGIN TEXT AND PROFILE PICTURE HERE>"),
+            child: Column(
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Colors.lightBlue,
+                  radius: 50,
+                  child: Text("FIX")
+                    //TODO add user's first letter of email
+//                  child: userID == "" ? Text("") : Text(
+//                    "${userEmail[0].toUpperCase()}",
+//                    style: TextStyle(fontSize: 40))
+                )
+
+                //TODO add user's email below circle avatar
+
+              ],
+            ),
+
+
             decoration: BoxDecoration(
               color: Colors.blue
             ),

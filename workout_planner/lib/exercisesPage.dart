@@ -42,7 +42,11 @@ class _ExercisesPage extends State<ExercisesPage>
                       children: <Widget>[
                         Row(children: <Widget> [
                           Text("Name: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text("${jsonData[index]['workout']}") ],
+                          Flexible(
+                            child: Text(
+                            "${jsonData[index]['workout']}",
+                            overflow: TextOverflow.fade
+                          ))],
                         ),
 
                         Row(children: <Widget> [
@@ -52,7 +56,7 @@ class _ExercisesPage extends State<ExercisesPage>
 
                         Row(children: <Widget> [
                           Text("Equipment: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text("${jsonData[index]['equipment_type']}") ],
+                          Text("${jsonData[index]['equipment_type']}",) ],
                         ),
 
                         Container(
