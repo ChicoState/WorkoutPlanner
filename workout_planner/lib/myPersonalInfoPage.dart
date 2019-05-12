@@ -120,7 +120,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                 child: Container(
                   //padding: const EdgeInsets.all(0.0),
                   child: CircleAvatar(
-                    backgroundColor: Colors.lightBlue,
+                    backgroundColor: Colors.grey,
                     child: Text("KS"),
                     radius: 50.0,
                   ),
@@ -159,7 +159,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                   )
               ),
               OutlineButton(
-                  borderSide: BorderSide(color: Colors.black),
+                  borderSide: BorderSide(color: Colors.white),
                   shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                   onPressed: _showWeightDialog,
                   child: Text(
@@ -200,7 +200,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                   )
               ),
               OutlineButton(
-                  borderSide: BorderSide(color: Colors.black),
+                  borderSide: BorderSide(color: Colors.white),
                   shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                   onPressed: _showAgeDialog,
                   child: Text(
@@ -227,7 +227,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                 )
               ),
               new OutlineButton(
-                borderSide: BorderSide(color: Colors.black),
+                borderSide: BorderSide(color: Colors.white),
                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                 onPressed: _showHeightFeetDialog,
                 child: Text(
@@ -249,7 +249,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                   )
               ),
               new OutlineButton(
-                borderSide: BorderSide(color: Colors.black),
+                borderSide: BorderSide(color: Colors.white),
                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
                 onPressed: _showHeightInchDialog,
                 child: Text(
@@ -278,9 +278,9 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                   )
               ),
              OutlineButton(
-                  borderSide: BorderSide(color: Colors.black),
+                  borderSide: BorderSide(color: Colors.white),
                   shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(100.0)),
-
+                  color: Colors.grey,
                   onPressed: _showSex,
                   child: Text(
                     "$sex",
@@ -293,7 +293,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
             ]
           ),
 
-          Expanded(
+          /*Expanded(
             child: Column(
               children: <Widget>[
                 StreamBuilder(      // TODO maybe this is better as a future builder?
@@ -347,7 +347,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                 )
               ],
             )
-          ),
+          ),*/
 
           RaisedButton(
             onPressed: _saveInfo,

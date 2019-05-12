@@ -26,7 +26,7 @@ class _MyGoalsPage extends State<MyGoalsPage> {
   final descController = new TextEditingController();
   List<Goal> goalList = List<Goal>();
   List<Goal> goalListComp = List<Goal>();
-  var checkBox = Icon(Icons.check_box_outline_blank);
+  var checkBox = Icon(Icons.check_box_outline_blank, color: Colors.purple);
   String userID = "";
 
 
@@ -62,8 +62,9 @@ class _MyGoalsPage extends State<MyGoalsPage> {
                   controller: goalController,
                   decoration: new InputDecoration(
                       labelText: "Goal",
+                      labelStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.grey,
                       contentPadding: new EdgeInsets.all(5.0),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -77,8 +78,9 @@ class _MyGoalsPage extends State<MyGoalsPage> {
                   controller: descController,
                   decoration: new InputDecoration(
                       labelText: "Description",
+                      labelStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.grey,
                       contentPadding: new EdgeInsets.all(5.0),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -340,20 +342,20 @@ class _MyGoalsPage extends State<MyGoalsPage> {
     }
 
       return Card(
-        color: Colors.blue[100],
+        color: Colors.grey[100],
         elevation: 2.0,
         child: ListTile(
           leading: GestureDetector(
-            child: checkBox,
+            child: Icon(Icons.check_box_outline_blank, color: Colors.black),
             onTap: () {
               print("finished ${goalListRef[index]}");
               //print(snapshot.data.documents[index]['name']);
             },
           ),
-          title: Text(goalListRef[index].goalName),
-          subtitle: Text(goalListRef[index].goalDescription),
+          title: Text(goalListRef[index].goalName,style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)  ),
+          subtitle: Text(goalListRef[index].goalDescription, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           trailing: GestureDetector(
-            child: Icon(Icons.delete, color: Colors.grey),
+            child: Icon(Icons.delete, color: Colors.black),
             onTap: () {
               print("deleting ${goalListRef[index]}");
             },

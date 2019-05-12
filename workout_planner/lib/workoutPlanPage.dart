@@ -87,7 +87,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
             title: Text(
                 "Error",
                 style: TextStyle(
-                    fontWeight: FontWeight.bold
+                    fontWeight: FontWeight.bold,
                 )
             ),
             titlePadding: EdgeInsets.all(10.0),
@@ -222,7 +222,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
           _updateGoalDialog(exerIndex);
         },
         child: Card (
-          color: Colors.blue[100],
+          color: Colors.grey[100],
           elevation : 4,
           child : Container(
               padding: EdgeInsets.only(left: 10.0, top: 10.0),
@@ -238,7 +238,8 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontSize: 30.0,
-                                fontWeight: FontWeight.bold
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black
                             )
                         ),
                         Text(
@@ -246,6 +247,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.italic,
+                                color: Colors.black
                             )
                         ),
                         Text(
@@ -253,13 +255,14 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.italic,
+                                color: Colors.black
                             )
                         ),
                       ],
                     ),
                   ),
                   IconButton(
-                      icon: Icon(Icons.check),
+                      icon: Icon(Icons.check, color: Colors.black),
                       onPressed: () => _deleteGoal(index)
                   )
                 ],
@@ -277,7 +280,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
           _updateCompGoalDialog(exerIndex);
         },
         child: Card(
-        color: Colors.blue[100],
+        color: Colors.grey[100],
         elevation: 4,
           child: Container(
               padding: EdgeInsets.only(left: 10.0, top: 10.0),
@@ -293,7 +296,8 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontSize: 30.0,
-                                fontWeight: FontWeight.bold
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black
                             )
                         ),
                         Text(
@@ -301,6 +305,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.italic,
+                                color: Colors.black
                             )
                         ),
                         Text(
@@ -308,17 +313,18 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                             style: TextStyle(
                               fontSize: 20.0,
                               fontStyle: FontStyle.italic,
+                                color: Colors.black
                             )
                         ),
                       ],
                     ),
                   ),
                   IconButton(
-                      icon: Icon(Icons.refresh),
+                      icon: Icon(Icons.refresh, color: Colors.black),
                       onPressed: () => _redoGoal(index)
                   ),
                   IconButton(
-                      icon: Icon(Icons.delete),
+                      icon: Icon(Icons.delete, color: Colors.black),
                       onPressed: () => _deleteCompletedGoal(index)
                   )
                 ],
@@ -348,8 +354,9 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                   controller: exerController,
                   decoration: new InputDecoration(
                       labelText: "Exercise",
+                      labelStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.grey,
                       contentPadding: new EdgeInsets.all(5.0),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -362,10 +369,11 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                 new TextField(
                   controller: repsController,
                   decoration: new InputDecoration(
-                      hintText: hintReps,
-//                      labelText: hintReps,
+                      //hintText: hintReps,
+                      labelText: hintReps,
+                      labelStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.grey,
                       contentPadding: new EdgeInsets.all(5.0),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -375,10 +383,11 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                 new TextField(
                   controller: setsController,
                   decoration: new InputDecoration(
-                      hintText: hintSets,
-//                      labelText: hintSets,
+                      //hintText: hintSets,
+                      labelText: hintSets,
+                      labelStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.grey,
                       contentPadding: new EdgeInsets.all(5.0),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),

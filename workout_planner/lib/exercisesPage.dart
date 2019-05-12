@@ -35,24 +35,24 @@ class _ExercisesPage extends State<ExercisesPage>
                 itemBuilder: (BuildContext context, int index){
                   return Card(
                     margin: EdgeInsets.all(5),
-                    color: Colors.blue[50],
+                    color: Colors.grey[50],
                     elevation: 3,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         Row(children: <Widget> [
-                          Text("Name: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text("${jsonData[index]['workout']}") ],
+                          Text("Name: ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+                          Text("${jsonData[index]['workout']}",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)) ],
                         ),
 
                         Row(children: <Widget> [
-                          Text("Muscle: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text("${jsonData[index]['muscle_target']}") ],
+                          Text("Muscle: ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+                          Text("${jsonData[index]['muscle_target']}",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)) ],
                         ),
 
                         Row(children: <Widget> [
-                          Text("Equipment: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text("${jsonData[index]['equipment_type']}") ],
+                          Text("Equipment: ", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+                          Text("${jsonData[index]['equipment_type']}",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.black)) ],
                         ),
 
                         Container(
