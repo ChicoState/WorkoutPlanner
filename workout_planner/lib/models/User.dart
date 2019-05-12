@@ -4,7 +4,7 @@ class User {
   String _gender;
   int _weight;
   int _age;
-  int _height; //in cm
+  int _height; //in inches
 
   //Add options later
   User.set(this._gender, this._weight, this._age, this._height);
@@ -23,33 +23,27 @@ class User {
   //setters
 
   set gender(String newGender) {
-    if (newGender == 'Male' || newGender == 'male' || newGender == 'M' || newGender == 'm') {
+    if (newGender == 'Male') {
       this._gender = "Male";
     }
-    else if (newGender == 'Female' || newGender == 'female' || newGender == 'F' || newGender == 'f') {
+    else if (newGender == 'Female') {
       this._gender = "Female";
     }
-    else {
-      this._gender = 'Error: Bad gender';
+    else if(newGender == 'Other') {
+      this._gender = "Other";
     }
   }
 
   set weight(int newWeight) {
-    if (newWeight <= 1000) {
-      this._weight = newWeight;
-    }
+    this._weight = newWeight;
   }
 
   set age(int newAge) {
-    if (newAge <= 120) {
-      this._age = newAge;
-    }
+    this._age = newAge;
   }
 
   set height(int newHeight) {
-    if (newHeight <= 300) {
-      this._height = newHeight;
-    }
+    this._height = newHeight;
   }
 
   toJson()
