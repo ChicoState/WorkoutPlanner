@@ -244,7 +244,6 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     return StreamBuilder(
         stream: firebaseDB.collection(userID).document("plans").collection("plans").snapshots(),
         builder: (context, snapshot) {
-          //print(snapshot.data.documents[0]['name']);
           buildActive(snapshot);
           return ListView.builder(
               itemCount: workoutNames.length,
@@ -316,6 +315,7 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
                           children: <Widget>[
                             IconButton(
                               icon: Icon(Icons.check),
+                              onPressed: () => _addToComp,
                               //onPressed: () => _moveGoal(index)
                             ),
                             IconButton(
@@ -372,7 +372,9 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     print(workoutNames);
   }
 
+  _addtoComp(){
 
+  }
 
   @override
   Widget build(BuildContext context) {
