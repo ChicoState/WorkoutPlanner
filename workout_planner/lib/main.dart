@@ -17,6 +17,7 @@ class App extends StatelessWidget
   {
     return MaterialApp(
       title: "Workout Planner",
+      //theme: ThemeData.dark(),
       home: RootPage(auth: Auth())
     );
   }
