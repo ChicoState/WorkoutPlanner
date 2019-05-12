@@ -7,9 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_picker/flutter_picker.dart';
 
-
-
-
 // page to add and update personal weight
 class MyPersonalInfoPage extends StatefulWidget {
   MyPersonalInfoPage({this.auth, this.onSignedOut});
@@ -33,63 +30,38 @@ class MyPersonalInfoPage extends StatefulWidget {
 final FirebaseAuth firebase = FirebaseAuth.instance;
 final Firestore firebaseDB = Firestore.instance;
 
-class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
-{
+class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
   String userID = "";
-
-  var firebaseAge = "";
-  var firebaseWeight = "";
-  var firebaseHeight = "";
-  var firebaseGender = "";
+  String userEmail = "";
 
   MyPersonalInfoPageState();
 
-  // All the TextEditingControllers for each TextFormField
-  TextEditingController ageController = TextEditingController();
-  TextEditingController weightController = TextEditingController();
-  TextEditingController heightController = TextEditingController();
-  TextEditingController genderController = TextEditingController();
-
-  int weight = 150;
-  int age = 20;
-  int heightFeet = 5;
-  int heightInch = 3;
+  int weight = 0;
+  int age = 0;
+  int heightFeet = 0;
+  int heightInch = 0;
   String sex = "Other";
 
   void initState() {
     super.initState();
     widget.auth.getCurrentUser().then((user) {
+      setState(() {
+        userID = user.uid;
+      });
+      userEmail = user.email;
 
-      userID = user.uid;
-
-      if(userID == "")
+      if (userID == "")
         print("ERROR: USERID IS NULL");
-
-     Firestore.instance.collection(userID).getDocuments().then((snap) {
-       var data = snap.documents[0].data;
-       setState(() {
-        ageController.text = data['age'].toString();
-        weightController.text = data['weight'].toString();
-        heightController.text = data['height'].toString();
-        genderController.text = data['gender'].toString();
-       });
-     });
     });
   }
 
-  /*
-  name: build
-  type: Widget
-  return: Scaffold
-  desc:
-   */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       drawer: NavDrawer(),
       appBar: AppBar(
-          title: Text("Personal Information"),
+        title: Text("Personal Information"),
         actions: <Widget>[
           FlatButton(
             child: Text(
@@ -101,185 +73,170 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
         ],
       ),
 
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          //TODO on initial page load when default data is present, there are errors displaying below
-          //TODO   when the page is reloaded it's fine
-          //#============================================== start  children
-          Text(
-            "Personal Information Page",
-            style: TextStyle(
-              fontSize: 20,)
-            ),
+          SizedBox(height: 20),
           Row(
-            children: <Widget>[
-              //#============================================== start  children
-              //Element 1 - ColorAvatar
-              Expanded(
-                child: Container(
-                  //padding: const EdgeInsets.all(0.0),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.lightBlue,
-                    child: Text("KS"),
-                    radius: 50.0,
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    //padding: const EdgeInsets.all(0.0),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.lightBlue,
+                      child: userID == "" ? Text("") : Text(
+                          "${userEmail[0].toUpperCase()}",
+                          style: TextStyle(fontSize: 40)),
+                      radius: 50.0,
+                    ),
                   ),
                 ),
-              ),
-
-            ]
-            //#================================================ end children
+              ]
           ),
-//          Row(
-//            children: <Widget>[
-//              //#============================================== start  children
-//              //Element 2 - Username
-//              Expanded(
-//                child: Container(
-//                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
-//                  child: goalForm("Username", "Username", userNameController,
-//                      TextInputType.text, TextInputAction.done),
-//                ),
-//              ),
-//
-//            ],
-//            //#================================================ end children
-//          ),
+
+          SizedBox(height: 20),
+          Text("Your Personal Information:"),
+          SizedBox(height: 20),
+
+          displayFirebaseText(),
+
+          Text("Update Your Personal Infomation Below:"),
+          SizedBox(height: 20),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              SizedBox(width: 10.0,),
               Container(
                   child: Text(
                     "Weight:   ",
                     style: TextStyle(
-                      fontSize: 18,
-                      letterSpacing: 2.0
+                        fontSize: 18,
+                        letterSpacing: 2.0
                     ),
                   )
               ),
               OutlineButton(
-                  borderSide: BorderSide(color: Colors.black),
-                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                  onPressed: _showWeightDialog,
-                  child: Text(
-                    "$weight",
-                    style: TextStyle(
+                borderSide: BorderSide(color: Colors.black),
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0)),
+                onPressed: _showWeightDialog,
+                child: Text(
+                  "$weight",
+                  style: TextStyle(
                       fontSize: 20,
                       letterSpacing: 2.0
-                    ),
                   ),
+                ),
               ),
-
-              //#============================================== start  children
-              //Element 3 - Gender
-//              Expanded(
-//                child: Container(
-//                  padding: const EdgeInsets.symmetric(horizontal: 100.0),
-//                  child: goalForm("weight","Weight", weightController,
-//                      TextInputType.text,
-//                      TextInputAction.done),
-//                )
-//              )
-
             ],
             //#================================================ end children
           ),
+
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             //Height, Age, Sex
             children: <Widget>[
+              SizedBox(width: 10.0,),
               Container(
                   child: Text(
                     "Age:       ",
                     style: TextStyle(
-                      fontSize: 18,
-                      letterSpacing: 2.0
+                        fontSize: 18,
+                        letterSpacing: 2.0
                     ),
                   )
               ),
               OutlineButton(
-                  borderSide: BorderSide(color: Colors.black),
-                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                  onPressed: _showAgeDialog,
-                  child: Text(
-                    "$age",
-                    style: TextStyle(
-                        fontSize: 20,
-                        letterSpacing: 2.0
-                    ),
+                borderSide: BorderSide(color: Colors.black),
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(30.0)),
+                onPressed: _showAgeDialog,
+                child: Text(
+                  "$age",
+                  style: TextStyle(
+                      fontSize: 20,
+                      letterSpacing: 2.0
                   ),
+                ),
               ),
             ],
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                child: Text(
-                  "Height: Ft  ",
-                  style: TextStyle(
-                    fontSize: 20,
-                    letterSpacing: 2.0
-                  ),
-                )
-              ),
-              new OutlineButton(
-                borderSide: BorderSide(color: Colors.black),
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                onPressed: _showHeightFeetDialog,
-                child: Text(
-                  "$heightFeet",
-                  style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2.0
-                  ),
-                ),
-                //color: Colors.grey,
-              ),
-              Container(
-                  child: Text(
-                    "  In  ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2.0
-                    ),
-                  )
-              ),
-              new OutlineButton(
-                borderSide: BorderSide(color: Colors.black),
-                shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                onPressed: _showHeightInchDialog,
-                child: Text(
-                  "$heightInch",
-                  style: TextStyle(
-                      fontSize: 20,
-                      letterSpacing: 2.0
-                  ),
-                ),
-                //color: Colors.grey,
-              ),
-            ]
-          ),
 
           Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(width: 10.0,),
+                Container(
+                    child: Text(
+                      "Height: Ft  ",
+                      style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 2.0
+                      ),
+                    )
+                ),
+                new OutlineButton(
+                  borderSide: BorderSide(color: Colors.black),
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  onPressed: _showHeightFeetDialog,
                   child: Text(
-                    "Sex:     ",
+                    "$heightFeet",
                     style: TextStyle(
                         fontSize: 20,
                         letterSpacing: 2.0
                     ),
-                  )
-              ),
-             OutlineButton(
+                  ),
+                  //color: Colors.grey,
+                ),
+                Container(
+                    child: Text(
+                      "  In  ",
+                      style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 2.0
+                      ),
+                    )
+                ),
+                new OutlineButton(
                   borderSide: BorderSide(color: Colors.black),
-                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(100.0)),
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(30.0)),
+                  onPressed: _showHeightInchDialog,
+                  child: Text(
+                    "$heightInch",
+                    style: TextStyle(
+                        fontSize: 20,
+                        letterSpacing: 2.0
+                    ),
+                  ),
+                  //color: Colors.grey,
+                ),
+              ]
+          ),
+
+          Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(width: 10.0,),
+                Container(
+                    child: Text(
+                      "Sex:     ",
+                      style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 2.0
+                      ),
+                    )
+                ),
+                OutlineButton(
+                  borderSide: BorderSide(color: Colors.black),
+                  shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(100.0)),
 
                   onPressed: _showSex,
                   child: Text(
@@ -289,64 +246,8 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
                         letterSpacing: 2.0
                     ),
                   ),
-              ),
-            ]
-          ),
-
-          Expanded(
-            child: Column(
-              children: <Widget>[
-                StreamBuilder(      // TODO maybe this is better as a future builder?
-                  stream: firebaseDB.collection(userID).document("personalInfo").snapshots(),
-                  builder: (context, snapshot) {
-                    return Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              SizedBox(width: 10.0,),
-                              Text("Weight:"),
-                              SizedBox(width: 10.0,),
-                              Text(snapshot.data['weight'].toString())
-                            ]
-                          ),
-                          SizedBox(height: 10.0),
-                          Row(
-                            children: <Widget>[
-                              SizedBox(width: 10.0,),
-                              Text("Height:"),
-                              SizedBox(width: 10.0,),
-                              Text(snapshot.data['height'].toString())
-                            ]
-                          ),
-                          SizedBox(height: 10.0),
-                          Row(
-                            children: <Widget>[
-                              SizedBox(width: 10.0,),
-                              Text("Gender:"),
-                              SizedBox(width: 10.0,),
-                              Text(snapshot.data['gender'].toString())
-                            ]
-                          ),
-                          SizedBox(height: 10.0),
-                          Row(
-                            children: <Widget>[
-                              SizedBox(width: 10.0,),
-                              Text("Age:"),
-                              SizedBox(width: 10.0,),
-                              Text(snapshot.data['age'].toString())
-                            ]
-                          ),
-                          SizedBox(height: 10.0),
-                        ],
-                      )
-                    );
-                  }
-                )
-              ],
-            )
+                ),
+              ]
           ),
 
           RaisedButton(
@@ -358,6 +259,86 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
       ),
     );
   } //build
+
+  displayFirebaseText()
+  {
+    if(userID == "") {
+      return CircularProgressIndicator();
+    }
+    else
+      return Expanded(
+        child: Column(
+          children: <Widget>[
+            StreamBuilder(
+              stream: firebaseDB.collection(userID).document("personalInfo").snapshots(),
+              builder: (context, snapshot) {
+                return Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          SizedBox(width: 10.0,),
+                          Text("Weight:", style: TextStyle(fontSize: 25),),
+                          SizedBox(width: 10.0,),
+                          userID == "" ? Text("") : Text("${snapshot.data['weight'].toString()} lbs.", style: TextStyle(fontSize: 25))
+                        ]
+                      ),
+                      SizedBox(height: 10.0),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(width: 10.0,),
+                          Text("Height:", style: TextStyle(fontSize: 25)),
+                          SizedBox(width: 10.0,),
+                          userID == "" ? Text("") : Text(
+                              "${(snapshot.data['height'] / 12).floor().toString()} ft. ${(snapshot.data['height'] % 12).toString()} in. " ,
+                              style: TextStyle(fontSize: 25))
+                        ]
+                      ),
+                      SizedBox(height: 10.0),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(width: 10.0,),
+                          Text("Gender:", style: TextStyle(fontSize: 25)),
+                          SizedBox(width: 10.0,),
+                          userID == "" ? Text("") : Text(snapshot.data['gender'].toString(), style: TextStyle(fontSize: 25))
+                        ]
+                      ),
+                      SizedBox(height: 10.0),
+                      Row(
+                        children: <Widget>[
+                          SizedBox(width: 10.0,),
+                          Text("Age:", style: TextStyle(fontSize: 25)),
+                          SizedBox(width: 10.0,),
+                          userID == "" ? Text("") : Text(snapshot.data['age'].toString(), style: TextStyle(fontSize: 25))
+                        ]
+                      ),
+                      SizedBox(height: 10.0),
+                      SizedBox(height: 10.0),
+                      Row(
+                          children: <Widget>[
+                            SizedBox(width: 10.0,),
+                            Text("BMI:", style: TextStyle(fontSize: 25)),
+                            SizedBox(width: 10.0,),
+                            userID == ""
+                                ? Text("")
+                                : Text(
+                                    "${((snapshot.data['weight']) * 703 /
+                                        (snapshot.data['height'] * snapshot.data['height'])).toStringAsFixed(2)}",
+                                    style: TextStyle(fontSize: 25))
+                          ]
+                      ),
+                      SizedBox(height: 10.0),
+                    ],
+                  )
+                );
+              }
+            )
+          ],
+        )
+    );
+  }
 
   _showSex(){
       Picker picker = new Picker(
@@ -478,24 +459,18 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
   }
 
 
-
-
-
-
-
   void _saveInfo() async {
-    //determine if insert or update by checking user id
-    //if id exists in database then update the info
-    //if id does not exist then insert into database
 
     User userObject = new User();
 
-    userObject.gender = genderController.text;
-    userObject.weight = int.parse(weightController.text);
-    userObject.age = int.parse(ageController.text);
-    userObject.height = int.parse(heightController.text);
+    userObject.gender = sex;
+    userObject.weight = weight;
+    userObject.age = age;
 
-    //var snap = await firebaseDB.collection(userID).getDocuments();
+    int feetInInches = heightFeet * 12;
+    int inches = heightInch;
+
+    userObject.height = feetInInches + inches;
 
     DocumentReference doc = firebaseDB.collection(userID).document("personalInfo");
 
@@ -503,97 +478,5 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage>
       await transaction.update(
           doc, userObject.toMap());
     });
-
-    // if there's no personal info in the DB for this user, add it with the submitted fields
-//    if(snap.documents.isEmpty)//TODO this won't work in the future when there are multiple documents
-//    {
-//      print("empty");
-//      firebaseDB.runTransaction((transaction) async {
-//        await transaction.set(
-//            doc, userObject.toMap());
-//      });
-//    }
-//    else // update the field if it exists
-//    {
-//      print("not empty");
-//      firebaseDB.runTransaction((transaction) async {
-//        await transaction.update(
-//            doc, userObject.toMap());
-//      });
-//    }
   }
 }
-
-/*
- name: goalForm
- type: class
- desc: Initiate MyCustomForm to a Stateful Widget and takes in 5 parameters
-  needed to create the TextFormField.
- */
-class goalForm extends StatefulWidget {
-
-  String _hintDec;
-  String _labelDec;
-  TextEditingController _controller = TextEditingController();
-  TextInputType _keyboard;
-  TextInputAction _action;
-
-  //Constructor for goalForm
-  goalForm(this._hintDec, this._labelDec, this._controller, this._keyboard,
-      this._action);
-  //Create state for goalForm
-  @override
-  goalFormState createState() => goalFormState();
-
-  //spagetti code, look @ doc to figure out how to dispose correctly
-  //https://flutter.dev/docs/cookbook/forms/text-field-changes
-  void controllerDispose(){
-    _controller.dispose();
-  }
-}
-
-/*
- name: goalFormState
- type: class
- return: TextFormField
- desc: Initiate the state of goalForm and returns the TextFormField
- */
-class goalFormState extends State<goalForm> {
-
-  DBhelper db = DBhelper();
-  User user;
-  //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        hintText: widget._hintDec,
-        labelText: widget._labelDec,
-      ),
-      style: TextStyle(
-        color: Colors.black,
-      ),
-      keyboardType: widget._keyboard,
-      controller: widget._controller,
-      textInputAction: widget._action,
-    );
-  }
-}
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-////Age Form
-//Expanded(
-//child: Container(
-//padding: EdgeInsets.all(20.0),
-//width: 75.0,
-//child: goalForm("Age","Age", ageController,
-//TextInputType.number, TextInputAction.done),
-//),
-//),
