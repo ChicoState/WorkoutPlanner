@@ -101,7 +101,7 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
 
           displayFirebaseText(),
 
-          Text("Update Your Personal Infomation Below:"),
+          Text("Update Your Personal Infomation Below (All values):"),
           SizedBox(height: 20),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -457,7 +457,6 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
       }
     ).showDialog(context);
   }
-
 
   void _saveInfo() async {
 
