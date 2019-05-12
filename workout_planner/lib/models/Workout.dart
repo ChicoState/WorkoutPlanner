@@ -4,8 +4,10 @@ class Workout
   int _reps;
   int _sets;
   int _weight;
+  bool _completed;
 
-  Workout.set(this._workoutName, this._reps, this._sets, this._weight);
+  Workout.set(this._workoutName, this._reps, this._sets, this._weight,
+      this._completed);
 
   Workout();
 
@@ -18,6 +20,8 @@ class Workout
   int get sets => _sets;
 
   int get weight => _weight;
+
+  bool get completed => _completed;
 
   //setters
 
@@ -37,11 +41,16 @@ class Workout
     this._weight = weight;
   }
 
+  set completed(completed){
+    this._completed = completed;
+  }
+
   Workout.fromMapObject(Map<String, dynamic> myMap) {
     this._workoutName = myMap['name'];
     this._reps = myMap['reps'];
     this._sets = myMap['sets'];
     this._weight = myMap['weight'];
+    this._completed = myMap['completed'];
   }//User.fromMapObjects
 
   Map<String, dynamic> toMap() {
@@ -53,6 +62,7 @@ class Workout
     myMap['reps'] = _reps;
     myMap['sets'] = _sets;
     myMap['weight'] = _weight;
+    myMap['completed'] = _completed;
 
     return myMap;
   }// toMap()

@@ -180,67 +180,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
     });
   }
 
-//  buildActive() async
-//  {
-//    FirebaseUser user = await FirebaseAuth.instance.currentUser();
-//    String userID = user.uid;
-//
-//    StreamBuilder(
-//      stream: firebaseDB.collection(userID).document("goals").collection("goals").snapshots(),
-//      builder: (context, snapshot) {
-//        return new GestureDetector(
-//          onTap: () {
-//            print("tapped");
-//            //goalIndex = index;
-//            //_updateGoalDialog(goalIndex);
-//          },
-//          child: Card(
-//            color: Colors.blue[100],
-//            elevation: 3,
-//            margin: EdgeInsets.all(4),
-//            child: Container(
-//              padding: EdgeInsets.only(left: 10.0, top: 10.0),
-//              child: Row(
-//                mainAxisAlignment: MainAxisAlignment.center,
-//                children: <Widget>[
-//                  Expanded(
-//                    child: Column(
-//                      crossAxisAlignment: CrossAxisAlignment.stretch,
-//                      children: <Widget>[
-//                        Text(
-//                            snapshot.data['name'].toString(),
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                                fontSize: 30.0,
-//                                fontWeight: FontWeight.bold
-//                            )
-//                        ),
-//                        Text(
-//                            snapshot.data['description'].toString(),
-//                            style: TextStyle(
-//                              fontSize: 20.0,
-//                              fontStyle: FontStyle.italic,
-//                            )
-//                        ),
-//                      ],
-//                    ),
-//                  ),
-//                  IconButton(
-//                    icon: Icon(Icons.check),
-//                    //onPressed: () => _moveGoal(index)
-//                  )
-//                ],
-//              )
-//            )
-//          )
-//        );
-//      }
-//    );
-//  }
-//                child: ListView.builder(
-//                  itemBuilder: (context, index) => _buildActiveRow(index),
-//                  itemCount: goals.length,
-//                )
   buildStream(){
     return StreamBuilder(
         stream: firebaseDB.collection(userID).document("goals").collection("goals").snapshots(),
@@ -288,12 +227,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
            goal = Goal.set(doc['name'],doc['description'],doc['completed'])))
           .toList();
 
-//      for(int index = goalList.length-1; index>-1; index--){
-//        if(goalList[index].goalCompleted == true) {
-//            //goalListComp.add(goalList[index]);
-//            goalList.removeAt(index);
-//        }
-//      }
     }//else
 
     print(goalList);
@@ -317,12 +250,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
           .toList();
     }//else
 
-//    for(int index = goalListComp.length-1; index>-1; index--){
-//      if(goalListComp[index].goalCompleted == false) {
-//        //goalListComp.add(goalList[index]);
-//        goalListComp.removeAt(index);
-//      }
-//    }
     print(goalListComp);
     print("end buildComp");
   }
@@ -431,7 +358,6 @@ class _MyGoalsPage extends State<MyGoalsPage> {
     firebaseDB.runTransaction((transaction) async {
       await transaction.delete(doc);
     });
-    print("end delete");
   }
 
   @override
