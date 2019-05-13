@@ -46,23 +46,24 @@ class NavDrawer extends StatefulWidget{
 
 class NavDrawerState extends State<NavDrawer>
 {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-//  BaseAuth auth;
-//  String userID = "";
-//  String userEmail = "";
-//
-//  void initState() {
-//    super.initState();
-//    auth.getCurrentUser().then((user) {
-//      setState(() {
-//        userID = user.uid;
-//      });
-//      userEmail = user.email;
-//
-//      if (userID == "")
-//        print("ERROR: USERID IS NULL");
-//    });
-//  }
+  BaseAuth auth;
+  String userID = "";
+  String userEmail = "";
+
+  void initState() {
+    super.initState();
+    _firebaseAuth.currentUser().then((user) {
+      setState(() {
+        userID = user.uid;
+      });
+      userEmail = user.email;
+
+      if (userID == "")
+        print("ERROR: USERID IS NULL");
+    });
+  }
 
   @override
   Widget build(BuildContext context)
@@ -76,14 +77,15 @@ class NavDrawerState extends State<NavDrawer>
                 CircleAvatar(
                   backgroundColor: Colors.lightBlue,
                   radius: 50,
-                  child: Text("FIX")
-                    //TODO add user's first letter of email
-//                  child: userID == "" ? Text("") : Text(
-//                    "${userEmail[0].toUpperCase()}",
-//                    style: TextStyle(fontSize: 40))
-                )
+                  child: userID == "" ? Text("") : Text(
+                    "${userEmail[0].toUpperCase()}",
+                    style: TextStyle(fontSize: 40))
+                ),
 
-                //TODO add user's email below circle avatar
+                SizedBox(height: 10),
+
+                userID == "" ? Text("")
+                             : Text("$userEmail")
 
               ],
             ),
