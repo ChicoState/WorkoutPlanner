@@ -602,11 +602,15 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
     }
     var doc = firebaseDB.collection(userID).document("plans")
         .collection(col).document();
-
-    firebaseDB.runTransaction((transaction) async {
-      await transaction.set(
-          doc, work.toMap());
-    });
+    try{
+      firebaseDB.runTransaction((transaction) async {
+        await transaction.set(
+            doc, work.toMap());
+      });
+    }
+    catch(e){
+      print("error, $e");
+    }
   }
 
   _deleteFromFB(int index, bool complete){
@@ -625,10 +629,14 @@ class _WorkoutPlanPage extends State<WorkoutPlanPage>
       doc = firebaseDB.collection(userID).document("plans").collection(col).document(foundDocID);
 
     });
-
-    firebaseDB.runTransaction((transaction) async {
-      await transaction.delete(doc);
-    });
+    try {
+      firebaseDB.runTransaction((transaction) async {
+        await transaction.delete(doc);
+      });
+    }
+    catch(e){
+      print("error, $e");
+    }
 
   }
   @override
