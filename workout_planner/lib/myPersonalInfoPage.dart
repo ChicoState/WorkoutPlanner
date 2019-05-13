@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'package:workout_planner/utils/DBhelper.dart';
 import 'auth.dart';
 import 'models/User.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -313,7 +312,6 @@ class MyPersonalInfoPageState extends State<MyPersonalInfoPage> {
                         userID == "" ? Text("") : Text(snapshot.data['age'].toString(), style: TextStyle(fontSize: 25))
                       ]
                     ),
-                    SizedBox(height: 10.0),
                     SizedBox(height: 10.0),
                     Row(
                         children: <Widget>[
