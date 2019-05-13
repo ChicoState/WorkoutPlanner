@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'auth.dart';
 
-
 class LoginSignUpPage extends StatefulWidget {
   LoginSignUpPage({this.auth, this.onSignedIn});
 
@@ -177,7 +176,8 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               Icons.mail,
               color: Colors.grey,
             )),
-        validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+        //validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
+        validator: EmailValidator.validate,
         onSaved: (value) => _email = value,
       ),
     );
@@ -196,7 +196,8 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
               Icons.lock,
               color: Colors.grey,
             )),
-        validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+        //validator: (value) => value.isEmpty ? 'Password can\'t be empty' : null,
+        validator: PasswordValidator.validate,
         onSaved: (value) => _password = value,
       ),
     );
@@ -248,5 +249,17 @@ class _LoginSignUpPageState extends State<LoginSignUpPage> {
             _showCircularProgress(),
           ],
         ));
+  }
+}
+
+class EmailValidator {
+  static String validate(String value) {
+    return value.isEmpty ? "Email can\'t be empty" : null;
+  }
+}
+
+class PasswordValidator {
+  static String validate(String value) {
+    return value.isEmpty ? "Password can\'t be empty" : null;
   }
 }
